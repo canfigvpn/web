@@ -147,9 +147,14 @@
             color: var(--text-color) !important;
         }
 
-        .os-box .os-title img {
-            width: 28px;
-            height: 28px;
+        .os-box .os-title i {
+            font-size: 28px;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .os-box:hover .os-title i {
+            color: var(--primary-color);
         }
 
         /* App Button Styles */
@@ -265,6 +270,10 @@
             font-size: 16px;
             color: var(--text-color) !important;
             opacity: 0.7;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 8px;
+            border-radius: var(--border-radius);
         }
 
         .slider-dots {
@@ -298,7 +307,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8) !important;
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(10px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -314,6 +324,8 @@
             object-fit: contain;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
         }
 
         .image-zoom .close-zoom {
@@ -374,7 +386,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .wrapper .icon a {
+        .wrapper .icon a, .wrapper .icon button {
             color: var(--text-color);
             text-decoration: none;
             display: flex;
@@ -382,6 +394,10 @@
             align-items: center;
             width: 100%;
             height: 100%;
+            background: none;
+            border: none;
+            font-size: inherit;
+            cursor: pointer;
         }
 
         .wrapper .tooltip {
@@ -417,7 +433,7 @@
             background: var(--primary-color);
         }
 
-        .wrapper .icon:hover a {
+        .wrapper .icon:hover a, .wrapper .icon:hover button {
             color: #FFFFFF;
         }
 
@@ -483,7 +499,7 @@
                 <!-- Android Section -->
                 <div class="os-box" id="android" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون اندروید">
+                        <i class="fas fa-mobile-alt"></i>
                         <span>اندروید</span>
                     </div>
                     <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button" aria-label="دانلود V2rayNG برای اندروید" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayNG</a>
@@ -492,7 +508,7 @@
                 <!-- iPhone Section -->
                 <div class="os-box" id="iphone" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون آیفون">
+                        <i class="fab fa-apple"></i>
                         <span>آیفون</span>
                     </div>
                     <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button" aria-label="دانلود Streisand برای آیفون" style="background: var(--primary-color) !important; color: #FFFFFF !important;">Streisand</a>
@@ -501,7 +517,7 @@
                 <!-- Windows Section -->
                 <div class="os-box" id="windows" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون ویندوز">
+                        <i class="fab fa-windows"></i>
                         <span>ویندوز</span>
                     </div>
                     <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button" aria-label="دانلود V2rayN برای ویندوز" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayN</a>
@@ -516,7 +532,7 @@
                 <!-- Android Slider -->
                 <div class="os-box" id="android-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون اندروید">
+                        <i class="fas fa-mobile-alt"></i>
                         <span>اندروید</span>
                     </div>
                     <div class="slider">
@@ -542,7 +558,7 @@
                 <!-- iPhone Slider -->
                 <div class="os-box" id="iphone-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون آیفون">
+                        <i class="fab fa-apple"></i>
                         <span>آیفون</span>
                     </div>
                     <div class="slider">
@@ -568,7 +584,7 @@
                 <!-- Windows Slider -->
                 <div class="os-box" id="windows-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون ویندوز">
+                        <i class="fab fa-windows"></i>
                         <span>ویندوز</span>
                     </div>
                     <div class="slider">
@@ -595,7 +611,7 @@
     </main>
 
     <!-- بزرگنمایی تصویر -->
-    <div class="image-zoom" role="dialog" style="background: rgba(0, 0, 0, 0.8) !important;">
+    <div class="image-zoom" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important;">
         <img src="" alt="تصویر بزرگ‌شده">
         <button class="close-zoom" aria-label="بستن تصویر" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
     </div>
