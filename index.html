@@ -60,6 +60,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes rotateArrow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(180deg); }
+        }
+
         /* Offline Message */
         .offline-message {
             display: none;
@@ -145,6 +150,7 @@
             font-weight: 500;
             margin-bottom: 15px;
             color: var(--text-color) !important;
+            position: relative;
         }
 
         .os-box .os-title i {
@@ -155,6 +161,16 @@
 
         .os-box:hover .os-title i {
             color: var(--primary-color);
+        }
+
+        .os-box .os-title .toggle-arrow {
+            font-size: 18px;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        .os-box.active .os-title .toggle-arrow {
+            transform: rotate(180deg);
         }
 
         /* App Button Styles */
@@ -499,8 +515,9 @@
                 <!-- Android Section -->
                 <div class="os-box" id="android" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fab fa-android"></i>
                         <span>اندروید</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button" aria-label="دانلود V2rayNG برای اندروید" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayNG</a>
                 </div>
@@ -510,6 +527,7 @@
                     <div class="os-title" style="color: var(--text-color) !important;">
                         <i class="fab fa-apple"></i>
                         <span>آیفون</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button" aria-label="دانلود Streisand برای آیفون" style="background: var(--primary-color) !important; color: #FFFFFF !important;">Streisand</a>
                 </div>
@@ -519,6 +537,7 @@
                     <div class="os-title" style="color: var(--text-color) !important;">
                         <i class="fab fa-windows"></i>
                         <span>ویندوز</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button" aria-label="دانلود V2rayN برای ویندوز" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayN</a>
                 </div>
@@ -532,8 +551,9 @@
                 <!-- Android Slider -->
                 <div class="os-box" id="android-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
                     <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fab fa-android"></i>
                         <span>اندروید</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <div class="slider">
                         <div class="slider-images">
@@ -560,6 +580,7 @@
                     <div class="os-title" style="color: var(--text-color) !important;">
                         <i class="fab fa-apple"></i>
                         <span>آیفون</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <div class="slider">
                         <div class="slider-images">
@@ -586,6 +607,7 @@
                     <div class="os-title" style="color: var(--text-color) !important;">
                         <i class="fab fa-windows"></i>
                         <span>ویندوز</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <div class="slider">
                         <div class="slider-images">
@@ -620,7 +642,7 @@
     <ul class="wrapper">
         <li class="icon telegram">
             <span class="tooltip">تلگرام</span>
-            <a href="https://t.me/CanfigVpn" target="_blank" aria-label="کانال تلگرام"><span><i class="fas fa-paper-plane"></i></span></a>
+            <a href="javascript:void(0)" onclick="shareToTelegram()" aria-label="اشتراک‌گذاری در تلگرام"><span><i class="fas fa-paper-plane"></i></span></a>
         </li>
         <li class="icon support">
             <span class="tooltip">پشتیبانی</span>
@@ -653,34 +675,48 @@
                     await navigator.share(shareData);
                 } else {
                     await navigator.clipboard.writeText(shareData.url);
-                    const toast = document.createElement('div');
-                    toast.textContent = 'لینک کپی شد!';
-                    toast.style.position = 'fixed';
-                    toast.style.bottom = '20px';
-                    toast.style.left = '50%';
-                    toast.style.transform = 'translateX(-50%)';
-                    toast.style.background = 'var(--primary-color)';
-                    toast.style.color = '#FFFFFF';
-                    toast.style.padding = '10px 20px';
-                    toast.style.borderRadius = 'var(--border-radius)';
-                    toast.style.boxShadow = 'var(--shadow)';
-                    toast.style.opacity = '0';
-                    toast.style.transition = 'opacity 0.3s ease';
-                    document.body.appendChild(toast);
-                    setTimeout(() => {
-                        toast.style.opacity = '1';
-                    }, 100);
-                    setTimeout(() => {
-                        toast.style.opacity = '0';
-                        setTimeout(() => {
-                            document.body.removeChild(toast);
-                        }, 300);
-                    }, 2000);
+                    showToast('لینک کپی شد!');
                 }
             } catch (err) {
                 console.error('Share failed:', err);
-                alert('خطا در اشتراک‌گذاری. لطفاً لینک را به صورت دستی کپی کنید: ' + shareData.url);
+                showToast('خطا در اشتراک‌گذاری. لینک: ' + shareData.url);
             }
+        }
+
+        function shareToTelegram() {
+            const shareData = {
+                title: 'وب‌سایت فلوکی',
+                text: 'آموزش اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف با فلوکی',
+                url: 'https://canfigvpn.github.io/web/'
+            };
+            const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(shareData.url)}&text=${encodeURIComponent(shareData.text)}`;
+            window.open(telegramUrl, '_blank');
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = 'var(--primary-color)';
+            toast.style.color = '#FFFFFF';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = 'var(--border-radius)';
+            toast.style.boxShadow = 'var(--shadow)';
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s ease';
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '1';
+            }, 100);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
         }
 
         // --- Close Active Box on Page Click ---
@@ -846,7 +882,7 @@
         // --- PWA Service Worker Registration ---
         if ('serviceWorker' in navigator) {
             const swContent = `
-                const CACHE_NAME = 'floki-cache-v6';
+                const CACHE_NAME = 'floki-cache-v7';
                 const urlsToCache = [
                     '/',
                     'https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css',
