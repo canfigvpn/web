@@ -4,85 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="وب‌سایت آموزشی فلوکی برای اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف">
-    <meta name="keywords" content="فلوکی, آموزش VPN, نصب V2ray, آموزش اندروید, آموزش آیفون, آموزش ویندوز">
     <meta name="theme-color" content="#FF8C68">
-    <link rel="canonical" href="https://floki.example.com">
-    <meta property="og:title" content="وب‌سایت فلوکی - آموزش نصب و استفاده از VPN">
-    <meta property="og:description" content="آموزش گام‌به‌گام نصب و استفاده از V2ray در اندروید، آیفون و ویندوز">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://floki.example.com">
     <title>وب‌سایت فلوکی</title>
-    <link rel="preload" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css" as="style">
     <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="manifest" href="data:application/manifest+json;base64,ew0KICAgICJuYW1lIjogIldlYnNpdGUgRmxva2kiLA0KICAgICJzaG9ydF9uYW1lIjogIkZsb2tpIiwNCiAgICAic3RhcnRfdXJsIjogIi4iLA0KICAgICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLA0KICAgICJpY29ucyI6IFsNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVhraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWxzYkY5alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ4TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjE5MngxOTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfSwNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI4Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVhraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWlzYkY5alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ8TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjUxMng1MTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfQ0KICAgIF0sDQogICAgImJhY2tncm91bmRfY29sb3IiOiAiI0ZGRTZENCIiLA0KICAgICJ0aGVtZV9jb2xvciI6ICIjRkY4QzY4Ig0KfQ0K">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://vazirmatn.github.io https://use.fontawesome.com https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' https://placehold.co data:; connect-src 'self'; font-src 'self' https://vazirmatn.github.io https://use.fontawesome.com; object-src 'none';">
     
     <style>
         /* جلوگیری از تغییر رنگ سایت در حالت دارک‌مود گوشی */
         html {
-            color-scheme: light;
-            background: #ffffff;
-            color: #000000;
-            scroll-behavior: smooth;
+            color-scheme: light; /* فقط حالت روشن */
+            background: #ffffff; /* رنگ پس‌زمینه سایت */
+            color: #000000;      /* رنگ متن */
         }
 
+        /* اگه می‌خوای بدنه هم مطمئن باشه سفید بمونه */
         body {
             background-color: #ffffff;
             color: #000000;
-            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
-            line-height: 1.6;
         }
 
-        /* Force custom theme variables */
+        /* Force custom theme variables to override any system-level dark mode */
         :root {
-            --bg-color: #FFE6D4 !important;
-            --surface-color: #FFD7C2 !important;
-            --primary-color: #FF8C68 !important;
-            --accent-color: #FFAA8C !important;
-            --secondary-accent: #FFB99E !important;
-            --complementary-color: #68D7FF !important;
-            --text-color: #000000 !important;
-            --glass-bg: linear-gradient(135deg, rgba(255, 199, 176, 0.7), rgba(255, 140, 104, 0.7)) !important;
-            --border-radius: 16px;
-            --shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            --bg-color: #FFE6D4 !important; /* Peach lightest */
+            --surface-color: #FFD7C2 !important; /* Peach lighter */
+            --primary-color: #FF8C68 !important; /* Vibrant peach */
+            --accent-color: #FFAA8C !important; /* Complementary peach */
+            --secondary-accent: #FFB99E !important; /* Subtle peach */
+            --text-color: #000000 !important; /* Black for contrast */
+            --glass-bg: rgba(255, 199, 176, 0.7) !important; /* Derived from #FFC8B0 */
+            --border-radius: 16px; /* Modern rounded corners */
+            --shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Modern shadow */
         }
 
-        /* Night theme */
+        /* Night theme variables */
         body.night {
-            --bg-color: #2B2D42 !important;
-            --surface-color: #3A3B5B !important;
-            --primary-color: #6A6EA6 !important;
-            --accent-color: #8A8ED8 !important;
-            --secondary-accent: #5A5D8D !important;
-            --complementary-color: #A6B7FF !important;
-            --text-color: #FFFFFF !important;
-            --glass-bg: linear-gradient(135deg, rgba(74, 76, 116, 0.7), rgba(106, 110, 166, 0.7)) !important;
+            --bg-color: #2B2D42 !important; /* Darkest gray */
+            --surface-color: #3A3B5B !important; /* Slightly lighter gray */
+            --primary-color: #6A6EA6 !important; /* Mid-tone gray */
+            --accent-color: #8A8ED8 !important; /* Lightest gray */
+            --secondary-accent: #5A5D8D !important; /* Subtle gray */
+            --text-color: #FFFFFF !important; /* White for contrast */
+            --glass-bg: rgba(74, 76, 116, 0.7) !important; /* Derived from #4A4C74 */
         }
 
-        /* High contrast mode */
-        body.high-contrast {
-            --bg-color: #000000 !important;
-            --surface-color: #FFFFFF !important;
-            --primary-color: #FFFF00 !important;
-            --accent-color: #00FFFF !important;
-            --secondary-accent: #FFFFFF !important;
-            --complementary-color: #FF00FF !important;
-            --text-color: #FFFFFF !important;
-            --glass-bg: #FFFFFF !important;
-        }
-
-        /* Disable system dark mode interference */
+        /* Explicitly disable system dark mode interference */
         @media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
             :root, body, html {
                 background-color: var(--bg-color) !important;
                 color: var(--text-color) !important;
             }
             body.night {
-                background-color: var(--bg-color) !important;
-                color: var(--text-color) !important;
-            }
-            body.high-contrast {
                 background-color: var(--bg-color) !important;
                 color: var(--text-color) !important;
             }
@@ -96,6 +68,7 @@
 
         html, body {
             margin: 0;
+            font-family: 'Vazirmatn', Arial, sans-serif;
             background-color: var(--bg-color) !important;
             color: var(--text-color) !important;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -107,11 +80,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes scaleHover {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
         }
 
         /* Offline Message */
@@ -127,8 +95,7 @@
             color: #FFFFFF !important;
             z-index: 1005;
             box-shadow: var(--shadow);
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 14px;
             text-align: center;
         }
 
@@ -136,74 +103,41 @@
             display: block;
         }
 
-        /* Welcome Message */
-        .welcome-message {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: var(--glass-bg) !important;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            z-index: 1005;
-            max-width: 90%;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .welcome-message.active {
-            display: block;
-        }
-
-        .welcome-message button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
         /* Main Content */
         .content {
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             text-align: center;
         }
 
         /* Install and Tutorial Sections */
         .install-section, .tutorial-section {
-            margin: 30px 0;
+            margin: 20px 0;
             padding: 20px;
             background: var(--glass-bg) !important;
             backdrop-filter: blur(10px);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            max-width: 1200px;
+            max-width: 1100px;
         }
 
         .install-section h2, .tutorial-section h2 {
-            font-size: 1.8rem;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--text-color) !important;
         }
 
         .os-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            justify-content: space-between;
             gap: 20px;
+            flex-direction: row;
         }
 
         .os-box {
+            flex: 1;
             background: var(--surface-color) !important;
             border-radius: var(--border-radius);
             padding: 20px;
@@ -224,7 +158,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            font-size: 1.3rem;
+            font-size: 20px;
             font-weight: 500;
             margin-bottom: 15px;
             color: var(--text-color) !important;
@@ -238,7 +172,6 @@
         /* App Button Styles */
         .app-button {
             display: none;
-            position: relative;
             margin: 15px auto 0;
             padding: 12px 30px;
             border: none;
@@ -246,65 +179,22 @@
             color: #FFFFFF !important;
             border-radius: var(--border-radius);
             cursor: pointer;
-            transition: transform 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
-            font-size: 1.1rem;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 18px;
             font-weight: 500;
             text-align: center;
             width: 70%;
-            min-height: 48px;
         }
 
-        .app-button:hover, .app-button:focus-visible {
+        .app-button:hover {
             transform: scale(1.05);
             background: var(--accent-color) !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .app-button:focus-visible {
-            outline: 3px solid var(--complementary-color);
-            outline-offset: 2px;
-        }
-
-        .app-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
         .os-box.active .app-button {
             display: block;
-        }
-
-        /* App Button Tooltip */
-        .app-button .tooltip {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ffffff;
-            color: var(--text-color);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .app-button:hover .tooltip, .app-button:focus-visible .tooltip {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .app-button .tooltip::before {
-            content: "";
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 8px;
-            height: 8px;
-            background: #ffffff;
         }
 
         /* Image Slider */
@@ -360,17 +250,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .slider-button:hover, .slider-button:focus-visible {
+        .slider-button:hover {
             background: var(--accent-color) !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider-button:focus-visible {
-            outline: 3px solid var(--complementary-color);
-            outline-offset: 2px;
         }
 
         .slider-button svg {
@@ -390,24 +275,9 @@
         .slider-counter {
             text-align: center;
             margin-top: 15px;
-            font-size: 1rem;
+            font-size: 16px;
             color: var(--text-color) !important;
             opacity: 0.7;
-        }
-
-        .slider-progress {
-            height: 4px;
-            background: var(--secondary-accent) !important;
-            margin-top: 10px;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .slider-progress-bar {
-            height: 100%;
-            background: var(--primary-color) !important;
-            width: 0;
-            transition: width 3s linear;
         }
 
         .slider-dots {
@@ -424,36 +294,12 @@
             opacity: 0.5;
             border-radius: 50%;
             cursor: pointer;
-            transition: background 0.2s ease-in-out, opacity 0.2s ease-in-out;
-        }
-
-        .slider-dot:hover, .slider-dot:focus-visible {
-            opacity: 0.8;
+            transition: background 0.2s ease, opacity 0.2s ease;
         }
 
         .slider-dot.active {
             background: var(--primary-color) !important;
             opacity: 1;
-        }
-
-        .slider-dot:focus-visible {
-            outline: 2px solid var(--complementary-color);
-            outline-offset: 2px;
-        }
-
-        /* Fullscreen Slider */
-        .slider.fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2000;
-            background: rgba(0, 0, 0, 0.8) !important;
-        }
-
-        .slider.fullscreen .slider-image {
-            height: 80vh;
         }
 
         /* Image Zoom */
@@ -498,28 +344,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .image-zoom .close-zoom:hover, .image-zoom .close-zoom:focus-visible {
+        .image-zoom .close-zoom:hover {
             background: var(--accent-color) !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .image-zoom .close-zoom:focus-visible {
-            outline: 3px solid var(--complementary-color);
-            outline-offset: 2px;
-        }
-
         /* Social Media Icons */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
         .wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             list-style: none;
-            margin: 30px auto;
+            margin: 20px auto;
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1100px;
             width: 100%;
         }
 
@@ -541,21 +384,12 @@
             transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .wrapper .icon:hover, .wrapper .icon:focus-visible {
-            animation: scaleHover 0.2s ease-in-out forwards;
-        }
-
-        .wrapper .icon:focus-visible {
-            outline: 3px solid var(--complementary-color);
-            outline-offset: 2px;
-        }
-
         .wrapper .tooltip {
             position: absolute;
-            top: -45px;
-            font-size: 0.9rem;
+            top: 0;
+            font-size: 14px;
             background: #ffffff;
-            color: var(--text-color);
+            color: #ffffff;
             padding: 5px 8px;
             border-radius: 5px;
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -576,138 +410,70 @@
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .wrapper .icon:hover .tooltip, .wrapper .icon:focus-visible .tooltip {
+        .wrapper .icon:hover .tooltip {
+            top: -45px;
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
         }
 
-        .wrapper .facebook:hover, .wrapper .facebook:focus-visible,
-        .wrapper .facebook:hover .tooltip, .wrapper .facebook:focus-visible .tooltip,
-        .wrapper .facebook:hover .tooltip::before, .wrapper .facebook:focus-visible .tooltip::before {
+        .wrapper .icon:hover span,
+        .wrapper .icon:hover .tooltip {
+            text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper .facebook:hover,
+        .wrapper .facebook:hover .tooltip,
+        .wrapper .facebook:hover .tooltip::before {
             background: #1877F2;
             color: #ffffff;
         }
 
-        .wrapper .twitter:hover, .wrapper .twitter:focus-visible,
-        .wrapper .twitter:hover .tooltip, .wrapper .twitter:focus-visible .tooltip,
-        .wrapper .twitter:hover .tooltip::before, .wrapper .twitter:focus-visible .tooltip::before {
+        .wrapper .twitter:hover,
+        .wrapper .twitter:hover .tooltip,
+        .wrapper .twitter:hover .tooltip::before {
             background: #1DA1F2;
             color: #ffffff;
         }
 
-        .wrapper .instagram:hover, .wrapper .instagram:focus-visible,
-        .wrapper .instagram:hover .tooltip, .wrapper .instagram:focus-visible .tooltip,
-        .wrapper .instagram:hover .tooltip::before, .wrapper .instagram:focus-visible .tooltip::before {
+        .wrapper .instagram:hover,
+        .wrapper .instagram:hover .tooltip,
+        .wrapper .instagram:hover .tooltip::before {
             background: #E4405F;
             color: #ffffff;
         }
 
-        .wrapper .github:hover, .wrapper .github:focus-visible,
-        .wrapper .github:hover .tooltip, .wrapper .github:focus-visible .tooltip,
-        .wrapper .github:hover .tooltip::before, .wrapper .github:focus-visible .tooltip::before {
+        .wrapper .github:hover,
+        .wrapper .github:hover .tooltip,
+        .wrapper .github:hover .tooltip::before {
             background: #333333;
             color: #ffffff;
         }
 
-        .wrapper .youtube:hover, .wrapper .youtube:focus-visible,
-        .wrapper .youtube:hover .tooltip, .wrapper .youtube:focus-visible .tooltip,
-        .wrapper .youtube:hover .tooltip::before, .wrapper .youtube:focus-visible .tooltip::before {
+        .wrapper .youtube:hover,
+        .wrapper .youtube:hover .tooltip,
+        .wrapper .youtube:hover .tooltip::before {
             background: #CD201F;
             color: #ffffff;
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
-            z-index: 1000;
-        }
-
-        .theme-toggle:hover, .theme-toggle:focus-visible {
-            background: var(--accent-color) !important;
-            transform: scale(1.1);
-        }
-
-        .theme-toggle:focus-visible {
-            outline: 3px solid var(--complementary-color);
-            outline-offset: 2px;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
-            z-index: 1000;
-        }
-
-        .back-to-top.visible {
-            display: flex;
-        }
-
-        .back-to-top:hover, .back-to-top:focus-visible {
-            background: var(--accent-color) !important;
-            transform: scale(1.1);
-        }
-
-        .back-to-top:focus-visible {
-            outline: 3px solid var(--complementary-color);
-            outline-offset: 2px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(10px);
-            color: var(--text-color) !important;
-            font-size: 0.9rem;
-            font-weight: 400;
-            margin-top: 30px;
-        }
-
         /* Responsive design */
         @media (max-width: 600px) {
-            .content, .install-section, .tutorial-section {
+            .content {
                 padding: 10px;
                 max-width: 321px;
             }
+            .install-section, .tutorial-section {
+                max-width: 321px;
+            }
             .os-container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 gap: 15px;
             }
             .app-button {
                 width: 90%;
                 padding: 10px 20px;
-                font-size: 0.9rem;
-                min-height: 48px;
+                font-size: 16px;
             }
             .os-box {
                 height: 60px;
@@ -716,8 +482,7 @@
                 height: 300px;
             }
             .wrapper {
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
             }
             .wrapper .icon {
                 width: 40px;
@@ -725,51 +490,17 @@
                 font-size: 16px;
                 margin: 5px;
             }
-            .install-section h2, .tutorial-section h2 {
-                font-size: 1.4rem;
-            }
-            .os-box .os-title {
-                font-size: 1.1rem;
-            }
-            .slider-counter, .welcome-message, footer {
-                font-size: 0.8rem;
-            }
-            /* Disable heavy effects on mobile */
-            .install-section, .tutorial-section, .slider-button, .image-zoom .close-zoom {
-                backdrop-filter: none;
-            }
         }
     </style>
 </head>
 <body class="day" style="background-color: var(--bg-color) !important; color: var(--text-color) !important;">
     <!-- پیام آفلاین بودن -->
-    <div class="offline-message" role="alert" aria-live="assertive" style="background-color: #EF4444 !important; color: #FFFFFF !important;">شما آفلاین هستید! اتصال خود را بررسی کنید.</div>
-
-    <!-- پیام خوش‌آمدگویی -->
-    <div class="welcome-message" role="dialog" aria-label="پیام خوش‌آمدگویی">
-        <p>به وب‌سایت فلوکی خوش آمدید! آموزش‌های نصب و استفاده از VPN را اینجا بیابید.</p>
-        <button class="close-welcome" aria-label="بستن پیام خوش‌آمدگویی">بستن</button>
-    </div>
+    <div class="offline-message" role="alert" style="background-color: #EF4444 !important; color: #FFFFFF !important;">شما آفلاین هستید! اتصال خود را بررسی کنید.</div>
 
     <!-- محتوای اصلی -->
     <main class="content">
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "وب‌سایت فلوکی",
-            "url": "https://floki.example.com",
-            "description": "آموزش گام‌به‌گام نصب و استفاده از V2ray در اندروید، آیفون و ویندوز",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://floki.example.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-            }
-        }
-        </script>
-
         <!-- بخش نصب نرم‌افزار -->
-        <section class="install-section" style="background: var(--glass-bg) !important;">
+        <section class="install-section" style="margin-top: 0px; background: var(--glass-bg) !important;">
             <h2 style="color: var(--text-color) !important;">نصب نرم‌افزار</h2>
             <div class="os-container">
                 <!-- Android Section -->
@@ -778,10 +509,7 @@
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون اندروید">
                         <span>اندروید</span>
                     </div>
-                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button" aria-label="دانلود V2rayNG برای اندروید" style="background: var(--primary-color) !important; color: #FFFFFF !important;">
-                        V2rayNG
-                        <span class="tooltip">دانلود از Google Play</span>
-                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button" aria-label="دانلود V2rayNG برای اندروید" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayNG</a>
                 </div>
 
                 <!-- iPhone Section -->
@@ -790,10 +518,7 @@
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون آیفون">
                         <span>آیفون</span>
                     </div>
-                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button" aria-label="دانلود Streisand برای آیفون" style="background: var(--primary-color) !important; color: #FFFFFF !important;">
-                        Streisand
-                        <span class="tooltip">دانلود از App Store</span>
-                    </a>
+                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button" aria-label="دانلود Streisand برای آیفون" style="background: var(--primary-color) !important; color: #FFFFFF !important;">Streisand</a>
                 </div>
 
                 <!-- Windows Section -->
@@ -802,10 +527,7 @@
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6AAAADUlEQVQIHWNgYGD4DwABBAEAIk1rZgAAAABJRU5ErkJggg==" alt="آیکون ویندوز">
                         <span>ویندوز</span>
                     </div>
-                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button" aria-label="دانلود V2rayN برای ویندوز" style="background: var(--primary-color) !important; color: #FFFFFF !important;">
-                        V2rayN
-                        <span class="tooltip">دانلود از GitHub</span>
-                    </a>
+                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button" aria-label="دانلود V2rayN برای ویندوز" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayN</a>
                 </div>
             </div>
         </section>
@@ -822,23 +544,21 @@
                     </div>
                     <div class="slider">
                         <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+1" alt="تصویر آموزش اندروید ۱" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+2" alt="تصویر آموزش اندروید ۲" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+3" alt="تصویر آموزش اندروید ۳" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+4" alt="تصویر آموزش اندروید ۴" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+5" alt="تصویر آموزش اندروید ۵" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+6" alt="تصویر آموزش اندروید ۶" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+7" alt="تصویر آموزش اندروید ۷" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+8" alt="تصویر آموزش اندروید ۸" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+9" alt="تصویر آموزش اندروید ۹" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+10" alt="تصویر آموزش اندروید ۱۰" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+1" alt="تصویر اندروید ۱" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+2" alt="تصویر اندروید ۲" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+3" alt="تصویر اندروید ۳" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+4" alt="تصویر اندروید ۴" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+5" alt="تصویر اندروید ۵" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+6" alt="تصویر اندروید ۶" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+7" alt="تصویر اندروید ۷" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+8" alt="تصویر اندروید ۸" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+9" alt="تصویر اندروید ۹" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+10" alt="تصویر اندروید ۱۰" loading="lazy" style="background: var(--secondary-accent) !important;">
                         </div>
                         <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
                         <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                         <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
-                        <div class="slider-progress"><div class="slider-progress-bar"></div></div>
                         <div class="slider-dots"></div>
-                        <button class="fullscreen-toggle" aria-label="نمایش تمام‌صفحه">⛶</button>
                     </div>
                 </div>
 
@@ -850,23 +570,21 @@
                     </div>
                     <div class="slider">
                         <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+1" alt="تصویر آموزش آیفون ۱" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+2" alt="تصویر آموزش آیفون ۲" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+3" alt="تصویر آموزش آیفون ۳" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+4" alt="تصویر آموزش آیفون ۴" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+5" alt="تصویر آموزش آیفون ۵" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+6" alt="تصویر آموزش آیفون ۶" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+7" alt="تصویر آموزش آیفون ۷" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+8" alt="تصویر آموزش آیفون ۸" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+9" alt="تصویر آموزش آیفون ۹" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+10" alt="تصویر آموزش آیفون ۱۰" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+1" alt="تصویر آیفون ۱" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+2" alt="تصویر آیفون ۲" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+3" alt="تصویر آیفون ۳" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+4" alt="تصویر آیفون ۴" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+5" alt="تصویر آیفون ۵" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+6" alt="تصویر آیفون ۶" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+7" alt="تصویر آیفون ۷" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+8" alt="تصویر آیفون ۸" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+9" alt="تصویر آیفون ۹" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+10" alt="تصویر آیفون ۱۰" loading="lazy" style="background: var(--secondary-accent) !important;">
                         </div>
                         <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
                         <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                         <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
-                        <div class="slider-progress"><div class="slider-progress-bar"></div></div>
                         <div class="slider-dots"></div>
-                        <button class="fullscreen-toggle" aria-label="نمایش تمام‌صفحه">⛶</button>
                     </div>
                 </div>
 
@@ -878,23 +596,21 @@
                     </div>
                     <div class="slider">
                         <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+1" alt="تصویر آموزش ویندوز ۱" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+2" alt="تصویر آموزش ویندوز ۲" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+3" alt="تصویر آموزش ویندوز ۳" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+4" alt="تصویر آموزش ویندوز ۴" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+5" alt="تصویر آموزش ویندوز ۵" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+6" alt="تصویر آموزش ویندوز ۶" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+7" alt="تصویر آموزش ویندوز ۷" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+8" alt="تصویر آموزش ویندوز ۸" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+9" alt="تصویر آموزش ویندوز ۹" loading="lazy" style="background: var(--secondary-accent) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+10" alt="تصویر آموزش ویندوز ۱۰" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+1" alt="تصویر ویندوز ۱" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+2" alt="تصویر ویندوز ۲" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+3" alt="تصویر ویندوز ۳" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+4" alt="تصویر ویندوز ۴" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+5" alt="تصویر ویندوز ۵" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+6" alt="تصویر ویندوز ۶" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+7" alt="تصویر ویندوز ۷" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+8" alt="تصویر ویندوز ۸" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+9" alt="تصویر ویندوز ۹" loading="lazy" style="background: var(--secondary-accent) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+10" alt="تصویر ویندوز ۱۰" loading="lazy" style="background: var(--secondary-accent) !important;">
                         </div>
                         <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
                         <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                         <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
-                        <div class="slider-progress"><div class="slider-progress-bar"></div></div>
                         <div class="slider-dots"></div>
-                        <button class="fullscreen-toggle" aria-label="نمایش تمام‌صفحه">⛶</button>
                     </div>
                 </div>
             </div>
@@ -902,49 +618,34 @@
     </main>
 
     <!-- بزرگنمایی تصویر -->
-    <div class="image-zoom" role="dialog" aria-label="تصویر بزرگ‌شده" style="background: rgba(0, 0, 0, 0.8) !important;">
+    <div class="image-zoom" role="dialog" style="background: rgba(0, 0, 0, 0.8) !important;">
         <img src="" alt="تصویر بزرگ‌شده">
-        <button class="close-zoom" aria-label="بستن تصویر بزرگ‌شده" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
+        <button class="close-zoom" aria-label="بستن تصویر" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
     </div>
 
     <!-- آیکون‌های شبکه‌های اجتماعی -->
-    <ul class="wrapper" role="navigation" aria-label="لینک‌های شبکه‌های اجتماعی">
+    <ul class="wrapper">
         <li class="icon facebook">
             <span class="tooltip">Facebook</span>
-            <a href="https://facebook.com" target="_blank" aria-label="بازدید از صفحه فیسبوک"><i class="fab fa-facebook-f"></i></a>
+            <span><i class="fab fa-facebook-f"></i></span>
         </li>
         <li class="icon twitter">
             <span class="tooltip">Twitter</span>
-            <a href="https://twitter.com" target="_blank" aria-label="بازدید از صفحه توییتر"><i class="fab fa-twitter"></i></a>
+            <span><i class="fab fa-twitter"></i></span>
         </li>
         <li class="icon instagram">
             <span class="tooltip">Instagram</span>
-            <a href="https://instagram.com" target="_blank" aria-label="بازدید از صفحه اینستاگرام"><i class="fab fa-instagram"></i></a>
+            <span><i class="fab fa-instagram"></i></span>
         </li>
         <li class="icon github">
             <span class="tooltip">Github</span>
-            <a href="https://github.com" target="_blank" aria-label="بازدید از صفحه گیت‌هاب"><i class="fab fa-github"></i></a>
+            <span><i class="fab fa-github"></i></span>
         </li>
         <li class="icon youtube">
             <span class="tooltip">Youtube</span>
-            <a href="https://youtube.com" target="_blank" aria-label="بازدید از صفحه یوتیوب"><i class="fab fa-youtube"></i></a>
+            <span><i class="fab fa-youtube"></i></span>
         </li>
     </ul>
-
-    <!-- دکمه تعویض تم -->
-    <button class="theme-toggle" aria-label="تعویض تم (روشن/تیره/کنتراست بالا)" style="background: var(--primary-color) !important; color: #FFFFFF !important;">
-        <i class="fas fa-adjust"></i>
-    </button>
-
-    <!-- دکمه بازگشت به بالا -->
-    <button class="back-to-top" aria-label="بازگشت به بالای صفحه" style="background: var(--primary-color) !important; color: #FFFFFF !important;">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- فوتر -->
-    <footer style="background: var(--glass-bg) !important; color: var(--text-color) !important;">
-        <p>&copy; 2025 وب‌سایت فلوکی. تمامی حقوق محفوظ است.</p>
-    </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -953,23 +654,17 @@
         const imageZoom = document.querySelector('.image-zoom');
         const zoomImage = imageZoom.querySelector('img');
         const closeZoomButton = imageZoom.querySelector('.close-zoom');
-        const welcomeMessage = document.querySelector('.welcome-message');
-        const closeWelcomeButton = welcomeMessage.querySelector('.close-welcome');
-        const themeToggle = document.querySelector('.theme-toggle');
-        const backToTopButton = document.querySelector('.back-to-top');
 
         // --- Theme Management ---
-        const themes = ['day', 'night', 'high-contrast'];
-        let currentThemeIndex = 0;
-
         const applyTheme = (theme) => {
-            body.classList.remove(...themes);
+            body.classList.remove('day', 'night');
             body.classList.add(theme);
-            body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
-            body.style.color = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
-            localStorage.setItem('theme', theme);
+            // Force inline styles to prevent system override
+            body.style.backgroundColor = theme === 'night' ? '#2B2D42' : '#FFE6D4';
+            body.style.color = theme === 'night' ? '#FFFFFF' : '#000000';
         };
 
+        // Auto-switch theme based on time
         const updateThemeByTime = () => {
             const now = new Date();
             const hours = now.getHours();
@@ -978,64 +673,23 @@
             applyTheme(isNight ? 'night' : 'day');
         };
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            currentThemeIndex = themes.indexOf(savedTheme);
-            applyTheme(savedTheme);
-        } else {
-            updateThemeByTime();
-            setInterval(updateThemeByTime, 60000);
-        }
-
-        themeToggle.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            applyTheme(themes[currentThemeIndex]);
-        });
-
-        // --- Welcome Message ---
-        setTimeout(() => {
-            welcomeMessage.classList.add('active');
-        }, 1000);
-
-        closeWelcomeButton.addEventListener('click', () => {
-            welcomeMessage.classList.remove('active');
-        });
-
-        // --- Back to Top Button ---
-        window.addEventListener('scroll', () => {
-            backToTopButton.classList.toggle('visible', window.scrollY > 200);
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // --- Dynamic Title ---
-        const updateTitle = () => {
-            const activeBox = document.querySelector('.os-box.active');
-            if (activeBox) {
-                const os = activeBox.querySelector('.os-title span').textContent;
-                document.title = `نصب ${os} - وب‌سایت فلوکی`;
-            } else {
-                document.title = 'وب‌سایت فلوکی';
-            }
-        };
+        // Update theme immediately and every minute
+        updateThemeByTime();
+        setInterval(updateThemeByTime, 60000);
 
         // --- Disable System Dark Mode Interference ---
+        // Force theme update on system color scheme change
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            if (!localStorage.getItem('theme')) {
-                updateThemeByTime();
-            }
+            updateThemeByTime(); // Reapply theme to override system changes
         });
 
         // --- Close Active Box on Page Click ---
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.os-box, .slider-button, .app-button, .image-zoom, .slider-dot, .wrapper, .theme-toggle, .back-to-top, .welcome-message, .fullscreen-toggle')) {
+            if (!e.target.closest('.os-box, .slider-button, .app-button, .image-zoom, .slider-dot, .wrapper')) {
                 document.querySelectorAll('.os-box').forEach(box => {
                     box.classList.remove('active');
                     box.setAttribute('aria-expanded', 'false');
                 });
-                updateTitle();
             }
         });
 
@@ -1049,34 +703,30 @@
                 });
                 box.classList.add('active');
                 box.setAttribute('aria-expanded', 'true');
-                updateTitle();
             });
         });
 
         // --- Tutorial Section Toggle ---
         document.querySelectorAll('.tutorial-section .os-box').forEach(box => {
             box.addEventListener('click', (e) => {
-                if (e.target.closest('.slider-button, .slider-image, .slider-dot, .fullscreen-toggle')) return;
+                if (e.target.closest('.slider-button, .slider-image, .slider-dot')) return;
                 document.querySelectorAll('.os-box').forEach(b => {
                     b.classList.remove('active');
                     b.setAttribute('aria-expanded', 'false');
                 });
                 box.classList.add('active');
                 box.setAttribute('aria-expanded', 'true');
-                updateTitle();
             });
         });
 
-        // --- Image Slider with Enhanced Animation, Dots, and Progress ---
+        // --- Image Slider with Enhanced Animation and Dots ---
         document.querySelectorAll('.slider').forEach(slider => {
             const sliderImages = slider.querySelector('.slider-images');
             const images = slider.querySelectorAll('.slider-image');
             const prevButton = slider.querySelector('.slider-button.prev');
             const nextButton = slider.querySelector('.slider-button.next');
             const counter = slider.querySelector('.slider-counter');
-            const progressBar = slider.querySelector('.slider-progress-bar');
             const dotsContainer = slider.querySelector('.slider-dots');
-            const fullscreenToggle = slider.querySelector('.fullscreen-toggle');
             let currentIndex = 0;
             const totalImages = images.length;
             let autoPlayInterval;
@@ -1091,7 +741,6 @@
                     currentIndex = index;
                     updateSlider();
                     stopAutoPlay();
-                    startAutoPlay();
                 });
                 dotsContainer.appendChild(dot);
             });
@@ -1105,7 +754,6 @@
                 });
                 sliderImages.style.transform = `translateX(${-currentIndex * 100}%)`;
                 counter.textContent = `تصویر ${currentIndex + 1} / ${totalImages}`;
-                progressBar.style.width = '0%';
                 dotsContainer.querySelectorAll('.slider-dot').forEach((dot, index) => {
                     dot.classList.toggle('active', index === currentIndex);
                     dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
@@ -1113,43 +761,26 @@
             };
 
             const startAutoPlay = () => {
-                stopAutoPlay();
                 autoPlayInterval = setInterval(() => {
                     currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
                     updateSlider();
-                    progressBar.style.width = '100%';
                 }, 3000);
-                progressBar.style.width = '0%';
-                progressBar.style.transition = 'width 3s linear';
             };
 
             const stopAutoPlay = () => {
                 clearInterval(autoPlayInterval);
-                progressBar.style.transition = 'none';
-                progressBar.style.width = '0%';
             };
 
             prevButton.addEventListener('click', () => {
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
                 updateSlider();
                 stopAutoPlay();
-                startAutoPlay();
             });
 
             nextButton.addEventListener('click', () => {
                 currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
                 updateSlider();
                 stopAutoPlay();
-                startAutoPlay();
-            });
-
-            // Fullscreen toggle
-            fullscreenToggle.addEventListener('click', () => {
-                slider.classList.toggle('fullscreen');
-                stopAutoPlay();
-                if (!slider.classList.contains('fullscreen')) {
-                    startAutoPlay();
-                }
             });
 
             // Touch functionality
@@ -1164,7 +795,6 @@
             sliderImages.addEventListener('touchend', e => {
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
-                startAutoPlay();
             });
 
             const handleSwipe = () => {
@@ -1172,26 +802,13 @@
                 if (touchEndX > touchStartX + 50) prevButton.click();
             };
 
-            // Haptic feedback for mobile
-            const triggerHaptic = () => {
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50);
-                }
-            };
-
-            [prevButton, nextButton, fullscreenToggle, ...dotsContainer.querySelectorAll('.slider-dot')].forEach(el => {
-                el.addEventListener('click', triggerHaptic);
-            });
-
             // Zoom functionality
             images.forEach(img => {
                 img.addEventListener('click', () => {
-                    if (!slider.classList.contains('fullscreen')) {
-                        zoomImage.src = img.src;
-                        zoomImage.alt = img.alt;
-                        imageZoom.classList.add('active');
-                        stopAutoPlay();
-                    }
+                    zoomImage.src = img.src;
+                    zoomImage.alt = img.alt;
+                    imageZoom.classList.add('active');
+                    stopAutoPlay();
                 });
             });
 
@@ -1201,8 +818,6 @@
                     prevButton.click();
                 } else if (e.key === 'ArrowRight') {
                     nextButton.click();
-                } else if (e.key === 'Enter' && document.activeElement === fullscreenToggle) {
-                    fullscreenToggle.click();
                 }
             });
 
@@ -1231,11 +846,41 @@
         // --- PWA Service Worker Registration ---
         if ('serviceWorker' in navigator) {
             const swContent = `
-                const CACHE_NAME = 'floki-cache-v7';
+                const CACHE_NAME = 'floki-cache-v6';
                 const urlsToCache = [
                     '/',
                     'https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css',
-                    'https://use.fontawesome.com/releases/v5.15.4/css/all.css'
+                    'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+1',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+2',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+3',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+4',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+5',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+6',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+7',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=Android+Step+8',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=Android+Step+9',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Android+Step+10',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+1',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+2',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+3',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+4',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+5',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+6',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+7',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=iPhone+Step+8',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=iPhone+Step+9',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=iPhone+Step+10',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+1',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+2',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+3',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+4',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+5',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+6',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+7',
+                    'https://placehold.co/800x400/FFAA8C/FFFFFF?text=Windows+Step+8',
+                    'https://placehold.co/800x400/FFB99E/FFFFFF?text=Windows+Step+9',
+                    'https://placehold.co/800x400/FF8C68/FFFFFF?text=Windows+Step+10'
                 ];
                 self.addEventListener('install', event => {
                     event.waitUntil(
@@ -1245,31 +890,7 @@
                 self.addEventListener('fetch', event => {
                     event.respondWith(
                         caches.match(event.request).then(response => {
-                            if (response) return response;
-                            return fetch(event.request).then(networkResponse => {
-                                if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-                                    return networkResponse;
-                                }
-                                const responseToCache = networkResponse.clone();
-                                caches.open(CACHE_NAME).then(cache => {
-                                    cache.put(event.request, responseToCache);
-                                });
-                                return networkResponse;
-                            });
-                        })
-                    );
-                });
-                self.addEventListener('activate', event => {
-                    const cacheWhitelist = [CACHE_NAME];
-                    event.waitUntil(
-                        caches.keys().then(cacheNames => {
-                            return Promise.all(
-                                cacheNames.map(cacheName => {
-                                    if (!cacheWhitelist.includes(cacheName)) {
-                                        return caches.delete(cacheName);
-                                    }
-                                })
-                            );
+                            return response || fetch(event.request);
                         })
                     );
                 });
@@ -1294,44 +915,7 @@
         window.addEventListener('online', handleConnectionChange);
         window.addEventListener('offline', handleConnectionChange);
         handleConnectionChange();
-
-        // --- 404 Error Handling ---
-        window.addEventListener('unhandledrejection', event => {
-            if (event.reason.message.includes('Failed to fetch')) {
-                window.location.href = '/404.html';
-            }
-        });
     });
-    </script>
-
-    <!-- 404 Error Page Fallback -->
-    <script type="text/html" id="page-404">
-        <!DOCTYPE html>
-        <html lang="fa" dir="rtl">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>صفحه یافت نشد - وب‌سایت فلوکی</title>
-            <style>
-                body {
-                    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
-                    background: #FFE6D4;
-                    color: #000000;
-                    text-align: center;
-                    padding: 50px;
-                }
-                h1 { font-size: 2rem; }
-                p { font-size: 1.1rem; }
-                a { color: #FF8C68; text-decoration: none; }
-                a:hover { text-decoration: underline; }
-            </style>
-        </head>
-        <body>
-            <h1>404 - صفحه یافت نشد</h1>
-            <p>متأسفانه صفحه‌ای که به دنبال آن هستید وجود ندارد.</p>
-            <p><a href="/">بازگشت به صفحه اصلی</a></p>
-        </body>
-        </html>
     </script>
 </body>
 </html>
