@@ -169,7 +169,7 @@
         <div class="share-container">
             <div class="share-header">اشتراک‌گذاری</div>
             <div class="share-url">
-                <button onclick="copyLink()" aria-label="کپی لینک"><i class="fas fa-link"></i></button>
+                <button onclick="copyLinkFeedback()" aria-label="کپی لینک"><i class="fas fa-link"></i></button>
                 <input type="text" value="https://canfigvpn.github.io/web/" readonly>
             </div>
             <div class="share-options">
@@ -181,7 +181,10 @@
                 <img src="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" alt="QR کد برای وب‌سایت فلوکی">
                 <button class="download-qr" onclick="downloadQR()">دانلود QR کد</button>
             </div>
-            <p class="copy-feedback" id="copyFeedback">لینک کپی شد!</p>
+            <div id="toast" class="toast" role="status" aria-live="polite">
+                <div class="dot"></div>
+                <div class="msg"></div>
+            </div>
             <button class="close-modal" aria-label="بستن پنجره اشتراک‌گذاری" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
         </div>
     </div>
