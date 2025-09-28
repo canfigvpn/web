@@ -9,11 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const shareUrlInput = document.querySelector('.share-url input');
 
     // --- Share Functionality ---
-    const shareData = {
-        title: 'وب‌سایت فلوکی',
-        text: 'آموزش اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف با فلوکی 🚀',
-        url: 'https://canfigvpn.github.io/web/'
-    };
+    const shareDefaults = { url: 'https://canfigvpn.github.io/web/' };
 
     window.openShareModal = function() {
         console.log('Opening share modal');
@@ -23,27 +19,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    function copyLink() {
-        const url = shareUrlInput.value; // Get URL from input
-        navigator.clipboard.writeText(url).then(() => {
-            const feedback = document.getElementById('copyFeedback');
-            feedback.textContent = 'لینک کپی شد!';
-            feedback.classList.add('active');
-            setTimeout(() => feedback.classList.remove('active'), 1000);
+    function showToast(message, timeout = 2500) {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        t.querySelector('.msg').textContent = message;
+        clearTimeout(t._hid);
+        t._hid = setTimeout(() => t.classList.remove('show'), timeout);
+    }
+
+    async function copyToClipboard(text) {
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(text);
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+            }
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async function copyLinkFeedback() {
+        const ok = await copyToClipboard(shareDefaults.url);
+        if (ok) {
+            showToast('لینک کپی شد.');
             if ('vibrate' in navigator) {
                 navigator.vibrate(50); // Haptic feedback
             }
-        }).catch(err => {
-            console.error('Failed to copy link:', err);
-            const feedback = document.getElementById('copyFeedback');
-            feedback.textContent = 'خطا در کپی لینک!';
-            feedback.classList.add('active');
-            setTimeout(() => feedback.classList.remove('active'), 1000);
-        });
+        } else {
+            showToast('خطا در کپی لینک');
+        }
     }
 
     function downloadQR() {
-        const qrLink = 'https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png'; // Your PNG link
+        const qrLink = 'https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png';
         const link = document.createElement('a');
         link.href = qrLink;
         link.download = 'floki-qr-code.png';
