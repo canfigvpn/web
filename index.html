@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
     <link rel="manifest" href="data:application/manifest+json;base64,ew0KICAgICJuYW1lIjogIldlYnNpdGUgRmxva2kiLA0KICAgICJzaG9ydF9uYW1lIjogIkZsb2tpIiwNCiAgICAic3RhcnRfdXJsIjogIi4iLA0KICAgICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLA0KICAgICJpY29ucyI6IFsNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVdraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWxzYkY5alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ4TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjE5MngxOTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfSwNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI4Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVdraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWlzYkY5alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ8TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjUxMng1MTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfQ0KICAgIF0sDQogICAgImJhY2tncm91bmRfY29sb3IiOiAiI0ZGRkZGRiIsDQogICAgInRoZW1lX2NvbG9yIjogIiMzQjgyRjYiDQp9">
-    
     <style>
         /* Force light theme with modern glass effect */
         html {
@@ -917,7 +916,7 @@
             }
         };
 
-        function copyLink() {
+        window.copyLink = function() {
             const url = 'https://canfigvpn.github.io/web/';
             navigator.clipboard.writeText(url).then(() => {
                 const feedback = document.getElementById('copyFeedback');
@@ -934,9 +933,9 @@
                 feedback.classList.add('active');
                 setTimeout(() => feedback.classList.remove('active'), 1000);
             });
-        }
+        };
 
-        function downloadQR() {
+        window.downloadQR = function() {
             const qrLink = 'https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png';
             const link = document.createElement('a');
             link.href = qrLink;
@@ -945,7 +944,7 @@
             if ('vibrate' in navigator) {
                 navigator.vibrate(50); // Haptic feedback
             }
-        }
+        };
 
         closeModalButton.addEventListener('click', () => {
             shareModal.classList.remove('active');
@@ -1120,68 +1119,6 @@
                 imageZoom.classList.remove('active');
             }
         });
-
-        // --- PWA Service Worker Registration ---
-        if ('serviceWorker' in navigator) {
-            const swContent = `
-                const CACHE_NAME = 'floki-cache-v13';
-                const urlsToCache = [
-                    '/',
-                    'https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css',
-                    'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
-                    'https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+1',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+2',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+3',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+4',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+5',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+6',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+7',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+8',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+9',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+10',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+1',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+2',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+3',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+4',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+5',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+6',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+7',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+8',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+9',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+10',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+1',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+2',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+3',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+4',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+5',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+6',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+7',
-                    'https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+8',
-                    'https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+9',
-                    'https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+10'
-                ];
-                self.addEventListener('install', event => {
-                    event.waitUntil(
-                        caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-                    );
-                });
-                self.addEventListener('fetch', event => {
-                    event.respondWith(
-                        caches.match(event.request).then(response => {
-                            return response || fetch(event.request);
-                        })
-                    );
-                });
-            `;
-            const blob = new Blob([swContent], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swUrl).then(reg => {
-                console.log('Service Worker registered successfully.');
-            }).catch(err => {
-                console.error('Service Worker registration failed:', err);
-            });
-        }
 
         // --- Offline/Online Status ---
         const handleConnectionChange = () => {
