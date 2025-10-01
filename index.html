@@ -37,7 +37,7 @@
             --text-color: #1E3A8A;
             --glass-bg: rgba(255, 255, 255, 0.7);
             --border-radius: 16px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             --telegram-color: #0088CC;
             --whatsapp-color: #25D366;
             --instagram-color: #E1306C;
@@ -954,7 +954,9 @@
     <div class="share-modal" role="dialog">
         <div class="share-container">
             <div class="share-header">اشتراک‌گذاری</div>
-            <div class="share-url">
+            <div class="share-url"style="
+    margin-bottom: unset;
+">
                 <button onclick="copyLink()" aria-label="کپی لینک"><i class="fas fa-link"></i></button>
                 <input type="text" value="https://canfigvpn.github.io/web/" readonly>
             </div>
@@ -973,7 +975,10 @@
     <div class="qr-modal" role="dialog">
         <div class="qr-container">
             <div class="qr-header">QR Code</div>
-            <div class="qr-image">
+            <div class="qr-image"style="
+    padding-top: 10px;
+    padding-bottom: 1px;
+">
                 <img src="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" alt="QR کد برای وب‌سایت فلوکی">
             </div>
             <button class="download-qr" onclick="downloadQR()">دانلود QR کد</button>
