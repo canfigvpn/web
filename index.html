@@ -1,228 +1,115 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Floki VPN - Subscription</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SS Proxy List</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{
-background:#0f172a;
-color:#fff;
-min-height:100vh;
-}
-header{
-text-align:center;
-padding:40px 20px;
-background:linear-gradient(135deg,#1e293b,#0f172a);
-}
-header h1{font-size:32px;font-weight:bold}
-header p{opacity:.7;margin-top:10px}
-
-.container{
-max-width:1000px;
-margin:auto;
-padding:30px 20px;
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  margin: 0;
+  padding: 20px;
 }
 
-.controls{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin-bottom:20px;
+h1 {
+  text-align: center;
 }
 
-button,input,select{
-padding:10px 15px;
-border-radius:10px;
-border:none;
-font-size:14px;
+button {
+  padding: 10px 15px;
+  background: #22c55e;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-button{
-background:#2563eb;
-color:#fff;
-cursor:pointer;
-transition:.3s;
-}
-button:hover{background:#1d4ed8}
-
-.copy-all{background:#10b981}
-.copy-all:hover{background:#059669}
-
-.download{background:#f59e0b}
-.download:hover{background:#d97706}
-
-.search{
-flex:1;
-min-width:200px;
+button:hover {
+  opacity: 0.9;
 }
 
-.server-list{
-display:grid;
-gap:15px;
+.proxy-box {
+  background: #1e293b;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  word-break: break-all;
 }
 
-.server-card{
-background:#1e293b;
-padding:15px;
-border-radius:14px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-word-break:break-all;
-font-size:13px;
-}
-
-.server-info{
-flex:1;
-margin-left:10px;
-}
-
-.copy-btn{
-background:#10b981;
-font-size:12px;
-padding:6px 10px;
-}
-
-.status{
-margin-bottom:15px;
-opacity:.7;
-}
-
-footer{
-text-align:center;
-padding:20px;
-opacity:.5;
-margin-top:40px;
+.copy-btn {
+  margin-top: 8px;
+  background: #3b82f6;
 }
 </style>
 </head>
 <body>
 
-<header>
-<h1>Floki VPN</h1>
-<p>دریافت و مدیریت سرورها</p>
-</header>
+<h1>Shadowsocks (SS) Links</h1>
+<button onclick="loadProxies()">Load Proxies</button>
 
-<div class="container">
-
-<div class="controls">
-<button onclick="loadServers()">دریافت سرورها</button>
-<button class="copy-all" onclick="copyAll()">کپی همه</button>
-<button class="download" onclick="downloadTxt()">دانلود فایل</button>
-
-<select id="filterType" onchange="renderServers()">
-<option value="all">همه</option>
-<option value="ss">فقط SS</option>
-<option value="vless">فقط VLESS</option>
-</select>
-
-<input type="text" id="searchInput" class="search" placeholder="جستجو..." oninput="renderServers()">
-</div>
-
-<div class="status" id="status"></div>
-<div class="server-list" id="serverList"></div>
-
-</div>
-
-<footer>
-© 2026 Floki VPN
-</footer>
+<div id="proxyList"></div>
 
 <script>
-const apiUrl="https://shadowmere.xyz/api/proxies/?format=json";
-let allServers=[];
-let filteredServers=[];
+async function loadProxies() {
+  const container = document.getElementById("proxyList");
+  container.innerHTML = "Loading...";
 
-async function loadServers(){
-const status=document.getElementById("status");
-const list=document.getElementById("serverList");
-status.innerText="در حال دریافت...";
-list.innerHTML="";
-try{
-const res=await fetch(apiUrl);
-const data=await res.json();
+  try {
+    const response = await fetch("https://shadowmere.xyz/api/proxies/?format=json");
+    const data = await response.json();
 
-if(!Array.isArray(data)){
-status.innerText="فرمت API نامعتبر است";
-return;
+    renderSS(data);
+
+  } catch (error) {
+    container.innerHTML = "Error loading data (Possible CORS issue)";
+    console.error(error);
+  }
 }
 
-allServers=data
-.map(item=>item.link)
-.filter(link=>typeof link==="string");
+function renderSS(data) {
+  const container = document.getElementById("proxyList");
+  container.innerHTML = "";
 
-status.innerText=allServers.length+" سرور دریافت شد";
-renderServers();
+  let proxies = [];
 
-}catch(e){
-status.innerText="خطا در دریافت اطلاعات (احتمال CORS یا قطع بودن API)";
-}
-}
+  // حالت A
+  if (Array.isArray(data)) {
+    proxies = data;
+  }
 
-function renderServers(){
-const list=document.getElementById("serverList");
-const search=document.getElementById("searchInput").value.toLowerCase();
-const filter=document.getElementById("filterType").value;
+  // حالت B
+  else if (data.proxies) {
+    proxies = data.proxies;
+  }
 
-list.innerHTML="";
+  const ssLinks = proxies
+    .map(p => p.url || p)
+    .filter(link => typeof link === "string" && link.startsWith("ss://"));
 
-filteredServers=allServers.filter(link=>{
-let matchType=true;
+  if (ssLinks.length === 0) {
+    container.innerHTML = "No SS links found.";
+    return;
+  }
 
-if(filter==="ss") matchType=link.startsWith("ss://");
-if(filter==="vless") matchType=link.startsWith("vless://");
+  ssLinks.forEach(link => {
+    const div = document.createElement("div");
+    div.className = "proxy-box";
 
-const matchSearch=link.toLowerCase().includes(search);
-return matchType && matchSearch;
-});
+    div.innerHTML = `
+      <div>${link}</div>
+      <button class="copy-btn" onclick="copyText('${link}')">Copy</button>
+    `;
 
-filteredServers.forEach(link=>{
-const card=document.createElement("div");
-card.className="server-card";
-
-const info=document.createElement("div");
-info.className="server-info";
-info.textContent=link;
-
-const btn=document.createElement("button");
-btn.className="copy-btn";
-btn.innerText="کپی";
-btn.onclick=()=>{
-navigator.clipboard.writeText(link);
-btn.innerText="✓";
-setTimeout(()=>btn.innerText="کپی",1200);
-};
-
-card.appendChild(info);
-card.appendChild(btn);
-list.appendChild(card);
-});
+    container.appendChild(div);
+  });
 }
 
-function copyAll(){
-if(filteredServers.length===0){
-alert("چیزی برای کپی نیست");
-return;
-}
-navigator.clipboard.writeText(filteredServers.join("\n"));
-alert("همه سرورها کپی شد");
-}
-
-function downloadTxt(){
-if(filteredServers.length===0){
-alert("چیزی برای دانلود نیست");
-return;
-}
-const blob=new Blob([filteredServers.join("\n")],{type:"text/plain"});
-const url=URL.createObjectURL(blob);
-const a=document.createElement("a");
-a.href=url;
-a.download="servers.txt";
-a.click();
-URL.revokeObjectURL(url);
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+  alert("Copied!");
 }
 </script>
 
