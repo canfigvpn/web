@@ -1,82 +1,104 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="siteTitle">Loading...</title>
+<title>CanfigVpn</title>
 <style>
-:root{
---primary:#6366f1;
---secondary:#06b6d4;
---radius:20px;
-}
-body{
-margin:0;
-font-family:sans-serif;
-background:#0f172a;
-color:#fff;
-}
-.container{width:90%;max-width:1100px;margin:auto;padding:60px 0}
-.card{
-background:rgba(255,255,255,.08);
-padding:30px;
-border-radius:var(--radius);
-margin-bottom:30px;
-backdrop-filter:blur(20px);
-}
-.btn{
-display:inline-block;
-padding:10px 20px;
-border-radius:var(--radius);
-background:linear-gradient(45deg,var(--primary),var(--secondary));
-color:#fff;
-text-decoration:none;
-}
-img{max-width:100%;border-radius:var(--radius)}
+:root { --primary-color:#ff6600; --card-radius:10px; }
+body { font-family:sans-serif; margin:0; padding:0; background:#f5f5f5; }
+header{background:var(--primary-color); color:#fff; padding:1rem; text-align:center;}
+.tabs{display:flex; justify-content:center; margin:1rem 0;}
+.tab{padding:0.5rem 1rem; cursor:pointer; border-radius:5px; margin:0 0.5rem; background:#ddd;}
+.tab.active{background:var(--primary-color); color:#fff;}
+.content{max-width:1000px; margin:0 auto;}
+.card{background:#fff; padding:1rem; margin:1rem 0; border-radius:var(--card-radius); box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.card h3{margin:0 0 0.5rem 0;}
+.slider{position:relative; overflow:hidden; border-radius:var(--card-radius);}
+.slider img{width:100%; display:none;}
+.slider img.active{display:block;}
+button{padding:0.5rem 1rem; margin-top:0.5rem; cursor:pointer; border:none; background:var(--primary-color); color:#fff; border-radius:5px;}
+.price-container{display:flex; flex-wrap:wrap; justify-content:center;}
+.price-card{background:#fff; padding:1rem; margin:0.5rem; border-radius:var(--card-radius); width:200px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.price-card.guarantee{border:2px solid green;}
+.price-card.no-guarantee{border:2px solid red;}
 </style>
 </head>
 <body>
-
-<div class="container">
-<h1 id="heroTitle"></h1>
-<p id="heroDesc"></p>
-
-<div class="card">
-<h2>Android</h2>
-<a id="androidLink" class="btn">دانلود</a>
-<img id="androidImg">
-</div>
-
-<div class="card">
-<h2>تعرفه‌ها</h2>
-<div id="pricing"></div>
-</div>
-
-</div>
+<header><h1>CanfigVpn</h1></header>
+<div class="tabs" id="tabs"></div>
+<div class="content" id="content"></div>
 
 <script>
-async function load(){
-const res=await fetch("https://YOUR-WORKER.workers.dev")
-const data=await res.json()
-
-if(!data) return
-
-document.title=data.siteTitle||"CanfigVpn"
-document.getElementById("siteTitle").innerText=data.siteTitle||"CanfigVpn"
-heroTitle.innerText=data.heroTitle||"VPN حرفه‌ای"
-heroDesc.innerText=data.heroDesc||""
-
-androidLink.href=data.androidLink||"#"
-androidImg.src=data.androidImg||""
-
-pricing.innerHTML=data.pricing||""
-
-document.documentElement.style.setProperty("--primary",data.primary||"#6366f1")
-document.documentElement.style.setProperty("--secondary",data.secondary||"#06b6d4")
-document.documentElement.style.setProperty("--radius",data.radius||"20px")
+let siteData;
+async function fetchData(){
+  const res = await fetch("/api/data")
+  siteData = await res.json()
+  renderTabs()
+  renderContent(siteData.tabs[0])
+  renderPrices()
 }
-load()
-</script>
 
+function renderTabs(){
+  const tabsEl = document.getElementById("tabs")
+  tabsEl.innerHTML = ""
+  siteData.tabs.forEach(tab=>{
+    const el = document.createElement("div")
+    el.className="tab"
+    el.innerText=tab
+    el.onclick=()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active")); el.classList.add("active"); renderContent(tab)}
+    tabsEl.appendChild(el)
+  })
+  document.querySelectorAll(".tab")[0].classList.add("active")
+}
+
+function renderContent(tab){
+  const contentEl = document.getElementById("content")
+  contentEl.innerHTML=""
+  const apps = siteData.apps[tab]
+  
+  apps.downloads.forEach(app=>{
+    const card = document.createElement("div"); card.className="card"
+    card.innerHTML=`<h3>${app.name}</h3><a href="${app.link}" target="_blank"><button>دانلود</button></a>`
+    contentEl.appendChild(card)
+  })
+
+  if(apps.images.length>0){
+    const sliderCard = document.createElement("div"); sliderCard.className="card slider"
+    apps.images.forEach((img,i)=>{
+      const imgEl = document.createElement("img")
+      imgEl.src=img
+      if(i===0) imgEl.classList.add("active")
+      sliderCard.appendChild(imgEl)
+    })
+    contentEl.appendChild(sliderCard)
+    startSlider(sliderCard)
+  }
+}
+
+function startSlider(slider){
+  let idx=0
+  const images = slider.querySelectorAll("img")
+  setInterval(()=>{
+    images[idx].classList.remove("active")
+    idx=(idx+1)%images.length
+    images[idx].classList.add("active")
+  },3000)
+}
+
+function renderPrices(){
+  const contentEl = document.getElementById("content")
+  const container = document.createElement("div"); container.className="price-container"
+  siteData.prices.forEach(p=>{
+    const card = document.createElement("div"); 
+    card.className="price-card "+(p.guarantee?"guarantee":"no-guarantee")
+    card.innerHTML=`<h4>${p.name}</h4><p>${p.time} | ${p.volume}</p><p>${p.price}</p>`
+    container.appendChild(card)
+  })
+  contentEl.appendChild(container)
+}
+
+fetchData()
+</script>
 </body>
 </html>
