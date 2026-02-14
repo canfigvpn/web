@@ -3,393 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="وب‌سایت آموزشی فلوکی - تم طلایی">
-    <meta name="theme-color" content="#D4AF37">
-    <title>Web CanfigVpn | Luxury Gold</title>
+    <meta name="description" content="Web CanfigVpn - Luxury Gold Theme">
+    <title>Web CanfigVpn | تم طلایی</title>
     <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            /* Gold Color Palette */
             --gold-primary: #D4AF37;
-            --gold-secondary: #C5A028;
+            --gold-light: #FBF5B7;
+            --gold-dark: #AA771C;
             --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --dark-bg: #0f172a; /* Deep Navy/Black */
-            --dark-surface: #1e293b;
-            --text-gold: #f8fafc;
-            --glass-gold: rgba(255, 255, 255, 0.03);
-            --radius-lg: 20px;
+            --bg-dark: #0a0a0b;
+            --surface-dark: #161b22;
+            --text-main: #e6edf3;
+            --border-gold: rgba(212, 175, 55, 0.3);
         }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             margin: 0;
+            padding: 0;
             font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--dark-bg);
-            color: #e2e8f0;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
-            min-height: 100vh;
-            line-height: 1.6;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent),
+                              radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.05), transparent);
+            direction: rtl;
         }
 
-        .content {
-            padding: 20px;
-            max-width: 900px;
+        .container {
+            max-width: 600px;
             margin: 0 auto;
+            padding: 20px;
         }
 
-        /* Titles */
-        h2 {
-            font-size: 1.6rem;
-            color: var(--gold-primary);
+        /* Header Title */
+        .main-title {
             text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            font-size: 1.5rem;
+            margin: 30px 0;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2));
         }
 
-        /* Main Cards */
-        .install-section, .tutorial-section {
-            background: var(--dark-surface);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            margin-bottom: 40px;
+        /* Sections Styling */
+        .section-card {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .os-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .section-header {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Boxes */
+        /* Accordion Boxes */
         .os-box {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 15px;
+            margin-bottom: 12px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 70px;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .os-box.active {
-            height: auto;
             border-color: var(--gold-primary);
             background: rgba(212, 175, 55, 0.05);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
-        .os-title {
-            height: 70px;
+        .os-box-header {
+            padding: 15px 20px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            font-weight: 700;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .os-box-header i.fa-chevron-down {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
             color: var(--gold-primary);
         }
 
-        .os-title i.fab { font-size: 1.8rem; }
+        .os-box.active i.fa-chevron-down { transform: rotate(180deg); }
 
-        .toggle-arrow { transition: transform 0.3s; color: rgba(212, 175, 55, 0.5); }
-        .os-box.active .toggle-arrow { transform: rotate(180deg); color: var(--gold-primary); }
-
-        /* Buttons */
-        .app-button {
-            display: block;
-            width: calc(100% - 40px);
-            margin: 15px auto 25px;
-            padding: 14px;
-            background: var(--gold-gradient);
-            color: #1a1a1a;
-            border: none;
-            border-radius: 12px;
-            font-family: inherit;
-            font-weight: 800;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .app-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Slider */
-        .slider {
-            margin: 0 20px 20px;
-            border-radius: 15px;
+        .os-content {
+            max-height: 0;
             overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: max-height 0.4s ease-out;
         }
 
-        .slider-images {
+        .os-box.active .os-content {
+            max-height: 800px; /* Large enough to fit content */
+        }
+
+        /* Download Buttons */
+        .btn-download {
+            display: block;
+            margin: 10px 20px 20px;
+            padding: 12px;
+            background: var(--gold-gradient);
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-download:active { transform: scale(0.97); }
+
+        /* Slider Styles */
+        .slider-wrapper {
+            position: relative;
+            margin: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+        }
+
+        .slides-container {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.5s ease;
             aspect-ratio: 16/9;
+        }
+
+        .slide-img {
+            min-width: 100%;
+            object-fit: contain;
             background: #000;
         }
 
-        .slider-image { width: 100%; flex-shrink: 0; object-fit: contain; }
-
-        .slider-button {
+        .slider-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.6);
-            border: 1px solid var(--gold-primary);
+            background: rgba(0,0,0,0.7);
             color: var(--gold-primary);
-            width: 35px; height: 35px; border-radius: 50%;
-            cursor: pointer; z-index: 5;
+            border: 1px solid var(--gold-primary);
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
         }
-        .slider-button.prev { left: 10px; }
-        .slider-button.next { right: 10px; }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
 
-        .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 10px 0; }
-        .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #444; cursor: pointer; }
-        .slider-dot.active { background: var(--gold-primary); box-shadow: 0 0 10px var(--gold-primary); }
+        .dots-container {
+            display: flex; justify-content: center; gap: 5px; padding: 10px;
+        }
+        .dot { width: 7px; height: 7px; background: #333; border-radius: 50%; cursor: pointer; }
+        .dot.active { background: var(--gold-primary); box-shadow: 0 0 5px var(--gold-primary); }
 
-        /* Social Wrapper */
-        .wrapper {
+        /* Social Icons (Wrapper) */
+        .social-wrapper {
             display: flex;
             justify-content: center;
             gap: 20px;
             list-style: none;
             padding: 0;
-            margin: 40px 0;
+            margin-top: 30px;
         }
 
-        .wrapper .icon {
-            width: 55px; height: 55px;
-            background: var(--dark-surface);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+        .social-icon {
+            width: 50px; height: 50px;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-gold);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
             color: var(--gold-primary);
+            font-size: 1.3rem;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .wrapper .icon:hover {
+        .social-icon:hover {
             background: var(--gold-gradient);
             color: #000;
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
         }
 
         /* Modals */
-        .share-modal, .qr-modal, .image-zoom {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            align-items: center; justify-content: center;
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center;
             z-index: 1000;
-            backdrop-filter: blur(8px);
         }
 
-        .share-modal.active, .qr-modal.active, .image-zoom.active { display: flex; }
+        .modal-overlay.show { display: flex; }
 
-        .modal-container {
-            background: var(--dark-surface);
-            width: 90%; max-width: 350px;
-            border-radius: 20px;
+        .modal-body {
+            background: var(--surface-dark);
             border: 1px solid var(--gold-primary);
-            padding: 20px;
+            width: 85%; max-width: 350px;
+            border-radius: 20px;
+            padding: 25px;
             text-align: center;
             position: relative;
         }
 
-        .share-url {
-            display: flex; gap: 10px; background: #000;
-            padding: 10px; border-radius: 10px; margin: 20px 0;
-            border: 1px solid #333;
+        .close-btn { position: absolute; top: 15px; left: 15px; cursor: pointer; color: #666; }
+
+        .copy-box {
+            display: flex; background: #000; border-radius: 10px;
+            padding: 10px; margin: 20px 0; border: 1px solid #333;
         }
+        .copy-box input { background: none; border: none; color: #fff; width: 100%; font-size: 0.75rem; text-align: left; }
+        .copy-box button { background: var(--gold-primary); border: none; border-radius: 5px; padding: 0 10px; cursor: pointer; }
 
-        .share-url input { background: transparent; border: none; color: #fff; flex: 1; direction: ltr; font-size: 0.8rem; }
-        .share-url button { background: var(--gold-primary); border: none; border-radius: 5px; cursor: pointer; padding: 5px 10px; }
-
-        .close-modal {
-            position: absolute; top: 15px; left: 15px;
-            color: #666; cursor: pointer; font-size: 1.2rem;
-        }
-
-        /* Offline Bar */
-        .offline-message {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: #ef4444; color: white;
-            text-align: center; padding: 5px; z-index: 5000;
-            display: none; font-size: 0.8rem;
-        }
-        body.offline .offline-message { display: block; }
-
-        @media (max-width: 600px) {
-            .os-container { grid-template-columns: 1fr; }
+        .offline-status {
+            position: fixed; bottom: 0; width: 100%;
+            background: #ff4444; color: #fff; text-align: center;
+            padding: 5px; font-size: 0.8rem; display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="offline-message">شما آفلاین هستید! اتصال خود را بررسی کنید.</div>
+    <div class="offline-status" id="offlineMsg">شما آفلاین هستید</div>
 
-    <main class="content">
-        <h2>✨ وب‌سایت فلوکی | آموزش اتصال ✨</h2>
+    <div class="container">
+        <h1 class="main-title">✨ وب‌سایت فلوکی | FLOKI ✨</h1>
 
-        <section class="install-section">
-            <h2>نصب نرم‌افزارهای مورد نیاز</h2>
-            <div class="os-container">
-                <div class="os-box" id="android">
-                    <div class="os-title">
-                        <span><i class="fab fa-android"></i> اندروید</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button">V2rayNG (Google Play)</a>
+        <section class="section-card">
+            <div class="section-header">
+                <i class="fas fa-download"></i>
+                <span>نصب نرم‌افزارهای مورد نیاز</span>
+            </div>
+
+            <div class="os-box" onclick="toggleBox(this)">
+                <div class="os-box-header">
+                    <span><i class="fab fa-android"></i> اندروید (Android)</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
-
-                <div class="os-box" id="iphone">
-                    <div class="os-title">
-                        <span><i class="fab fa-apple"></i> آیفون (iOS)</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button">Streisand (App Store)</a>
+                <div class="os-content">
+                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" class="btn-download">دانلود V2rayNG</a>
                 </div>
+            </div>
 
-                <div class="os-box" id="windows">
-                    <div class="os-title">
-                        <span><i class="fab fa-windows"></i> ویندوز</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button">V2rayN (GitHub)</a>
+            <div class="os-box" onclick="toggleBox(this)">
+                <div class="os-box-header">
+                    <span><i class="fab fa-apple"></i> آیفون (iOS)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="os-content">
+                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" class="btn-download">دانلود Streisand</a>
+                </div>
+            </div>
+
+            <div class="os-box" onclick="toggleBox(this)">
+                <div class="os-box-header">
+                    <span><i class="fab fa-windows"></i> ویندوز (Windows)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="os-content">
+                    <a href="https://github.com/2dust/v2rayN/releases" class="btn-download">دانلود V2rayN</a>
                 </div>
             </div>
         </section>
 
-        <section class="tutorial-section">
-            <h2>آموزش تصویری راه‌اندازی</h2>
-            <div class="os-container">
-                <div class="os-box" id="tutorial-android">
-                    <div class="os-title">
-                        <span>آموزش اندروید</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x450/1a1a1a/D4AF37?text=Step+1">
-                            <img class="slider-image" src="https://placehold.co/800x450/1a1a1a/D4AF37?text=Step+2">
-                            <img class="slider-image" src="https://placehold.co/800x450/1a1a1a/D4AF37?text=Step+3">
+        <section class="section-card">
+            <div class="section-header">
+                <i class="fas fa-book-open"></i>
+                <span>آموزش اتصال تصویری</span>
+            </div>
+
+            <div class="os-box active" onclick="toggleBox(this)">
+                <div class="os-box-header">
+                    <span>آموزش مرحله به مرحله</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="os-content">
+                    <div class="slider-wrapper">
+                        <div class="slides-container" id="slides">
+                            <img src="https://placehold.co/600x400/161b22/D4AF37?text=Step+1" class="slide-img">
+                            <img src="https://placehold.co/600x400/161b22/D4AF37?text=Step+2" class="slide-img">
+                            <img src="https://placehold.co/600x400/161b22/D4AF37?text=Step+3" class="slide-img">
                         </div>
-                        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="slider-dots"></div>
+                        <div class="slider-nav prev-btn" onclick="moveSlide(-1, event)"><i class="fas fa-chevron-left"></i></div>
+                        <div class="slider-nav next-btn" onclick="moveSlide(1, event)"><i class="fas fa-chevron-right"></i></div>
                     </div>
+                    <div class="dots-container" id="dots"></div>
                 </div>
             </div>
         </section>
 
-        <ul class="wrapper">
-            <li class="icon" onclick="window.open('https://t.me/FLOKI000')"><i class="fab fa-telegram-plane"></i></li>
-            <li class="icon" onclick="window.open('https://t.me/FLOKI000')"><i class="fas fa-headset"></i></li>
-            <li class="icon" onclick="openShareModal()"><i class="fas fa-share-alt"></i></li>
-        </ul>
-    </main>
+        <div class="social-wrapper">
+            <div class="social-icon" onclick="window.open('https://t.me/FLOKI000')"><i class="fab fa-telegram-plane"></i></div>
+            <div class="social-icon" onclick="window.open('https://t.me/FLOKI000')"><i class="fas fa-headset"></i></div>
+            <div class="social-icon" onclick="openModal('shareModal')"><i class="fas fa-share-alt"></i></div>
+        </div>
+    </div>
 
-    <div class="share-modal" id="shareModal">
-        <div class="modal-container">
-            <i class="fas fa-times close-modal" onclick="closeModals()"></i>
-            <h3 style="color:var(--gold-primary)">اشتراک‌گذاری</h3>
-            <div class="share-url">
-                <input type="text" id="siteUrl" value="https://canfigvpn.github.io/web/" readonly>
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal-body">
+            <i class="fas fa-times close-btn" onclick="closeModal('shareModal')"></i>
+            <h3 style="color: var(--gold-primary)">اشتراک‌گذاری سایت</h3>
+            <div class="copy-box">
+                <input type="text" value="https://canfigvpn.github.io/web/" id="siteUrl" readonly>
                 <button onclick="copyLink()"><i class="fas fa-copy"></i></button>
             </div>
-            <div style="display: flex; justify-content: center; gap: 15px;">
-                <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.5rem; cursor: pointer;"></i>
-                <i class="fab fa-telegram" style="color: #0088CC; font-size: 1.5rem; cursor: pointer;"></i>
-                <i class="fas fa-qrcode" onclick="openQRModal()" style="color: var(--gold-primary); font-size: 1.5rem; cursor: pointer;"></i>
+            <div style="display: flex; justify-content: center; gap: 20px;">
+                <i class="fas fa-qrcode" onclick="openModal('qrModal')" style="font-size: 1.5rem; color: var(--gold-primary); cursor: pointer;"></i>
+                <i class="fab fa-whatsapp" style="font-size: 1.5rem; color: #25D366;"></i>
             </div>
         </div>
     </div>
 
-    <div class="qr-modal" id="qrModal">
-        <div class="modal-container">
-            <i class="fas fa-times close-modal" onclick="closeModals()"></i>
-            <h3 style="color:var(--gold-primary)">کد QR سایت</h3>
-            <img src="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" style="width: 200px; border-radius: 10px; border: 2px solid var(--gold-primary); margin: 15px 0;">
-            <button class="app-button" onclick="downloadQR()">دانلود تصویر</button>
+    <div class="modal-overlay" id="qrModal">
+        <div class="modal-body">
+            <i class="fas fa-times close-btn" onclick="closeModal('qrModal')"></i>
+            <h3 style="color: var(--gold-primary)">کد QR اختصاصی</h3>
+            <img src="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" style="width: 100%; border: 2px solid var(--gold-primary); border-radius: 10px; margin: 15px 0;">
+            <a href="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" download class="btn-download">ذخیره تصویر</a>
         </div>
     </div>
 
     <script>
-        // Toggle Accordion
-        document.querySelectorAll('.os-box').forEach(box => {
-            box.addEventListener('click', (e) => {
-                if(e.target.closest('.app-button, .slider')) return;
-                const isActive = box.classList.contains('active');
-                document.querySelectorAll('.os-box').forEach(b => b.classList.remove('active'));
-                if(!isActive) box.classList.add('active');
+        // کنترل باز و بسته شدن باکس‌ها (Accordion)
+        function toggleBox(el) {
+            // اگر کاربر روی دکمه دانلود یا اسلایدر کلیک کرد، باکس بسته نشود
+            if(event.target.closest('.btn-download, .slider-wrapper, .dots-container')) return;
+            
+            const wasActive = el.classList.contains('active');
+            document.querySelectorAll('.os-box').forEach(box => box.classList.remove('active'));
+            if(!wasActive) el.classList.add('active');
+        }
+
+        // منطق اسلایدر
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = slides.querySelectorAll('img').length;
+        const dotsContainer = document.getElementById('dots');
+
+        // ایجاد دات‌ها
+        for(let i=0; i<totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = `dot ${i===0 ? 'active' : ''}`;
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateSlider() {
+            slides.style.transform = `translateX(${currentSlide * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
             });
-        });
-
-        // Slider Logic
-        document.querySelectorAll('.slider').forEach(slider => {
-            const imgs = slider.querySelector('.slider-images');
-            const imgCount = slider.querySelectorAll('.slider-image').length;
-            const dotsCont = slider.querySelector('.slider-dots');
-            let current = 0;
-
-            for(let i=0; i<imgCount; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'slider-dot' + (i===0 ? ' active' : '');
-                dot.onclick = () => move(i);
-                dotsCont.appendChild(dot);
-            }
-
-            function move(n) {
-                current = (n + imgCount) % imgCount;
-                imgs.style.transform = `translateX(${current * 100}%)`;
-                slider.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-            }
-
-            slider.querySelector('.prev').onclick = () => move(current - 1);
-            slider.querySelector('.next').onclick = () => move(current + 1);
-        });
-
-        // Modals Logic
-        function openShareModal() { document.getElementById('shareModal').classList.add('active'); }
-        function openQRModal() { 
-            document.getElementById('shareModal').classList.remove('active');
-            document.getElementById('qrModal').classList.add('active'); 
-        }
-        function closeModals() {
-            document.querySelectorAll('.share-modal, .qr-modal').forEach(m => m.classList.remove('active'));
         }
 
+        function moveSlide(direction, event) {
+            event.stopPropagation();
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // مودال‌ها
+        function openModal(id) {
+            if(id === 'qrModal') closeModal('shareModal');
+            document.getElementById(id).classList.add('show');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        // کپی لینک
         function copyLink() {
             const input = document.getElementById('siteUrl');
             input.select();
             document.execCommand('copy');
-            alert('لینک کپی شد!');
+            alert('لینک سایت با موفقیت کپی شد.');
         }
 
-        function downloadQR() {
-            const a = document.createElement('a');
-            a.href = "https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png";
-            a.download = "floki-qr.png";
-            a.click();
-        }
-
-        // Offline Check
-        window.addEventListener('online', () => document.body.classList.remove('offline'));
-        window.addEventListener('offline', () => document.body.classList.add('offline'));
+        // بررسی وضعیت اتصال
+        window.addEventListener('online', () => document.getElementById('offlineMsg').style.display = 'none');
+        window.addEventListener('offline', () => document.getElementById('offlineMsg').style.display = 'block');
     </script>
 </body>
 </html>
