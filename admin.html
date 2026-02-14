@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+<style>
+body{font-family:sans-serif; margin:0; padding:0; background:#f5f5f5;}
+header{background:#333;color:#fff;padding:1rem;text-align:center;}
+.container{max-width:800px;margin:2rem auto;background:#fff;padding:1rem;border-radius:10px;}
+input,textarea,select,button{width:100%;margin:0.5rem 0;padding:0.5rem;}
+button{background:#ff6600;color:#fff;border:none;border-radius:5px;cursor:pointer;}
+</style>
+</head>
+<body>
+<header><h1>Admin Panel</h1></header>
+<div class="container" id="login-container">
+  <h3>Login</h3>
+  <input type="password" id="admin-pass" placeholder="Enter Admin Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="container" id="panel-container" style="display:none">
+  <h3>ویرایش سایت</h3>
+  <textarea id="json-data" rows="20"></textarea>
+  <button onclick="saveData()">ذخیره تغییرات</button>
+</div>
+
+<script>
+function login(){
+  const pass = document.getElementById("admin-pass").value
+  if(pass==="ADMIN_PASSWORD"){ // رمز عبور پیش‌فرض
+    document.getElementById("login-container").style.display="none"
+    document.getElementById("panel-container").style.display="block"
+    loadData()
+  }else alert("رمز اشتباه است")
+}
+
+async function loadData(){
+  const res = await fetch("/api/data")
+  const data = await res.json()
+  document.getElementById("json-data").value=JSON.stringify(data,null,2)
+}
+
+async function saveData(){
+  const json = document.getElementById("json-data").value
+  const body = {key:"ADMIN_PASSWORD", data:JSON.parse(json)}
+  const res = await fetch("/admin-api", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
+  if(res.ok) alert("ذخیره شد"); else alert("خطا در ذخیره")
+}
+</script>
+</body>
+</html>
