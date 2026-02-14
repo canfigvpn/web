@@ -1,104 +1,1334 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CanfigVpn</title>
-<style>
-:root { --primary-color:#ff6600; --card-radius:10px; }
-body { font-family:sans-serif; margin:0; padding:0; background:#f5f5f5; }
-header{background:var(--primary-color); color:#fff; padding:1rem; text-align:center;}
-.tabs{display:flex; justify-content:center; margin:1rem 0;}
-.tab{padding:0.5rem 1rem; cursor:pointer; border-radius:5px; margin:0 0.5rem; background:#ddd;}
-.tab.active{background:var(--primary-color); color:#fff;}
-.content{max-width:1000px; margin:0 auto;}
-.card{background:#fff; padding:1rem; margin:1rem 0; border-radius:var(--card-radius); box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-.card h3{margin:0 0 0.5rem 0;}
-.slider{position:relative; overflow:hidden; border-radius:var(--card-radius);}
-.slider img{width:100%; display:none;}
-.slider img.active{display:block;}
-button{padding:0.5rem 1rem; margin-top:0.5rem; cursor:pointer; border:none; background:var(--primary-color); color:#fff; border-radius:5px;}
-.price-container{display:flex; flex-wrap:wrap; justify-content:center;}
-.price-card{background:#fff; padding:1rem; margin:0.5rem; border-radius:var(--card-radius); width:200px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-.price-card.guarantee{border:2px solid green;}
-.price-card.no-guarantee{border:2px solid red;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="وب‌سایت آموزشی فلوکی برای اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف">
+    <meta name="theme-color" content="#3B82F6">
+    <title>Web CanfigVpn</title>
+    <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <link rel="manifest" href="data:application/manifest+json;base64,ew0KICAgICJuYW1lIjogIldlYnNpdGUgRmxva2kiLA0KICAgICJzaG9ydF9uYW1lIjogIkZsb2tpIiwNCiAgICAic3RhcnRfdXJsIjogIi4iLA0KICAgICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLA0KICAgICJpY29ucyI6IFsNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVdraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWxzYkY5alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ4TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjE5MngxOTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfSwNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI4Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVdraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWlzYkY9alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ8TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjUxMng1MTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfQ0KICAgIF0sDQogICAgImJhY2tncm91bmRfY29sb3IiOiAiI0ZGRkZGRiIsDQogICAgInRoZW1lX2NvbG9yIjogIiMzQjgyRjYiDQp9">
+    <style>
+        /* Force light theme with modern glass effect */
+        html {
+            color-scheme: light;
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+            color: #1E3A8A;
+        }
+
+        body {
+            background: transparent;
+            color: #1E3A8A;
+            margin: 0;
+            font-family: 'Vazirmatn', Arial, sans-serif;
+            overflow-x: hidden;
+            touch-action: manipulation;
+            min-height: 100vh;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Theme variables for modern glass theme */
+        :root {
+            --bg-color: #ffffff;
+            --surface-color: rgba(255, 255, 255, 0.75);
+            --primary-color: #3B82F6;
+            --accent-color: #60A5FA;
+            --highlight-color: #1E3A8A;
+            --text-color: #1E3A8A;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --border-radius: 28px;
+            --shadow: 0 20px 35px -8px rgba(0, 35, 80, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            --shadow-hover: 0 25px 40px -10px rgba(0, 80, 160, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+            --telegram-color: #0088CC;
+            --whatsapp-color: #25D366;
+            --instagram-color: #E1306C;
+            --transition-smooth: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+        }
+
+        /* Disable system dark mode interference */
+        @media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
+            :root, body, html {
+                background-color: transparent !important;
+                color: var(--text-color) !important;
+            }
+        }
+
+        /* Base styles */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes floatGlow {
+            0% { box-shadow: 0 15px 30px -10px rgba(59,130,246,0.2); }
+            50% { box-shadow: 0 25px 45px -10px rgba(59,130,246,0.4); }
+            100% { box-shadow: 0 15px 30px -10px rgba(59,130,246,0.2); }
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: perspective(800px) translateY(30px) rotateX(-10deg) scale(0.95); }
+            to { opacity: 1; transform: perspective(800px) translateY(0) rotateX(0) scale(1); }
+        }
+
+        /* Offline Message */
+        .offline-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 28px;
+            border-radius: 60px;
+            background: linear-gradient(145deg, #ef4444, #dc2626) !important;
+            color: #FFFFFF !important;
+            z-index: 1005;
+            box-shadow: 0 15px 30px -5px rgba(220, 38, 38, 0.4);
+            font-size: 14px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        body.offline .offline-message {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            background: transparent;
+            border-radius: var(--border-radius);
+        }
+
+        /* Install and Tutorial Sections - modern cards */
+        .install-section, .tutorial-section {
+            margin: 35px 0;
+            padding: 35px 25px;
+            background: var(--glass-bg) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 1200px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: var(--transition-smooth);
+        }
+
+        .install-section:hover, .tutorial-section:hover {
+            box-shadow: var(--shadow-hover);
+            background: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        .install-section h2, .tutorial-section h2 {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--highlight-color) !important;
+            text-shadow: 0 2px 5px rgba(59,130,246,0.2);
+            letter-spacing: -0.5px;
+        }
+
+        .os-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .os-box {
+            flex: 1 1 250px;
+            background: var(--surface-color) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: var(--border-radius);
+            padding: 25px 15px;
+            text-align: center;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            overflow: hidden;
+            height: 95px;
+            will-change: height, transform, box-shadow;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.1);
+            min-width: 180px;
+        }
+
+        .os-box.active {
+            height: auto;
+            animation: fadeIn 0.4s ease forwards;
+            box-shadow: 0 25px 40px -12px rgba(59,130,246,0.35), 0 0 0 1px rgba(255,255,255,0.9) inset;
+            background: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .os-box .os-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-color) !important;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .os-box .os-title i {
+            font-size: 34px;
+            color: var(--primary-color);
+            transition: var(--transition-smooth);
+            filter: drop-shadow(0 3px 5px rgba(59,130,246,0.3));
+        }
+
+        .os-box:hover .os-title i {
+            transform: scale(1.1) rotate(3deg);
+            color: var(--highlight-color);
+        }
+
+        .os-box .os-title .toggle-arrow {
+            font-size: 22px;
+            color: var(--primary-color);
+            transition: transform 0.4s ease;
+            opacity: 0.8;
+        }
+
+        .os-box.active .os-title .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* App Button Styles - modern gradient */
+        .app-button {
+            display: none;
+            margin: 20px auto 5px;
+            padding: 14px 35px;
+            border: none;
+            background: linear-gradient(145deg, var(--primary-color), var(--accent-color)) !important;
+            color: #FFFFFF !important;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            width: fit-content;
+            min-width: 180px;
+            box-shadow: 0 15px 25px -8px rgba(59,130,246,0.4);
+            border: 1px solid rgba(255,255,255,0.3);
+            text-decoration: none;
+            letter-spacing: 0.3px;
+        }
+
+        .app-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: linear-gradient(145deg, var(--accent-color), var(--primary-color)) !important;
+            box-shadow: 0 22px 35px -8px rgba(59,130,246,0.6);
+        }
+
+        .os-box.active .app-button {
+            display: inline-block;
+            animation: fadeIn 0.3s 0.1s backwards;
+        }
+
+        /* Image Slider - elegant */
+        .slider {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 32px;
+            touch-action: pan-y;
+            display: none;
+            background: rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.6);
+            margin-top: 20px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+
+        .os-box.active .slider {
+            display: block;
+        }
+
+        .slider-images {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+            will-change: transform;
+        }
+
+        .slider-image {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 420px;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            loading: lazy;
+            background: rgba(255,255,255,0.3) !important;
+            border-radius: 24px;
+            padding: 8px;
+        }
+
+        .slider-image.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            border-radius: 40px;
+            z-index: 10;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 8px 18px -5px rgba(0,0,0,0.2);
+        }
+
+        .slider-button:hover {
+            background: white !important;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 15px 25px -5px rgba(59,130,246,0.4);
+        }
+
+        .slider-button svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--primary-color) !important;
+            stroke-width: 2.5;
+        }
+
+        .slider-button.prev {
+            left: 15px;
+        }
+
+        .slider-button.next {
+            right: 15px;
+        }
+
+        .slider-counter {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 16px;
+            color: var(--highlight-color) !important;
+            font-weight: 600;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(4px);
+            padding: 10px 20px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 1px solid white;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 18px 0 8px;
+        }
+
+        .slider-dot {
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(2px);
+            opacity: 0.7;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .slider-dot.active {
+            background: var(--primary-color) !important;
+            width: 40px;
+            opacity: 1;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Image Zoom */
+        .image-zoom {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-zoom.active {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .image-zoom img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 40px;
+            box-shadow: 0 40px 70px -10px black;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .image-zoom .close-zoom {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: rgba(255,255,255,0.2) !important;
+            color: white !important;
+            border: none;
+            border-radius: 60px;
+            width: 60px;
+            height: 60px;
+            font-size: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .image-zoom .close-zoom:hover {
+            background: white !important;
+            color: var(--primary-color) !important;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* Social Media Icons - floating glass */
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 20px auto 40px;
+            padding: 15px 25px;
+            max-width: 500px;
+            width: fit-content;
+            background: rgba(255, 255, 255, 0.4) !important;
+            backdrop-filter: blur(15px);
+            border-radius: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 35px -10px rgba(59,130,246,0.2);
+        }
+
+        .wrapper .icon {
+            position: relative;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 60px;
+            padding: 15px;
+            margin: 0 10px;
+            width: 65px;
+            height: 65px;
+            font-size: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 18px -5px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            will-change: transform, background;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .wrapper .icon a, .wrapper .icon button {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background: none;
+            border: none;
+            font-size: inherit;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .wrapper .tooltip {
+            position: absolute;
+            top: -55px;
+            font-size: 15px;
+            font-weight: 600;
+            background: white;
+            color: var(--primary-color);
+            padding: 10px 18px;
+            border-radius: 40px;
+            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .wrapper .tooltip::before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            background: white;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            transition: var(--transition-smooth);
+            border-radius: 3px;
+        }
+
+        .wrapper .icon:hover {
+            transform: translateY(-8px) scale(1.15);
+            background: var(--primary-color) !important;
+            box-shadow: 0 25px 35px -8px var(--primary-color);
+        }
+
+        .wrapper .icon:hover a, .wrapper .icon:hover button {
+            color: #FFFFFF;
+        }
+
+        .wrapper .icon:hover .tooltip {
+            top: -70px;
+            opacity: 1;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .wrapper .icon:hover .tooltip::before {
+            background: var(--primary-color);
+        }
+
+        /* Share Panel - elegant modal */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4) !important;
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .share-modal.active {
+            display: flex;
+        }
+
+        .share-container {
+            width: 450px;
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 40px 70px -10px rgba(0,0,0,0.3);
+            border-radius: 48px;
+            overflow: hidden;
+            animation: modalPop 0.3s ease forwards;
+            transform: perspective(800px);
+            will-change: transform, opacity;
+            position: relative;
+            padding-bottom: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .share-header {
+            background: linear-gradient(145deg, var(--primary-color), var(--accent-color)) !important;
+            color: #FFFFFF !important;
+            padding: 18px;
+            text-align: center;
+            font-size: 24px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .share-url {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-radius: 60px;
+            margin: 25px 25px 15px;
+            gap: 10px;
+            border: 1px solid white;
+        }
+
+        .share-url button {
+            background: var(--primary-color) !important;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 22px;
+            color: white !important;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            box-shadow: 0 8px 15px -5px rgba(59,130,246,0.5);
+        }
+
+        .share-url button:hover {
+            background: var(--accent-color) !important;
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .share-url input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 12px;
+            background: transparent;
+            color: var(--text-color) !important;
+            font-family: 'Vazirmatn', sans-serif;
+            direction: ltr;
+            font-weight: 600;
+        }
+
+        .share-options {
+            padding: 10px 20px 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .share-option {
+            font-size: 38px;
+            color: var(--text-color) !important;
+            transition: var(--transition-smooth);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 60px;
+            width: 75px;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+        }
+
+        .share-option.telegram:hover {
+            background: var(--telegram-color) !important;
+            transform: translateY(-8px) scale(1.1);
+        }
+        .share-option.whatsapp:hover {
+            background: var(--whatsapp-color) !important;
+            transform: translateY(-8px) scale(1.1);
+        }
+        .share-option.instagram:hover {
+            background: var(--instagram-color) !important;
+            transform: translateY(-8px) scale(1.1);
+        }
+        .share-option.qr:hover {
+            background: var(--primary-color) !important;
+            transform: translateY(-8px) scale(1.1);
+        }
+
+        .share-option a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .share-option:hover a {
+            color: #FFFFFF !important;
+        }
+
+        .share-modal .close-modal {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.5) !important;
+            color: var(--primary-color) !important;
+            border: none;
+            border-radius: 60px;
+            width: 45px;
+            height: 45px;
+            font-size: 26px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(5px);
+            border: 1px solid white;
+        }
+
+        .share-modal .close-modal:hover {
+            background: white !important;
+            transform: translateX(-50%) rotate(90deg) scale(1.1);
+        }
+
+        .copy-feedback {
+            text-align: center;
+            color: var(--primary-color) !important;
+            margin: 5px 0 10px;
+            font-size: 16px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .copy-feedback.active {
+            display: block;
+            animation: fadeIn 0.2s;
+        }
+
+        /* QR Modal */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4) !important;
+            backdrop-filter: blur(12px);
+            z-index: 2001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-modal.active {
+            display: flex;
+        }
+
+        .qr-container {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 40px 70px -10px rgba(0,0,0,0.3);
+            border-radius: 48px;
+            overflow: hidden;
+            animation: modalPop 0.3s ease forwards;
+            transform: perspective(800px);
+            will-change: transform, opacity;
+            position: relative;
+            padding-bottom: 65px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        .qr-header {
+            background: linear-gradient(145deg, var(--primary-color), var(--accent-color)) !important;
+            color: #FFFFFF !important;
+            padding: 18px;
+            text-align: center;
+            font-size: 24px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 800;
+        }
+
+        .qr-image {
+            padding: 25px 20px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 32px;
+            box-shadow: 0 20px 30px -8px rgba(0,0,0,0.2);
+            background: white;
+            padding: 12px;
+        }
+
+        .download-qr {
+            display: inline-block;
+            margin: 15px auto 5px;
+            padding: 12px 28px;
+            background: linear-gradient(145deg, var(--primary-color), var(--accent-color)) !important;
+            color: #FFFFFF !important;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            box-shadow: 0 15px 25px -8px var(--primary-color);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .download-qr:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: linear-gradient(145deg, var(--accent-color), var(--primary-color)) !important;
+        }
+
+        .qr-modal .close-modal {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.5) !important;
+            color: var(--primary-color) !important;
+            border: none;
+            border-radius: 60px;
+            width: 45px;
+            height: 45px;
+            font-size: 26px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(5px);
+            border: 1px solid white;
+        }
+
+        .qr-modal .close-modal:hover {
+            background: white !important;
+            transform: translateX(-50%) rotate(90deg) scale(1.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .content {
+                padding: 10px;
+            }
+            .install-section, .tutorial-section {
+                padding: 25px 15px;
+                margin: 20px 0;
+            }
+            .os-container {
+                gap: 15px;
+            }
+            .os-box {
+                flex: 1 1 100%;
+                min-width: auto;
+                height: 85px;
+            }
+            .app-button {
+                width: 90%;
+                padding: 12px 25px;
+                font-size: 18px;
+                min-width: unset;
+            }
+            .slider-image {
+                height: 280px;
+            }
+            .wrapper .icon {
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+                margin: 0 5px;
+            }
+            .share-container {
+                width: 92%;
+            }
+            .share-options {
+                gap: 12px;
+            }
+            .share-option {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+            .qr-container {
+                width: 92%;
+            }
+            .qr-image img {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
 </head>
-<body>
-<header><h1>CanfigVpn</h1></header>
-<div class="tabs" id="tabs"></div>
-<div class="content" id="content"></div>
+<body style="background: transparent !important; color: var(--text-color) !important;">
+    <!-- پیام آفلاین بودن -->
+    <div class="offline-message" role="alert" style="background-color: rgba(239, 68, 68, 0.9) !important; color: #FFFFFF !important;">شما آفلاین هستید! اتصال خود را بررسی کنید.</div>
 
-<script>
-let siteData;
-async function fetchData(){
-  const res = await fetch("/api/data")
-  siteData = await res.json()
-  renderTabs()
-  renderContent(siteData.tabs[0])
-  renderPrices()
-}
+    <!-- محتوای اصلی -->
+    <main class="content" style="padding-bottom: 0px;">
+        <!-- بخش نصب نرم‌افزار -->
+        <section class="install-section" style="margin-top: 20px; background: var(--glass-bg) !important;">
+            <h2 style="color: var(--text-color) !important;">نصب نرم‌افزار</h2>
+            <div class="os-container">
+                <!-- Android Section -->
+                <div class="os-box" id="android" aria-expanded="false" style="background: var(--surface-color) !important;">
+                    <div class="os-title" style="color: var(--text-color) !important;">
+                        <i class="fab fa-android"></i>
+                        <span>اندروید</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button" aria-label="دانلود V2rayNG برای اندروید" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayNG</a>
+                </div>
 
-function renderTabs(){
-  const tabsEl = document.getElementById("tabs")
-  tabsEl.innerHTML = ""
-  siteData.tabs.forEach(tab=>{
-    const el = document.createElement("div")
-    el.className="tab"
-    el.innerText=tab
-    el.onclick=()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active")); el.classList.add("active"); renderContent(tab)}
-    tabsEl.appendChild(el)
-  })
-  document.querySelectorAll(".tab")[0].classList.add("active")
-}
+                <!-- iPhone Section -->
+                <div class="os-box" id="iphone" aria-expanded="false" style="background: var(--surface-color) !important;">
+                    <div class="os-title" style="color: var(--text-color) !important;">
+                        <i class="fab fa-apple"></i>
+                        <span>آیفون</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button" aria-label="دانلود Streisand برای آیفون" style="background: var(--primary-color) !important; color: #FFFFFF !important;">Streisand</a>
+                </div>
 
-function renderContent(tab){
-  const contentEl = document.getElementById("content")
-  contentEl.innerHTML=""
-  const apps = siteData.apps[tab]
-  
-  apps.downloads.forEach(app=>{
-    const card = document.createElement("div"); card.className="card"
-    card.innerHTML=`<h3>${app.name}</h3><a href="${app.link}" target="_blank"><button>دانلود</button></a>`
-    contentEl.appendChild(card)
-  })
+                <!-- Windows Section -->
+                <div class="os-box" id="windows" aria-expanded="false" style="background: var(--surface-color) !important;">
+                    <div class="os-title" style="color: var(--text-color) !important;">
+                        <i class="fab fa-windows"></i>
+                        <span>ویندوز</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button" aria-label="دانلود V2rayN برای ویندوز" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayN</a>
+                </div>
+            </div>
+        </section>
 
-  if(apps.images.length>0){
-    const sliderCard = document.createElement("div"); sliderCard.className="card slider"
-    apps.images.forEach((img,i)=>{
-      const imgEl = document.createElement("img")
-      imgEl.src=img
-      if(i===0) imgEl.classList.add("active")
-      sliderCard.appendChild(imgEl)
-    })
-    contentEl.appendChild(sliderCard)
-    startSlider(sliderCard)
-  }
-}
+        <!-- بخش آموزش تصویری -->
+        <section class="tutorial-section" style="background: var(--glass-bg) !important;">
+            <h2 style="color: var(--text-color) !important;">آموزش تصویری</h2>
+            <div class="os-container">
+                <!-- Android Slider -->
+                <div class="os-box" id="android-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
+                    <div class="os-title" style="color: var(--text-color) !important;">
+                        <i class="fab fa-android"></i>
+                        <span>اندروید</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+1" alt="تصویر اندروید ۱" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+2" alt="تصویر اندروید ۲" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+3" alt="تصویر اندروید ۳" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+4" alt="تصویر اندروید ۴" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+5" alt="تصویر اندروید ۵" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+6" alt="تصویر اندروید ۶" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+7" alt="تصویر اندروید ۷" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+8" alt="تصویر اندروید ۸" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+9" alt="تصویر اندروید ۹" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+10" alt="تصویر اندروید ۱۰" loading="lazy" style="background: var(--surface-color) !important;">
+                        </div>
+                        <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                        <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                        <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
 
-function startSlider(slider){
-  let idx=0
-  const images = slider.querySelectorAll("img")
-  setInterval(()=>{
-    images[idx].classList.remove("active")
-    idx=(idx+1)%images.length
-    images[idx].classList.add("active")
-  },3000)
-}
+                <!-- iPhone Slider -->
+                <div class="os-box" id="iphone-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
+                    <div class="os-title" style="color: var(--text-color) !important;">
+                        <i class="fab fa-apple"></i>
+                        <span>آیفون</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+1" alt="تصویر آیفون ۱" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+2" alt="تصویر آیفون ۲" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+3" alt="تصویر آیفون ۳" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+4" alt="تصویر آیفون ۴" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+5" alt="تصویر آیفون ۵" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+6" alt="تصویر آیفون ۶" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+7" alt="تصویر آیفون ۷" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+8" alt="تصویر آیفون ۸" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+9" alt="تصویر آیفون ۹" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+10" alt="تصویر آیفون ۱۰" loading="lazy" style="background: var(--surface-color) !important;">
+                        </div>
+                        <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                        <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                        <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
 
-function renderPrices(){
-  const contentEl = document.getElementById("content")
-  const container = document.createElement("div"); container.className="price-container"
-  siteData.prices.forEach(p=>{
-    const card = document.createElement("div"); 
-    card.className="price-card "+(p.guarantee?"guarantee":"no-guarantee")
-    card.innerHTML=`<h4>${p.name}</h4><p>${p.time} | ${p.volume}</p><p>${p.price}</p>`
-    container.appendChild(card)
-  })
-  contentEl.appendChild(container)
-}
+                <!-- Windows Slider -->
+                <div class="os-box" id="windows-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
+                    <div class="os-title" style="color: var(--text-color) !important;">
+                        <i class="fab fa-windows"></i>
+                        <span>ویندوز</span>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+1" alt="تصویر ویندوز ۱" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+2" alt="تصویر ویندوز ۲" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+3" alt="تصویر ویندوز ۳" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+4" alt="تصویر ویندوز ۴" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+5" alt="تصویر ویندوز ۵" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+6" alt="تصویر ویندوز ۶" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+7" alt="تصویر ویندوز ۷" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+8" alt="تصویر ویندوز ۸" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+9" alt="تصویر ویندوز ۹" loading="lazy" style="background: var(--surface-color) !important;">
+                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+10" alt="تصویر ویندوز ۱۰" loading="lazy" style="background: var(--surface-color) !important;">
+                        </div>
+                        <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                        <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                        <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-fetchData()
-</script>
+    <!-- بزرگنمایی تصویر -->
+    <div class="image-zoom" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important;">
+        <img src="" alt="تصویر بزرگ‌شده">
+        <button class="close-zoom" aria-label="بستن تصویر" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
+    </div>
+
+    <!-- آیکون‌های شبکه‌های اجتماعی -->
+    <ul class="wrapper" style="margin-top: 0px;padding-top: 0px;padding-bottom: 0px;">
+        <li class="icon telegram">
+            <span class="tooltip">پشتیبانی تلگرام</span>
+            <a href="https://t.me/FLOKI000" target="_blank" aria-label="پشتیبانی تلگرام"><span><i class="fas fa-paper-plane"></i></span></a>
+        </li>
+        <li class="icon support">
+            <span class="tooltip">پشتیبانی</span>
+            <a href="https://t.me/FLOKI000" target="_blank" aria-label="پشتیبانی تلگرام"><span><i class="fas fa-headset"></i></span></a>
+        </li>
+        <li class="icon share">
+            <span class="tooltip">اشتراک‌گذاری</span>
+            <button onclick="openShareModal()" aria-label="اشتراک‌گذاری لینک"><span><i class="fas fa-share-square"></i></span></button>
+        </li>
+    </ul>
+
+    <!-- Share Modal -->
+    <div class="share-modal" role="dialog">
+        <div class="share-container">
+            <div class="share-header">اشتراک‌گذاری</div>
+            <div class="share-url" style="margin-bottom: unset;">
+                <button onclick="copyLink()" aria-label="کپی لینک"><i class="fas fa-link"></i></button>
+                <input type="text" value="https://canfigvpn.github.io/web/" readonly>
+            </div>
+            <div class="share-options">
+                <div class="share-option telegram"><a href="https://telegram.me/share/url?url=https%3A%2F%2Fcanfigvpn.github.io%2Fweb%2F" target="_blank" aria-label="اشتراک‌گذاری در تلگرام"><i class="fas fa-paper-plane"></i></a></div>
+                <div class="share-option whatsapp"><a href="https://api.whatsapp.com/send?text=https%3A%2F%2Fcanfigvpn.github.io%2Fweb%2F" target="_blank" aria-label="اشتراک‌گذاری در واتساپ"><i class="fab fa-whatsapp"></i></a></div>
+                <div class="share-option instagram"><a href="https://www.instagram.com/?url=https%3A%2F%2Fcanfigvpn.github.io%2Fweb%2F" target="_blank" aria-label="اشتراک‌گذاری در اینستاگرام"><i class="fab fa-instagram"></i></a></div>
+                <div class="share-option qr" onclick="openQRModal()"><i class="fas fa-qrcode"></i></div>
+            </div>
+            <p class="copy-feedback" id="copyFeedback">لینک کپی شد!</p>
+            <button class="close-modal" aria-label="بستن پنجره اشتراک‌گذاری" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="qr-modal" role="dialog">
+        <div class="qr-container">
+            <div class="qr-header">QR Code</div>
+            <div class="qr-image" style="padding-top: 10px; padding-bottom: 1px;">
+                <img src="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" alt="QR کد برای وب‌سایت فلوکی">
+            </div>
+            <button class="download-qr" onclick="downloadQR()">دانلود QR کد</button>
+            <button class="close-modal" aria-label="بستن پنجره QR" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DOM Elements ---
+        const body = document.body;
+        const imageZoom = document.querySelector('.image-zoom');
+        const zoomImage = imageZoom.querySelector('img');
+        const closeZoomButton = imageZoom.querySelector('.close-zoom');
+        const shareModal = document.querySelector('.share-modal');
+        const qrModal = document.querySelector('.qr-modal');
+        const closeModalButton = document.querySelector('.share-modal .close-modal');
+        const closeQRModalButton = document.querySelector('.qr-modal .close-modal');
+
+        // --- Share Functionality ---
+        const shareData = {
+            title: 'وب‌سایت فلوکی',
+            text: 'آموزش اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف با فلوکی 🚀',
+            url: 'https://canfigvpn.github.io/web/'
+        };
+
+        window.openShareModal = function() {
+            console.log('Opening share modal');
+            shareModal.classList.add('active');
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50); // Haptic feedback
+            }
+        };
+
+        window.openQRModal = function() {
+            console.log('Opening QR modal');
+            qrModal.classList.add('active');
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50); // Haptic feedback
+            }
+        };
+
+        window.copyLink = function() {
+            const url = 'https://canfigvpn.github.io/web/';
+            navigator.clipboard.writeText(url).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.textContent = 'لینک کپی شد!';
+                feedback.classList.add('active');
+                setTimeout(() => feedback.classList.remove('active'), 1000);
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50); // Haptic feedback
+                }
+            }).catch(err => {
+                console.error('Failed to copy link:', err);
+                const feedback = document.getElementById('copyFeedback');
+                feedback.textContent = 'خطا در کپی لینک!';
+                feedback.classList.add('active');
+                setTimeout(() => feedback.classList.remove('active'), 1000);
+            });
+        };
+
+        window.downloadQR = function() {
+            const qrLink = 'https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png';
+            const link = document.createElement('a');
+            link.href = qrLink;
+            link.download = 'floki-qr-code.png';
+            link.click();
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50); // Haptic feedback
+            }
+        };
+
+        closeModalButton.addEventListener('click', () => {
+            shareModal.classList.remove('active');
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50); // Haptic feedback
+            }
+        });
+
+        closeQRModalButton.addEventListener('click', () => {
+            qrModal.classList.remove('active');
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50); // Haptic feedback
+            }
+        });
+
+        shareModal.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                shareModal.classList.remove('active');
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50); // Haptic feedback
+                }
+            }
+        });
+
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                qrModal.classList.remove('active');
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50); // Haptic feedback
+                }
+            }
+        });
+
+        document.querySelectorAll('.share-option').forEach(option => {
+            option.addEventListener('click', () => {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50); // Haptic feedback
+                }
+            });
+        });
+
+        // --- Close Active Box on Page Click ---
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.os-box, .slider-button, .app-button, .image-zoom, .slider-dot, .wrapper, .share-modal, .qr-modal')) {
+                document.querySelectorAll('.os-box').forEach(box => {
+                    box.classList.remove('active');
+                    box.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        // --- Toggle os-box ---
+        document.querySelectorAll('.os-box').forEach(box => {
+            box.addEventListener('click', (e) => {
+                if (e.target.closest('.app-button, .slider-button, .slider-image, .slider-dot')) return;
+                const isActive = box.classList.contains('active');
+                document.querySelectorAll('.os-box').forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-expanded', 'false');
+                });
+                if (!isActive) {
+                    box.classList.add('active');
+                    box.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // --- Image Slider with Enhanced Animation ---
+        document.querySelectorAll('.slider').forEach(slider => {
+            const sliderImages = slider.querySelector('.slider-images');
+            const images = slider.querySelectorAll('.slider-image');
+            const prevButton = slider.querySelector('.slider-button.prev');
+            const nextButton = slider.querySelector('.slider-button.next');
+            const counter = slider.querySelector('.slider-counter');
+            const dotsContainer = slider.querySelector('.slider-dots');
+            let currentIndex = 0;
+            const totalImages = images.length;
+            let autoPlayInterval;
+
+            // Create dots
+            images.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                dot.setAttribute('aria-label', `رفتن به تصویر ${index + 1}`);
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                    stopAutoPlay();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const updateSlider = () => {
+                images.forEach((img, index) => {
+                    img.classList.remove('active');
+                    if (index === currentIndex) {
+                        img.classList.add('active');
+                    }
+                });
+                sliderImages.style.transform = `translateX(${-currentIndex * 100}%)`;
+                counter.textContent = `تصویر ${currentIndex + 1} / ${totalImages}`;
+                dotsContainer.querySelectorAll('.slider-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                    dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
+                });
+            };
+
+            const startAutoPlay = () => {
+                autoPlayInterval = setInterval(() => {
+                    currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+                    updateSlider();
+                }, 3000);
+            };
+
+            const stopAutoPlay = () => {
+                clearInterval(autoPlayInterval);
+            };
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+                updateSlider();
+                stopAutoPlay();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+                updateSlider();
+                stopAutoPlay();
+            });
+
+            // Touch functionality
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            sliderImages.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAutoPlay();
+            });
+
+            sliderImages.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            const handleSwipe = () => {
+                if (touchEndX < touchStartX - 50) nextButton.click();
+                if (touchEndX > touchStartX + 50) prevButton.click();
+            };
+
+            // Zoom functionality
+            images.forEach(img => {
+                img.addEventListener('click', () => {
+                    zoomImage.src = img.src;
+                    zoomImage.alt = img.alt;
+                    imageZoom.classList.add('active');
+                    stopAutoPlay();
+                });
+            });
+
+            // Keyboard navigation
+            slider.addEventListener('keydown', e => {
+                if (e.key === 'ArrowLeft') {
+                    prevButton.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextButton.click();
+                }
+            });
+
+            // Auto-play on load
+            startAutoPlay();
+
+            // Stop auto-play on hover
+            slider.addEventListener('mouseenter', stopAutoPlay);
+            slider.addEventListener('mouseleave', startAutoPlay);
+
+            updateSlider();
+        });
+
+        // Close Zoom
+        closeZoomButton.addEventListener('click', () => {
+            imageZoom.classList.remove('active');
+        });
+
+        // Close Zoom on click outside image
+        imageZoom.addEventListener('click', (e) => {
+            if (e.target === imageZoom) {
+                imageZoom.classList.remove('active');
+            }
+        });
+
+        // --- Offline/Online Status ---
+        const handleConnectionChange = () => {
+            if (navigator.onLine) {
+                body.classList.remove('offline');
+            } else {
+                body.classList.add('offline');
+            }
+        };
+        window.addEventListener('online', handleConnectionChange);
+        window.addEventListener('offline', handleConnectionChange);
+        handleConnectionChange();
+    });
+    </script>
 </body>
 </html>
