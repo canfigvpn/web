@@ -1,1260 +1,249 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="وب‌سایت آموزشی فلوکی برای اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف">
-    <meta name="theme-color" content="#3B82F6">
-    <title> Web CanfigVpn </title>
-    <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
-    <link rel="manifest" href="data:application/manifest+json;base64,ew0KICAgICJuYW1lIjogIldlYnNpdGUgRmxva2kiLA0KICAgICJzaG9ydF9uYW1lIjogIkZsb2tpIiwNCiAgICAic3RhcnRfdXJsIjogIi4iLA0KICAgICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLA0KICAgICJpY29ucyI6IFsNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVdraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWxzYkY5alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ4TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjE5MngxOTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfSwNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI4Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmMyZ3ZNell3WW1GeVltaGhabVZrY21waElHbzlJREV3TURBdk1EQWdNREF3SWlCbWFXeHNQU2t5T0NocFl6VTRPRGsyWW1JNU1tUTVaakV5TVdGbE5EQXdNQ1V5TURveU9UazZMbXB3WnlCNE9UQjVMbU52YlM5Mk1pSm1iR1YyZDJsa0xuTm9hVzEwWVhKa0xXTm9kM05zYjNkbGRDQnpkSEpwYm1jdlltRnljMmxuYm1sdVp6MGljbVY0ZENCNFBTSXlOaUl6SWlCNE9UQXdNQ0l4TUNVeU1EQXlJaUJtYVd4c1BTSXlNQ2hLWjJocFl5NWlaM0prTG5KbGJuUmxjaUIwWVhSMGFXMWxjeUJoYm14dlkyRjBhVzVuWlNCV2FXVnNaWEpFWVdraUlHTmhjbk12TWpBd01EQXdNREF3SWlCNFBTSXlOaUl4TUNJNFNUc2dabWlzYkY9alpYSjVJaUFpWm14aFkybHNiQzV6WlhKMlpYSWlMezQ8TDNOMlp6ND0iLA0KICAgICAgICAgICAgInNpemVzIjogIjUxMng1MTIiLA0KICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICAgICAgfQ0KICAgIF0sDQogICAgImJhY2tncm91bmRfY29sb3IiOiAiI0ZGRkZGRiIsDQogICAgInRoZW1lX2NvbG9yIjogIiMzQjgyRjYiDQp9">
-    <style>
-        /* Force light theme with modern glass effect */
-        html {
-            color-scheme: light;
-            background: #FFFFFF;
-            color: #1E3A8A;
-        }
-
-        body {
-            background-color: #FFFFFF;
-            color: #1E3A8A;
-            margin: 0;
-            font-family: 'Vazirmatn', Arial, sans-serif;
-            overflow-x: hidden;
-            touch-action: manipulation;
-        }
-
-        /* Theme variables for white and blue glass theme */
-        :root {
-            --bg-color: #FFFFFF;
-            --surface-color: rgba(243, 244, 246, 0.9);
-            --primary-color: #3B82F6;
-            --accent-color: #60A5FA;
-            --highlight-color: #1E3A8A;
-            --text-color: #1E3A8A;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --border-radius: 20px;
-            --shadow: 0 0px 20px rgba(0, 0, 0, 0.5);
-            --telegram-color: #0088CC;
-            --whatsapp-color: #25D366;
-            --instagram-color: #E1306C;
-        }
-
-        /* Disable system dark mode interference */
-        @media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
-            :root, body, html {
-                background-color: var(--bg-color) !important;
-                color: var(--text-color) !important;
-            }
-        }
-
-        /* Base styles */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes rotateArrow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(180deg); }
-        }
-
-        @keyframes modalPop {
-            from { opacity: 0; transform: perspective(600px) translateY(20px) rotateX(10deg); }
-            to { opacity: 1; transform: perspective(600px) translateY(0) rotateX(0deg); }
-        }
-
-        /* Offline Message */
-        .offline-message {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            background-color: rgba(239, 68, 68, 0.9) !important;
-            color: #FFFFFF !important;
-            z-index: 1005;
-            box-shadow: var(--shadow);
-            font-size: 14px;
-            text-align: center;
-        }
-
-        body.offline .offline-message {
-            display: block;
-        }
-
-        /* Main Content */
-        .content {
-            padding: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
-            background: #FFFFFF;
-            border-radius: var(--border-radius);
-        }
-
-        /* Install and Tutorial Sections */
-        .install-section, .tutorial-section {
-            margin: 20px 0;
-            padding: 20px;
-            background: var(--glass-bg) !important;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            max-width: 1100px;
-        }
-
-        .install-section h2, .tutorial-section h2 {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-color) !important;
-        }
-
-        .os-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-direction: row;
-        }
-
-        .os-box {
-            flex: 1;
-            background: var(--surface-color) !important;
-            border-radius: var(--border-radius);
-            padding: 20px;
-            text-align: center;
-            transition: height 0.08s ease, opacity 0.08s ease, transform 0.08s ease;
-            cursor: pointer;
-            overflow: hidden;
-            height: 80px;
-            will-change: height, transform;
-        }
-
-        .os-box.active {
-            height: auto;
-            animation: fadeIn 0.08s ease forwards;
-        }
-
-        .os-box .os-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: var(--text-color) !important;
-            position: relative;
-        }
-
-        .os-box .os-title i {
-            font-size: 28px;
-            color: var(--text-color);
-            transition: color 0.08s ease;
-        }
-
-        .os-box:hover .os-title i {
-            color: var(--primary-color);
-        }
-
-        .os-box .os-title .toggle-arrow {
-            font-size: 18px;
-            color: var(--text-color);
-            transition: transform 0.08s ease;
-        }
-
-        .os-box.active .os-title .toggle-arrow {
-            transform: rotate(180deg);
-        }
-
-        /* App Button Styles */
-        .app-button {
-            display: none;
-            margin: 15px auto 0;
-            padding: 12px 30px;
-            border: none;
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: transform 0.08s ease, background 0.08s ease, box-shadow 0.08s ease;
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            text-align: center;
-            width: 70%;
-        }
-
-        .app-button:hover {
-            transform: scale(1.05);
-            background: var(--accent-color) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .os-box.active .app-button {
-            display: block;
-        }
-
-        /* Image Slider */
-        .slider {
-            position: relative;
-            max-width: 100%;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            touch-action: pan-y;
-            display: none;
-            background: var(--glass-bg) !important;
-        }
-
-        .os-box.active .slider {
-            display: block;
-        }
-
-        .slider-images {
-            display: flex;
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-
-        .slider-image {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            loading: lazy;
-            background: var(--surface-color) !important;
-            border-radius: var(--border-radius);
-        }
-
-        .slider-image.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .slider-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: var(--glass-bg) !important;
-            cursor: pointer;
-            border-radius: var(--border-radius);
-            z-index: 10;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.08s ease, box-shadow 0.08s ease;
-        }
-
-        .slider-button:hover {
-            background: var(--accent-color) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider-button svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--text-color) !important;
-        }
-
-        .slider-button.prev {
-            left: 10px;
-        }
-
-        .slider-button.next {
-            right: 10px;
-        }
-
-        .slider-counter {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 16px;
-            color: var(--text-color) !important;
-            opacity: 0.7;
-            background: var(--glass-bg);
-            padding: 8px;
-            border-radius: var(--border-radius);
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--glass-bg) !important;
-            opacity: 0.6;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: background 0.08s ease, opacity 0.08s ease;
-        }
-
-        .slider-dot.active {
-            background: var(--primary-color) !important;
-            opacity: 1;
-        }
-
-        /* Image Zoom */
-        .image-zoom {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7) !important;
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-zoom.active {
-            display: flex;
-        }
-
-        .image-zoom img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            background: var(--glass-bg);
-        }
-
-        .image-zoom .close-zoom {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--glass-bg) !important;
-            color: var(--text-color) !important;
-            border: none;
-            border-radius: var(--border-radius);
-            width: 48px;
-            height: 48px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.08s ease, box-shadow 0.08s ease;
-        }
-
-        .image-zoom .close-zoom:hover {
-            background: var(--accent-color) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Social Media Icons */
-        .wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 1100px;
-            width: 100%;
-            background: var(--glass-bg);
-            border-radius: var(--border-radius);
-        }
-
-        .wrapper .icon {
-            position: relative;
-            background: var(--glass-bg);
-            border-radius: var(--border-radius);
-            padding: 15px;
-            margin: 10px;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform, background;
-        }
-
-        .wrapper .icon a, .wrapper .icon button {
-            color: var(--text-color);
-            text-decoration: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            background: none;
-            border: none;
-            font-size: inherit;
-            cursor: pointer;
-        }
-
-        .wrapper .tooltip {
-            position: absolute;
-            top: -50px;
-            font-size: 14px;
-            background: var(--glass-bg);
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
-            white-space: nowrap;
-        }
-
-        .wrapper .tooltip::before {
-            position: absolute;
-            content: "";
-            height: 10px;
-            width: 10px;
-            background: var(--glass-bg);
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .wrapper .icon:hover {
-            transform: scale(1.1);
-            background: var(--primary-color);
-        }
-
-        .wrapper .icon:hover a, .wrapper .icon:hover button {
-            color: #FFFFFF;
-        }
-
-        .wrapper .icon:hover .tooltip {
-            top: -60px;
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .wrapper .icon:hover .tooltip,
-        .wrapper .icon:hover .tooltip::before {
-            background: var(--primary-color);
-            color: #FFFFFF;
-        }
-
-        /* Share Panel */
-        .share-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7) !important;
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .share-modal.active {
-            display: flex;
-        }
-
-        .share-container {
-            width: 400px;
-            background: var(--glass-bg) !important;
-            box-shadow: var(--shadow);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            animation: modalPop 0.08s ease forwards;
-            transform: perspective(600px);
-            will-change: transform, opacity;
-            position: relative;
-            padding-bottom: 50px;
-        }
-
-        .share-header {
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            padding: 10px;
-            text-align: center;
-            font-size: 18px;
-            font-family: 'Vazirmatn', sans-serif;
-            font-weight: 700;
-        }
-
-        .share-url {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            background: var(--surface-color) !important;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: var(--border-radius);
-            margin: 10px;
-            gap: 10px;
-        }
-
-        .share-url button {
-            background: var(--accent-color) !important;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: var(--border-radius);
-            font-size: 20px;
-            color: #FFFFFF !important;
-            transition: background 0.08s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-        }
-
-        .share-url button:hover {
-            background: var(--primary-color) !important;
-        }
-
-        .share-url input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 14px;
-            padding: 10px;
-            background: transparent;
-            color: var(--text-color) !important;
-            font-family: 'Vazirmatn', sans-serif;
-            direction: ltr;
-            border-radius: var(--border-radius);
-        }
-
-        .share-options {
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .share-option {
-            padding: 5px;
-            font-size: 32px;
-            color: var(--text-color) !important;
-            transition: background 0.08s ease, transform 0.08s ease;
-            background: var(--glass-bg);
-            border-radius: var(--border-radius);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .share-option.telegram:hover {
-            background: var(--telegram-color) !important;
-        }
-
-        .share-option.whatsapp:hover {
-            background: var(--whatsapp-color) !important;
-        }
-
-        .share-option.instagram:hover {
-            background: var(--instagram-color) !important;
-        }
-
-        .share-option.qr:hover {
-            background: var(--primary-color) !important;
-        }
-
-        .share-option:hover {
-            transform: scale(1.1);
-        }
-
-        .share-option a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            background: none;
-            border: none;
-            font-size: inherit;
-            cursor: pointer;
-        }
-
-        .share-option:hover a {
-            color: #FFFFFF !important;
-        }
-
-        .share-modal .close-modal {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--glass-bg) !important;
-            color: var(--text-color) !important;
-            border: none;
-            border-radius: var(--border-radius);
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.08s ease, box-shadow 0.08s ease;
-        }
-
-        .share-modal .close-modal:hover {
-            background: var(--accent-color) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .copy-feedback {
-            text-align: center;
-            color: var(--primary-color) !important;
-            margin-top: 10px;
-            font-size: 14px;
-            display: none;
-            transition: opacity 0.08s ease;
-            font-family: 'Vazirmatn', sans-serif;
-        }
-
-        .copy-feedback.active {
-            display: block;
-            opacity: 1;
-        }
-
-        /* QR Modal */
-        .qr-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7) !important;
-            z-index: 2001;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .qr-modal.active {
-            display: flex;
-        }
-
-        .qr-container {
-            width: 300px;
-            background: var(--glass-bg) !important;
-            box-shadow: var(--shadow);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            animation: modalPop 0.08s ease forwards;
-            transform: perspective(600px);
-            will-change: transform, opacity;
-            position: relative;
-            padding-bottom: 50px;
-            text-align: center;
-        }
-
-        .qr-header {
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            padding: 10px;
-            text-align: center;
-            font-size: 18px;
-            font-family: 'Vazirmatn', sans-serif;
-            font-weight: 700;
-        }
-
-        .qr-image {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .qr-image img {
-            width: 200px;
-            height: 200px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .download-qr {
-            display: block;
-            margin: 10px auto;
-            padding: 8px 16px;
-            background: var(--primary-color) !important;
-            color: #FFFFFF !important;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 14px;
-            transition: background 0.08s ease, transform 0.08s ease;
-        }
-
-        .download-qr:hover {
-            background: var(--accent-color) !important;
-            transform: scale(1.05);
-        }
-
-        .qr-modal .close-modal {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--glass-bg) !important;
-            color: var(--text-color) !important;
-            border: none;
-            border-radius: var(--border-radius);
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.08s ease, box-shadow 0.08s ease;
-        }
-
-        .qr-modal .close-modal:hover {
-            background: var(--accent-color) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Responsive design */
-        @media (max-width: 600px) {
-            .content {
-                padding: 10px;
-                max-width: 321px;
-            }
-            .install-section, .tutorial-section {
-                max-width: 321px;
-            }
-            .os-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .app-button {
-                width: 90%;
-                padding: 10px 20px;
-                font-size: 16px;
-            }
-            .os-box {
-                height: 60px;
-            }
-            .slider-image {
-                height: 300px;
-            }
-            .wrapper {
-                justify-content: center;
-            }
-            .wrapper .icon {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-                margin: 5px;
-            }
-            .share-container {
-                width: 95%;
-                max-width: 300px;
-            }
-            .share-options {
-                gap: 10px;
-            }
-            .share-option {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-            }
-            .qr-container {
-                width: 95%;
-                max-width: 250px;
-            }
-            .qr-image img {
-                width: 150px;
-                height: 150px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VPN Service | آموزش و دانلود</title>
+
+<style>
+:root{
+--primary:#00ffcc;
+--bg:#0f172a;
+--card:rgba(255,255,255,0.05);
+--blur:blur(15px);
+--radius:20px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:tahoma;}
+html{scroll-behavior:smooth;}
+body{
+background:var(--bg);
+color:#fff;
+overflow-x:hidden;
+}
+
+/* Gradient Mesh */
+body::before{
+content:"";
+position:fixed;
+top:-20%;
+left:-20%;
+width:140%;
+height:140%;
+background:
+radial-gradient(circle at 20% 30%,#00ffcc22 0%,transparent 40%),
+radial-gradient(circle at 80% 70%,#7c3aed22 0%,transparent 40%),
+radial-gradient(circle at 50% 50%,#2563eb22 0%,transparent 40%);
+z-index:-1;
+animation:move 15s infinite alternate ease-in-out;
+}
+@keyframes move{
+0%{transform:translate(0,0);}
+100%{transform:translate(50px,50px);}
+}
+
+section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+h1,h2,h3{margin-bottom:20px;}
+p{opacity:.8;line-height:1.8;}
+
+.btn{
+display:inline-block;
+padding:14px 30px;
+background:var(--primary);
+color:#000;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+margin-top:20px;
+transition:.3s;
+}
+.btn:hover{transform:scale(1.05);}
+
+/* Glass Card */
+.card{
+background:var(--card);
+backdrop-filter:var(--blur);
+border-radius:var(--radius);
+padding:30px;
+margin:20px 0;
+border:1px solid rgba(255,255,255,0.1);
+transition:.4s;
+}
+.card:hover{
+transform:translateY(-8px);
+}
+
+/* Grid */
+.grid{
+display:grid;
+gap:20px;
+}
+@media(min-width:768px){
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+}
+
+/* Accordion */
+.accordion{
+cursor:pointer;
+padding:15px;
+border-radius:10px;
+background:rgba(255,255,255,0.07);
+margin-bottom:10px;
+}
+.panel{
+max-height:0;
+overflow:hidden;
+transition:max-height .5s ease;
+}
+
+/* Scroll Animation */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+footer{
+text-align:center;
+padding:40px 20px;
+opacity:.6;
+font-size:14px;
+}
+</style>
 </head>
-<body style="background-color: var(--bg-color) !important; color: var(--text-color) !important;">
-    <!-- پیام آفلاین بودن -->
-    <div class="offline-message" role="alert" style="background-color: rgba(239, 68, 68, 0.9) !important; color: #FFFFFF !important;">شما آفلاین هستید! اتصال خود را بررسی کنید.</div>
 
-    <!-- محتوای اصلی -->
-    <main class="content"style="
-    padding-bottom: 0px;
-">
-        <!-- بخش نصب نرم‌افزار -->
-        <section class="install-section" style="margin-top: 20px; background: var(--glass-bg) !important;">
-            <h2 style="color: var(--text-color) !important;">نصب نرم‌افزار</h2>
-            <div class="os-container">
-                <!-- Android Section -->
-                <div class="os-box" id="android" aria-expanded="false" style="background: var(--surface-color) !important;">
-                    <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fab fa-android"></i>
-                        <span>اندروید</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button" aria-label="دانلود V2rayNG برای اندروید" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayNG</a>
-                </div>
+<body>
 
-                <!-- iPhone Section -->
-                <div class="os-box" id="iphone" aria-expanded="false" style="background: var(--surface-color) !important;">
-                    <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fab fa-apple"></i>
-                        <span>آیفون</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button" aria-label="دانلود Streisand برای آیفون" style="background: var(--primary-color) !important; color: #FFFFFF !important;">Streisand</a>
-                </div>
+<!-- HERO -->
+<section>
+<h1>اتصال آسان و امن به اینترنت</h1>
+<p>آموزش کامل اتصال + دانلود مستقیم + خرید اشتراک + عضویت تلگرام در یک صفحه ساده</p>
+<a href="#learn" class="btn">شروع آموزش اتصال</a>
+</section>
 
-                <!-- Windows Section -->
-                <div class="os-box" id="windows" aria-expanded="false" style="background: var(--surface-color) !important;">
-                    <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fab fa-windows"></i>
-                        <span>ویندوز</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button" aria-label="دانلود V2rayN برای ویندوز" style="background: var(--primary-color) !important; color: #FFFFFF !important;">V2rayN</a>
-                </div>
-            </div>
-        </section>
+<!-- آموزش -->
+<section id="learn">
+<h2>آموزش اتصال مرحله‌ای</h2>
 
-        <!-- بخش آموزش تصویری -->
-        <section class="tutorial-section" style="background: var(--glass-bg) !important;">
-            <h2 style="color: var(--text-color) !important;">آموزش تصویری</h2>
-            <div class="os-container">
-                <!-- Android Slider -->
-                <div class="os-box" id="android-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
-                    <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fab fa-android"></i>
-                        <span>اندروید</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+1" alt="تصویر اندروید ۱" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+2" alt="تصویر اندروید ۲" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+3" alt="تصویر اندروید ۳" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+4" alt="تصویر اندروید ۴" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+5" alt="تصویر اندروید ۵" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+6" alt="تصویر اندروید ۶" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+7" alt="تصویر اندروید ۷" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Android+Step+8" alt="تصویر اندروید ۸" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Android+Step+9" alt="تصویر اندروید ۹" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Android+Step+10" alt="تصویر اندروید ۱۰" loading="lazy" style="background: var(--surface-color) !important;">
-                        </div>
-                        <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                        <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                        <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
-                        <div class="slider-dots"></div>
-                    </div>
-                </div>
+<div class="card reveal">
+<div class="accordion">مرحله 1: دانلود اپلیکیشن</div>
+<div class="panel">
+<p>اپلیکیشن مناسب دستگاه خود را از بخش دانلود پایین صفحه دریافت کنید.</p>
+</div>
+</div>
 
-                <!-- iPhone Slider -->
-                <div class="os-box" id="iphone-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
-                    <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fab fa-apple"></i>
-                        <span>آیفون</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+1" alt="تصویر آیفون ۱" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+2" alt="تصویر آیفون ۲" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+3" alt="تصویر آیفون ۳" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+4" alt="تصویر آیفون ۴" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+5" alt="تصویر آیفون ۵" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+6" alt="تصویر آیفون ۶" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+7" alt="تصویر آیفون ۷" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=iPhone+Step+8" alt="تصویر آیفون ۸" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=iPhone+Step+9" alt="تصویر آیفون ۹" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=iPhone+Step+10" alt="تصویر آیفون ۱۰" loading="lazy" style="background: var(--surface-color) !important;">
-                        </div>
-                        <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                        <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                        <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
-                        <div class="slider-dots"></div>
-                    </div>
-                </div>
+<div class="card reveal">
+<div class="accordion">مرحله 2: وارد کردن لینک اشتراک</div>
+<div class="panel">
+<p>لینک اشتراک را کپی کرده و داخل برنامه Import کنید.</p>
+</div>
+</div>
 
-                <!-- Windows Slider -->
-                <div class="os-box" id="windows-slider" aria-expanded="false" style="background: var(--surface-color) !important;">
-                    <div class="os-title" style="color: var(--text-color) !important;">
-                        <i class="fab fa-windows"></i>
-                        <span>ویندوز</span>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+1" alt="تصویر ویندوز ۱" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+2" alt="تصویر ویندوز ۲" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+3" alt="تصویر ویندوز ۳" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+4" alt="تصویر ویندوز ۴" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+5" alt="تصویر ویندوز ۵" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+6" alt="تصویر ویندوز ۶" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+7" alt="تصویر ویندوز ۷" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/60A5FA/FFFFFF?text=Windows+Step+8" alt="تصویر ویندوز ۸" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/1E3A8A/FFFFFF?text=Windows+Step+9" alt="تصویر ویندوز ۹" loading="lazy" style="background: var(--surface-color) !important;">
-                            <img class="slider-image" src="https://placehold.co/800x400/3B82F6/FFFFFF?text=Windows+Step+10" alt="تصویر ویندوز ۱۰" loading="lazy" style="background: var(--surface-color) !important;">
-                        </div>
-                        <button class="slider-button prev" aria-label="تصویر قبلی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                        <button class="slider-button next" aria-label="تصویر بعدی" style="background: var(--glass-bg) !important;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-                        <div class="slider-counter" style="color: var(--text-color) !important;">تصویر ۱ / ۱۰</div>
-                        <div class="slider-dots"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<div class="card reveal">
+<div class="accordion">مرحله 3: اتصال</div>
+<div class="panel">
+<p>روی دکمه اتصال بزنید و از اینترنت آزاد استفاده کنید.</p>
+</div>
+</div>
+</section>
 
-    <!-- بزرگنمایی تصویر -->
-    <div class="image-zoom" role="dialog" style="background: rgba(0, 0, 0, 0.7) !important;">
-        <img src="" alt="تصویر بزرگ‌شده">
-        <button class="close-zoom" aria-label="بستن تصویر" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
-    </div>
+<!-- دانلود -->
+<section>
+<h2>دانلود اپلیکیشن</h2>
+<div class="grid grid-3">
+<div class="card reveal">
+<h3>اندروید</h3>
+<a href="#" class="btn">دانلود</a>
+</div>
+<div class="card reveal">
+<h3>ویندوز</h3>
+<a href="#" class="btn">دانلود</a>
+</div>
+<div class="card reveal">
+<h3>آیفون</h3>
+<a href="#" class="btn">دانلود</a>
+</div>
+</div>
+</section>
 
-    <!-- آیکون‌های شبکه‌های اجتماعی -->
-    <ul class="wrapper" style="margin-top: 0px;padding-top: 0px;padding-bottom: 0px;">
-        <li class="icon telegram">
-            <span class="tooltip">پشتیبانی تلگرام</span>
-            <a href="https://t.me/FLOKI000" target="_blank" aria-label="پشتیبانی تلگرام"><span><i class="fas fa-paper-plane"></i></span></a>
-        </li>
-        <li class="icon support">
-            <span class="tooltip">پشتیبانی</span>
-            <a href="https://t.me/FLOKI000" target="_blank" aria-label="پشتیبانی تلگرام"><span><i class="fas fa-headset"></i></span></a>
-        </li>
-        <li class="icon share">
-            <span class="tooltip">اشتراک‌گذاری</span>
-            <button onclick="openShareModal()" aria-label="اشتراک‌گذاری لینک"><span><i class="fas fa-share-square"></i></span></button>
-        </li>
-    </ul>
+<!-- پلن فروش -->
+<section>
+<h2>پلن‌های اشتراک</h2>
+<div class="grid grid-3">
+<div class="card reveal">
+<h3>یک ماهه</h3>
+<p>سرعت بالا + پشتیبانی</p>
+<a href="#" class="btn">خرید</a>
+</div>
+<div class="card reveal">
+<h3>سه ماهه</h3>
+<p>تخفیف ویژه</p>
+<a href="#" class="btn">خرید</a>
+</div>
+<div class="card reveal">
+<h3>شش ماهه</h3>
+<p>بیشترین صرفه اقتصادی</p>
+<a href="#" class="btn">خرید</a>
+</div>
+</div>
+</section>
 
-    <!-- Share Modal -->
-    <div class="share-modal" role="dialog">
-        <div class="share-container">
-            <div class="share-header">اشتراک‌گذاری</div>
-            <div class="share-url"style="
-    margin-bottom: unset;
-">
-                <button onclick="copyLink()" aria-label="کپی لینک"><i class="fas fa-link"></i></button>
-                <input type="text" value="https://canfigvpn.github.io/web/" readonly>
-            </div>
-            <div class="share-options">
-                <div class="share-option telegram"><a href="https://telegram.me/share/url?url=https%3A%2F%2Fcanfigvpn.github.io%2Fweb%2F" target="_blank" aria-label="اشتراک‌گذاری در تلگرام"><i class="fas fa-paper-plane"></i></a></div>
-                <div class="share-option whatsapp"><a href="https://api.whatsapp.com/send?text=https%3A%2F%2Fcanfigvpn.github.io%2Fweb%2F" target="_blank" aria-label="اشتراک‌گذاری در واتساپ"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="share-option instagram"><a href="https://www.instagram.com/?url=https%3A%2F%2Fcanfigvpn.github.io%2Fweb%2F" target="_blank" aria-label="اشتراک‌گذاری در اینستاگرام"><i class="fab fa-instagram"></i></a></div>
-                <div class="share-option qr" onclick="openQRModal()"><i class="fas fa-qrcode"></i></div>
-            </div>
-            <p class="copy-feedback" id="copyFeedback">لینک کپی شد!</p>
-            <button class="close-modal" aria-label="بستن پنجره اشتراک‌گذاری" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
-        </div>
-    </div>
+<!-- تلگرام -->
+<section>
+<h2>عضویت در کانال تلگرام</h2>
+<p>دریافت اطلاعیه‌ها و سرورهای جدید</p>
+<a href="#" class="btn">عضویت در تلگرام</a>
+</section>
 
-    <!-- QR Modal -->
-    <div class="qr-modal" role="dialog">
-        <div class="qr-container">
-            <div class="qr-header">QR Code</div>
-            <div class="qr-image"style="
-    padding-top: 10px;
-    padding-bottom: 1px;
-">
-                <img src="https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png" alt="QR کد برای وب‌سایت فلوکی">
-            </div>
-            <button class="download-qr" onclick="downloadQR()">دانلود QR کد</button>
-            <button class="close-modal" aria-label="بستن پنجره QR" style="background: var(--glass-bg) !important; color: var(--text-color) !important;">×</button>
-        </div>
-    </div>
+<!-- درباره من -->
+<section>
+<h2>درباره من</h2>
+<div class="card reveal">
+<p>ارائه دهنده خدمات VPN با تمرکز بر امنیت، سرعت و آموزش ساده برای همه کاربران.</p>
+</div>
+</section>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- DOM Elements ---
-        const body = document.body;
-        const imageZoom = document.querySelector('.image-zoom');
-        const zoomImage = imageZoom.querySelector('img');
-        const closeZoomButton = imageZoom.querySelector('.close-zoom');
-        const shareModal = document.querySelector('.share-modal');
-        const qrModal = document.querySelector('.qr-modal');
-        const closeModalButton = document.querySelector('.share-modal .close-modal');
-        const closeQRModalButton = document.querySelector('.qr-modal .close-modal');
+<footer>
+© 2026 All Rights Reserved
+</footer>
 
-        // --- Share Functionality ---
-        const shareData = {
-            title: 'وب‌سایت فلوکی',
-            text: 'آموزش اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف با فلوکی 🚀',
-            url: 'https://canfigvpn.github.io/web/'
-        };
+<script>
+// Accordion
+document.querySelectorAll(".accordion").forEach(acc=>{
+acc.addEventListener("click",function(){
+this.classList.toggle("active");
+let panel=this.nextElementSibling;
+if(panel.style.maxHeight){
+panel.style.maxHeight=null;
+}else{
+panel.style.maxHeight=panel.scrollHeight+"px";
+}
+});
+});
 
-        window.openShareModal = function() {
-            console.log('Opening share modal');
-            shareModal.classList.add('active');
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50); // Haptic feedback
-            }
-        };
+// Scroll Reveal
+function reveal(){
+document.querySelectorAll(".reveal").forEach(el=>{
+let windowHeight=window.innerHeight;
+let elementTop=el.getBoundingClientRect().top;
+if(elementTop<windowHeight-100){
+el.classList.add("active");
+}
+});
+}
+window.addEventListener("scroll",reveal);
+reveal();
+</script>
 
-        window.openQRModal = function() {
-            console.log('Opening QR modal');
-            qrModal.classList.add('active');
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50); // Haptic feedback
-            }
-        };
-
-        window.copyLink = function() {
-            const url = 'https://canfigvpn.github.io/web/';
-            navigator.clipboard.writeText(url).then(() => {
-                const feedback = document.getElementById('copyFeedback');
-                feedback.textContent = 'لینک کپی شد!';
-                feedback.classList.add('active');
-                setTimeout(() => feedback.classList.remove('active'), 1000);
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50); // Haptic feedback
-                }
-            }).catch(err => {
-                console.error('Failed to copy link:', err);
-                const feedback = document.getElementById('copyFeedback');
-                feedback.textContent = 'خطا در کپی لینک!';
-                feedback.classList.add('active');
-                setTimeout(() => feedback.classList.remove('active'), 1000);
-            });
-        };
-
-        window.downloadQR = function() {
-            const qrLink = 'https://raw.githubusercontent.com/canfigvpn/web/refs/heads/main/png/qr.png';
-            const link = document.createElement('a');
-            link.href = qrLink;
-            link.download = 'floki-qr-code.png';
-            link.click();
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50); // Haptic feedback
-            }
-        };
-
-        closeModalButton.addEventListener('click', () => {
-            shareModal.classList.remove('active');
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50); // Haptic feedback
-            }
-        });
-
-        closeQRModalButton.addEventListener('click', () => {
-            qrModal.classList.remove('active');
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50); // Haptic feedback
-            }
-        });
-
-        shareModal.addEventListener('click', (e) => {
-            if (e.target === shareModal) {
-                shareModal.classList.remove('active');
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50); // Haptic feedback
-                }
-            }
-        });
-
-        qrModal.addEventListener('click', (e) => {
-            if (e.target === qrModal) {
-                qrModal.classList.remove('active');
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50); // Haptic feedback
-                }
-            }
-        });
-
-        document.querySelectorAll('.share-option').forEach(option => {
-            option.addEventListener('click', () => {
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50); // Haptic feedback
-                }
-            });
-        });
-
-        // --- Close Active Box on Page Click ---
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.os-box, .slider-button, .app-button, .image-zoom, .slider-dot, .wrapper, .share-modal, .qr-modal')) {
-                document.querySelectorAll('.os-box').forEach(box => {
-                    box.classList.remove('active');
-                    box.setAttribute('aria-expanded', 'false');
-                });
-            }
-        });
-
-        // --- Toggle os-box ---
-        document.querySelectorAll('.os-box').forEach(box => {
-            box.addEventListener('click', (e) => {
-                if (e.target.closest('.app-button, .slider-button, .slider-image, .slider-dot')) return;
-                const isActive = box.classList.contains('active');
-                document.querySelectorAll('.os-box').forEach(b => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-expanded', 'false');
-                });
-                if (!isActive) {
-                    box.classList.add('active');
-                    box.setAttribute('aria-expanded', 'true');
-                }
-            });
-        });
-
-        // --- Image Slider with Enhanced Animation ---
-        document.querySelectorAll('.slider').forEach(slider => {
-            const sliderImages = slider.querySelector('.slider-images');
-            const images = slider.querySelectorAll('.slider-image');
-            const prevButton = slider.querySelector('.slider-button.prev');
-            const nextButton = slider.querySelector('.slider-button.next');
-            const counter = slider.querySelector('.slider-counter');
-            const dotsContainer = slider.querySelector('.slider-dots');
-            let currentIndex = 0;
-            const totalImages = images.length;
-            let autoPlayInterval;
-
-            // Create dots
-            images.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('slider-dot');
-                dot.setAttribute('aria-label', `رفتن به تصویر ${index + 1}`);
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateSlider();
-                    stopAutoPlay();
-                });
-                dotsContainer.appendChild(dot);
-            });
-
-            const updateSlider = () => {
-                images.forEach((img, index) => {
-                    img.classList.remove('active');
-                    if (index === currentIndex) {
-                        img.classList.add('active');
-                    }
-                });
-                sliderImages.style.transform = `translateX(${-currentIndex * 100}%)`;
-                counter.textContent = `تصویر ${currentIndex + 1} / ${totalImages}`;
-                dotsContainer.querySelectorAll('.slider-dot').forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                    dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
-                });
-            };
-
-            const startAutoPlay = () => {
-                autoPlayInterval = setInterval(() => {
-                    currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
-                    updateSlider();
-                }, 3000);
-            };
-
-            const stopAutoPlay = () => {
-                clearInterval(autoPlayInterval);
-            };
-
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
-                updateSlider();
-                stopAutoPlay();
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
-                updateSlider();
-                stopAutoPlay();
-            });
-
-            // Touch functionality
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            sliderImages.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-                stopAutoPlay();
-            });
-
-            sliderImages.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-
-            const handleSwipe = () => {
-                if (touchEndX < touchStartX - 50) nextButton.click();
-                if (touchEndX > touchStartX + 50) prevButton.click();
-            };
-
-            // Zoom functionality
-            images.forEach(img => {
-                img.addEventListener('click', () => {
-                    zoomImage.src = img.src;
-                    zoomImage.alt = img.alt;
-                    imageZoom.classList.add('active');
-                    stopAutoPlay();
-                });
-            });
-
-            // Keyboard navigation
-            slider.addEventListener('keydown', e => {
-                if (e.key === 'ArrowLeft') {
-                    prevButton.click();
-                } else if (e.key === 'ArrowRight') {
-                    nextButton.click();
-                }
-            });
-
-            // Auto-play on load
-            startAutoPlay();
-
-            // Stop auto-play on hover
-            slider.addEventListener('mouseenter', stopAutoPlay);
-            slider.addEventListener('mouseleave', startAutoPlay);
-
-            updateSlider();
-        });
-
-        // Close Zoom
-        closeZoomButton.addEventListener('click', () => {
-            imageZoom.classList.remove('active');
-        });
-
-        // Close Zoom on click outside image
-        imageZoom.addEventListener('click', (e) => {
-            if (e.target === imageZoom) {
-                imageZoom.classList.remove('active');
-            }
-        });
-
-        // --- Offline/Online Status ---
-        const handleConnectionChange = () => {
-            if (navigator.onLine) {
-                body.classList.remove('offline');
-            } else {
-                body.classList.add('offline');
-            }
-        };
-        window.addEventListener('online', handleConnectionChange);
-        window.addEventListener('offline', handleConnectionChange);
-        handleConnectionChange();
-    });
-    </script>
 </body>
 </html>
