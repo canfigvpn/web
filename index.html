@@ -3,266 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CanfigVpn | دانلود و خرید اشتراک</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<title id="siteTitle">Loading...</title>
 <style>
 :root{
---bg:#0f172a;
---glass:rgba(255,255,255,.08);
---border:rgba(255,255,255,.15);
---text:#fff;
---accent:#6366f1;
---accent2:#06b6d4;
+--primary:#6366f1;
+--secondary:#06b6d4;
+--radius:20px;
 }
-
-body.light{
---bg:#f1f5f9;
---glass:rgba(255,255,255,.7);
---border:rgba(0,0,0,.1);
---text:#0f172a;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:Vazirmatn,sans-serif;scroll-behavior:smooth}
-
 body{
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden
+margin:0;
+font-family:sans-serif;
+background:#0f172a;
+color:#fff;
 }
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 20% 30%, #6366f1 0%, transparent 40%),
-radial-gradient(circle at 80% 70%, #06b6d4 0%, transparent 40%);
-opacity:.25;
-z-index:-1
-}
-
-.container{width:90%;max-width:1100px;margin:auto;padding:80px 0}
-
-.glass{
-background:var(--glass);
-backdrop-filter:blur(20px);
-border:1px solid var(--border);
-border-radius:20px;
+.container{width:90%;max-width:1100px;margin:auto;padding:60px 0}
+.card{
+background:rgba(255,255,255,.08);
 padding:30px;
-margin-top:40px
+border-radius:var(--radius);
+margin-bottom:30px;
+backdrop-filter:blur(20px);
 }
-
-h1,h2{margin-bottom:20px}
-
 .btn{
 display:inline-block;
-padding:12px 25px;
-border-radius:12px;
-background:linear-gradient(45deg,var(--accent),var(--accent2));
+padding:10px 20px;
+border-radius:var(--radius);
+background:linear-gradient(45deg,var(--primary),var(--secondary));
 color:#fff;
 text-decoration:none;
-margin:5px;
-transition:.3s
 }
-
-.btn:hover{transform:translateY(-3px)}
-
-.grid{display:grid;gap:20px}
-@media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-
-.slider img{
-width:100%;
-border-radius:15px;
-margin-top:15px
-}
-
-.fade{opacity:0;transform:translateY(30px);transition:1s}
-.fade.show{opacity:1;transform:none}
-
-.toggle{
-position:fixed;
-top:20px;
-left:20px;
-background:var(--glass);
-padding:8px 15px;
-border-radius:10px;
-cursor:pointer
-}
-
-/* Admin */
-#adminPanel{
-display:none;
-position:fixed;
-inset:0;
-background:#000c;
-backdrop-filter:blur(10px);
-overflow:auto;
-padding:40px;
-z-index:9999
-}
-#adminPanel .box{
-background:#fff;
-color:#000;
-padding:20px;
-border-radius:15px
-}
-input,textarea{
-width:100%;
-margin:10px 0;
-padding:8px
-}
+img{max-width:100%;border-radius:var(--radius)}
 </style>
 </head>
-
 <body>
 
-<div class="toggle" onclick="toggleMode()">🌓</div>
-
 <div class="container">
-<h1>🔥 CanfigVpn 🔥</h1>
-<p>دانلود اپلیکیشن + آموزش کامل + خرید اشتراک در یک صفحه</p>
+<h1 id="heroTitle"></h1>
+<p id="heroDesc"></p>
 
-<!-- سیستم عامل -->
-<div class="glass fade">
-<h2>📱 انتخاب سیستم‌عامل</h2>
-<div class="grid grid-3">
-
-<div>
-<h3>Android</h3>
-<a id="androidLink" href="#" class="btn">دانلود</a>
-<div class="slider">
-<img id="androidImg" src="https://via.placeholder.com/400x250" />
-</div>
+<div class="card">
+<h2>Android</h2>
+<a id="androidLink" class="btn">دانلود</a>
+<img id="androidImg">
 </div>
 
-<div>
-<h3>iPhone</h3>
-<a id="iosLink" href="#" class="btn">دانلود</a>
-<div class="slider">
-<img id="iosImg" src="https://via.placeholder.com/400x250" />
-</div>
-</div>
-
-<div>
-<h3>Windows</h3>
-<a id="windowsLink" href="#" class="btn">دانلود</a>
-<div class="slider">
-<img id="windowsImg" src="https://via.placeholder.com/400x250" />
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- قیمت ها -->
-<div class="glass fade">
-<h2>💰 تعرفه‌ها</h2>
+<div class="card">
+<h2>تعرفه‌ها</h2>
 <div id="pricing"></div>
 </div>
 
-<!-- تماس -->
-<div class="glass fade">
-<h2>📩 ارتباط</h2>
-<p>Admin: <a href="https://t.me/FLOKI000" target="_blank">@FLOKI000</a></p>
-<p>Channel: <a href="https://t.me/CanfigVpn" target="_blank">@CanfigVpn</a></p>
-</div>
-
-<button onclick="openAdmin()" class="btn">ورود ادمین</button>
-</div>
-
-<!-- پنل ادمین -->
-<div id="adminPanel">
-<div class="box">
-<h2>پنل مدیریت</h2>
-<input id="pass" type="password" placeholder="رمز ورود">
-<button onclick="login()">ورود</button>
-
-<div id="adminContent" style="display:none">
-<h3>لینک دانلود</h3>
-<input id="aLink" placeholder="Android Link">
-<input id="iLink" placeholder="iOS Link">
-<input id="wLink" placeholder="Windows Link">
-
-<h3>تصاویر آموزش</h3>
-<input id="aImg" placeholder="Android Image URL">
-<input id="iImg" placeholder="iOS Image URL">
-<input id="wImg" placeholder="Windows Image URL">
-
-<h3>تعرفه‌ها (HTML قابل ویرایش)</h3>
-<textarea id="priceText" rows="10"></textarea>
-
-<button onclick="saveData()">ذخیره</button>
-<button onclick="closeAdmin()">بستن</button>
-</div>
-</div>
 </div>
 
 <script>
-// Scroll Animation
-document.querySelectorAll('.fade').forEach(el=>{
-new IntersectionObserver(entries=>{
-if(entries[0].isIntersecting){el.classList.add('show')}
-}).observe(el)
-})
+async function load(){
+const res=await fetch("https://YOUR-WORKER.workers.dev")
+const data=await res.json()
 
-// Dark Mode
-function toggleMode(){document.body.classList.toggle('light')}
+if(!data) return
 
-// Pricing default
-let defaultPricing = `
-🔥 سرور 1 : هفتگی 50 گیگ 450 تومان (تضمینی نت ملی)<br>
-🔥 سرور 2 : هفتگی نامحدود 1.100 تومان (تضمینی نت ملی)<br>
-🔥 سرور 3 : ماهانه نامحدود 2.500 تومان (تضمینی نت ملی)<br><br>
-سرور 4 : ماهانه 50 گیگ 130 تومان<br>
-سرور 5 : 50 گیگ 150 تومان<br>
-سرور 6 : 100 گیگ 285 تومان<br>
-سرور 7 : 150 گیگ 420 تومان<br>
-سرور 8 : 200 گیگ 570 تومان<br>
-`
+document.title=data.siteTitle||"CanfigVpn"
+document.getElementById("siteTitle").innerText=data.siteTitle||"CanfigVpn"
+heroTitle.innerText=data.heroTitle||"VPN حرفه‌ای"
+heroDesc.innerText=data.heroDesc||""
 
-// Load data
-function loadData(){
-let data = JSON.parse(localStorage.getItem("siteData"))
-if(!data){
-document.getElementById("pricing").innerHTML = defaultPricing
-return
+androidLink.href=data.androidLink||"#"
+androidImg.src=data.androidImg||""
+
+pricing.innerHTML=data.pricing||""
+
+document.documentElement.style.setProperty("--primary",data.primary||"#6366f1")
+document.documentElement.style.setProperty("--secondary",data.secondary||"#06b6d4")
+document.documentElement.style.setProperty("--radius",data.radius||"20px")
 }
-document.getElementById("androidLink").href=data.aLink
-document.getElementById("iosLink").href=data.iLink
-document.getElementById("windowsLink").href=data.wLink
-document.getElementById("androidImg").src=data.aImg
-document.getElementById("iosImg").src=data.iImg
-document.getElementById("windowsImg").src=data.wImg
-document.getElementById("pricing").innerHTML=data.priceText
-}
-loadData()
-
-// Admin
-function openAdmin(){document.getElementById("adminPanel").style.display="block"}
-function closeAdmin(){document.getElementById("adminPanel").style.display="none"}
-
-function login(){
-if(document.getElementById("pass").value==="1234"){
-document.getElementById("adminContent").style.display="block"
-}else{alert("رمز اشتباه است")}
-}
-
-function saveData(){
-let data={
-aLink:aLink.value,
-iLink:iLink.value,
-wLink:wLink.value,
-aImg:aImg.value,
-iImg:iImg.value,
-wImg:wImg.value,
-priceText:priceText.value
-}
-localStorage.setItem("siteData",JSON.stringify(data))
-alert("ذخیره شد")
-location.reload()
-}
+load()
 </script>
 
 </body>
