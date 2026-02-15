@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="آموزش اتصال فلوکی برای تمامی سیستم‌عامل‌ها">
-    <meta name="theme-color" content="#3B82F6">
-    <title>Floki VPN Config</title>
+    <meta name="description" content="Floki VPN - Gold Edition">
+    <meta name="theme-color" content="#000000">
+    <title>Floki VPN | Gold Edition</title>
     <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- تنظیمات پایه و متغیرها --- */
         :root {
-            --primary-gradient: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.9);
-            --text-main: #1e293b;
-            --text-secondary: #475569;
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --radius-lg: 24px;
-            --radius-md: 16px;
+            /* پلت رنگی طلایی و مشکی */
+            --gold-primary: #d4af37;
+            --gold-light: #f9e29d;
+            --gold-dark: #aa841e;
+            --gold-gradient: linear-gradient(135deg, #f9e29d 0%, #d4af37 45%, #aa841e 100%);
+            --black-bg: #0a0a0a;
+            --black-surface: #1a1a1a;
+            --glass-black: rgba(26, 26, 26, 0.8);
+            --text-gold: #e5c100;
+            --text-white: #ffffff;
+            --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
         }
 
         * {
@@ -32,18 +34,13 @@
             margin: 0;
             font-family: 'Vazirmatn', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(-45deg, #eff6ff, #f3f4f6, #e0f2fe, #f0f9ff);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--text-main);
+            background-color: var(--black-bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-white);
             overflow-x: hidden;
-            padding-bottom: 120px; /* فضای خالی برای داک شناور */
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            padding-bottom: 120px;
         }
 
         /* --- کانتینر اصلی --- */
@@ -55,400 +52,234 @@
         }
 
         h2 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--text-main);
-            position: relative;
-            padding-right: 15px;
+            margin-bottom: 25px;
+            color: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        h2::before {
+        h2::after {
             content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 5px;
-            height: 22px;
-            background: var(--primary-gradient);
-            border-radius: 10px;
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to left, var(--gold-dark), transparent);
         }
 
-        /* --- کارت‌های شیشه‌ای --- */
+        /* --- کارت‌های شیشه‌ای تیره --- */
         .glass-section {
-            background: var(--glass-bg);
+            background: var(--glass-black);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: var(--glass-border);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 28px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- سیستم گرید ریسپانسیو --- */
+        /* --- گرید ریسپانسیو --- */
         .os-container {
             display: grid;
-            gap: 16px;
+            gap: 20px;
             grid-template-columns: 1fr; 
-            align-items: start;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 768px) {
             .os-container { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (min-width: 1024px) {
-            .os-container { grid-template-columns: repeat(3, 1fr); gap: 24px; }
-            .content { padding: 40px; }
+            .os-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* --- باکس‌های آکاردئونی --- */
+        /* --- باکس‌های آکاردئونی طلایی --- */
         .os-box {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: var(--radius-md);
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 72px; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 75px; 
             cursor: pointer;
-            position: relative;
         }
 
         .os-box:hover {
-            background: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
         }
 
         .os-box.active {
-            max-height: 1000px; /* ارتفاع بیشتر برای محتوای طولانی */
-            background: #ffffff;
-            box-shadow: var(--shadow-md);
-            border-color: #3B82F6;
+            max-height: 1000px;
+            background: #151515;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
         }
 
         .os-title {
-            height: 72px;
+            height: 75px;
             display: flex;
             align-items: center;
             padding: 0 20px;
-            font-weight: 700;
-            font-size: 1rem;
             justify-content: space-between;
-            user-select: none;
         }
 
-        .os-title div { display: flex; align-items: center; gap: 12px; }
-        .os-title i.fab { font-size: 1.6rem; width: 30px; text-align: center; transition: color 0.3s; }
-        .os-box.active .os-title i.fab { color: #3B82F6; }
+        .os-title div { display: flex; align-items: center; gap: 15px; }
+        .os-title i.fab, .os-title i.fas { 
+            font-size: 1.8rem; 
+            color: var(--gold-primary);
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
 
-        .toggle-arrow { color: #94a3b8; transition: transform 0.4s ease; }
-        .os-box.active .toggle-arrow { transform: rotate(180deg); color: #3B82F6; }
+        .toggle-arrow { color: #555; transition: 0.4s; }
+        .os-box.active .toggle-arrow { transform: rotate(180deg); color: var(--gold-primary); }
 
-        /* --- دکمه دانلود --- */
+        /* --- دکمه دانلود متالیک --- */
         .app-button {
             display: block;
             width: calc(100% - 40px);
-            margin: 10px auto 25px;
-            padding: 14px;
-            background: var(--primary-gradient);
-            color: white;
-            border-radius: 12px;
-            font-weight: 600;
+            margin: 15px auto 30px;
+            padding: 16px;
+            background: var(--gold-gradient);
+            color: #000;
+            border-radius: 15px;
+            font-weight: 800;
             text-align: center;
             text-decoration: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            transition: 0.3s;
         }
 
-        .os-box.active .app-button { opacity: 1; transform: translateY(0); }
-        .app-button:hover { box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
+        .app-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            filter: brightness(1.1);
+        }
 
-        /* --- اسلایدر --- */
+        /* --- اسلایدر طلایی --- */
         .slider {
             margin: 0 20px 20px;
             position: relative;
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
-            background: #f1f5f9;
-            opacity: 0;
-            transition: opacity 0.4s 0.2s;
+            background: #000;
+            border: 1px solid #222;
         }
-        .os-box.active .slider { opacity: 1; }
 
-        .slider-images { display: flex; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); aspect-ratio: 16/9; }
-        .slider-image { width: 100%; flex-shrink: 0; object-fit: cover; cursor: zoom-in; }
+        .slider-images { display: flex; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); aspect-ratio: 16/9; }
+        .slider-image { width: 100%; flex-shrink: 0; object-fit: cover; filter: grayscale(20%); }
 
-        .slider-nav {
-            position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none;
-        }
         .slider-btn {
-            pointer-events: auto; width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #333; transition: all 0.2s;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(0,0,0,0.7); border: 1px solid var(--gold-primary);
+            color: var(--gold-primary); cursor: pointer; z-index: 10;
         }
-        .slider-btn:hover { background: white; transform: scale(1.1); }
+        .slider-btn:hover { background: var(--gold-primary); color: #000; }
         
-        .slider-dots { display: flex; justify-content: center; gap: 6px; padding: 10px 0; }
-        .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; transition: all 0.3s; cursor: pointer; }
-        .dot.active { width: 16px; background: #3B82F6; border-radius: 4px; }
+        .dot { width: 8px; height: 8px; background: #333; border-radius: 50%; transition: 0.3s; }
+        .dot.active { width: 20px; background: var(--gold-primary); border-radius: 10px; }
 
-        /* --- داک شناور پیشرفته (New & Improved) --- */
+        /* --- داک لاکچری پایین --- */
         .dock-container {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1000;
         }
 
         .dock-wrapper {
-            display: flex;
-            gap: 20px;
-            padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            list-style: none;
-            margin: 0;
-            transition: all 0.3s ease;
+            display: flex; gap: 25px; padding: 15px 30px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--gold-primary);
+            border-radius: 30px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
         }
 
         .dock-item {
-            position: relative;
-            width: 55px;
-            height: 55px;
-            border-radius: 18px; /* شکل مربعی با گوشه گرد */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            color: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            width: 55px; height: 55px; border-radius: 15px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.6rem; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #1a1a1a; color: var(--gold-primary);
+            border: 1px solid #333;
         }
 
-        .dock-item a, .dock-item button {
-            width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
-            color: inherit; text-decoration: none; background: none; border: none; padding: 0;
-            border-radius: inherit;
+        .dock-item:hover {
+            transform: translateY(-12px);
+            background: var(--gold-gradient);
+            color: #000;
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
         }
 
-        /* استایل خاص تلگرام */
-        .dock-item.telegram {
-            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
-        }
-        .dock-item.telegram:hover {
-            box-shadow: 0 10px 25px rgba(34, 158, 217, 0.5);
-            transform: translateY(-8px);
-        }
-        .dock-item.telegram:hover i { animation: flyPlane 0.6s ease forwards; }
-
-        /* استایل خاص پشتیبانی */
-        .dock-item.support {
-            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
-        }
-        .dock-item.support:hover {
-            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.5);
-            transform: translateY(-8px);
-        }
-        .dock-item.support:hover i { animation: pulseIcon 1s infinite; }
-
-        /* استایل خاص اشتراک‌گذاری */
-        .dock-item.share {
-            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
-        }
-        .dock-item.share:hover {
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
-            transform: translateY(-8px);
-        }
-        .dock-item.share:hover i { transform: scale(1.2) rotate(15deg); transition: 0.3s; }
-
-        /* تولتیپ (متن روی آیکون) */
-        .dock-tooltip {
-            position: absolute;
-            top: -45px;
-            left: 50%;
-            transform: translateX(-50%) scale(0.8);
-            background: #1e293b;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .dock-tooltip::after {
-            content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
-            border-width: 4px; border-style: solid; border-color: #1e293b transparent transparent transparent;
-        }
-        
-        .dock-item:hover .dock-tooltip {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-            top: -55px;
-        }
-
-        /* انیمیشن‌های آیکون‌ها */
-        @keyframes flyPlane {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(3px, -3px); }
-            100% { transform: translate(0, 0); }
-        }
-        @keyframes pulseIcon {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* --- مودال‌ها (مشترک) --- */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px); z-index: 2000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: all 0.3s; padding: 20px;
-        }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
+        /* --- مودال طلایی --- */
         .modal-box {
-            background: white; width: 100%; max-width: 400px;
-            border-radius: 24px; overflow: hidden;
-            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background: #111; color: white; border: 1px solid var(--gold-primary);
+            box-shadow: 0 0 50px rgba(0,0,0,1);
         }
-        .modal-overlay.active .modal-box { transform: scale(1); }
+        .modal-header { background: var(--gold-gradient); color: #000; }
 
-        .modal-header {
-            background: var(--primary-gradient); color: white; padding: 18px;
-            text-align: center; font-weight: 700; font-size: 1.1rem;
+        .url-box { background: #000; border: 1px solid #333; }
+        .url-box input { color: var(--gold-light); }
+        .url-box button { background: var(--gold-primary); color: #000; }
+
+        .social-btn { border: 1px solid rgba(212, 175, 55, 0.3); background: #1a1a1a; color: var(--gold-primary); }
+        .social-btn:hover { background: var(--gold-primary); color: #000; }
+
+        /* --- انیمیشن ذرات طلا در پس‌زمینه (اختیاری) --- */
+        @keyframes shine {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
         }
-
-        .share-body { padding: 25px; }
-
-        .url-box {
-            display: flex; background: #f8fafc; border-radius: 14px; padding: 8px; margin-bottom: 25px; border: 1px solid #e2e8f0;
-        }
-        .url-box input { flex: 1; border: none; background: transparent; padding: 8px; font-family: inherit; color: #64748b; font-size: 0.95rem; }
-        .url-box button { background: #3B82F6; color: white; border: none; width: 40px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
-        .url-box button:hover { background: #2563EB; }
-
-        .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px; }
-        .social-btn {
-            aspect-ratio: 1; border-radius: 16px; display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; text-decoration: none;
-        }
-        .social-btn:hover { transform: scale(1.05); }
-        .bg-tg { background: #229ED9; }
-        .bg-wa { background: #25D366; }
-        .bg-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .bg-qr { background: #1e293b; }
-
-        .close-btn {
-            display: block; width: 100%; padding: 14px; margin-top: 10px; border: none; background: #f1f5f9; color: #64748b; border-radius: 12px; cursor: pointer; font-weight: 600; transition: background 0.2s;
-        }
-        .close-btn:hover { background: #e2e8f0; color: #333; }
-
-        /* Zoom Modal */
-        .zoom-modal img { max-width: 100%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 25px rgba(0,0,0,0.5); }
-        .zoom-close {
-            position: absolute; top: 20px; right: 20px; background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; font-size: 1.2rem;
-        }
-
     </style>
 </head>
 <body>
 
     <main class="content">
         <section class="glass-section">
-            <h2><i class="fas fa-download" style="margin-left:8px; color:#3B82F6;"></i>دانلود نرم‌افزار</h2>
+            <h2><i class="fas fa-crown"></i>دانلود نسخه ویژه Floki</h2>
             <div class="os-container">
                 <div class="os-box" onclick="toggleBox(this)">
                     <div class="os-title">
-                        <div><i class="fab fa-android"></i><span>اندروید (V2rayNG)</span></div>
+                        <div><i class="fab fa-android"></i><span>اندروید VIP</span></div>
                         <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
-                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button">دانلود مستقیم از گوگل پلی</a>
+                    <a href="#" class="app-button">دریافت V2rayNG GOLD</a>
                 </div>
                 <div class="os-box" onclick="toggleBox(this)">
                     <div class="os-title">
-                        <div><i class="fab fa-apple"></i><span>آیفون (Streisand)</span></div>
+                        <div><i class="fab fa-apple"></i><span>آیفون VIP</span></div>
                         <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
-                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button">دانلود از اپ استور</a>
+                    <a href="#" class="app-button">دریافت Streisand</a>
                 </div>
                 <div class="os-box" onclick="toggleBox(this)">
                     <div class="os-title">
-                        <div><i class="fab fa-windows"></i><span>ویندوز (V2rayN)</span></div>
+                        <div><i class="fab fa-windows"></i><span>ویندوز VIP</span></div>
                         <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
-                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button">دانلود از گیت‌هاب</a>
+                    <a href="#" class="app-button">دریافت V2rayN</a>
                 </div>
             </div>
         </section>
 
         <section class="glass-section">
-            <h2><i class="fas fa-images" style="margin-left:8px; color:#3B82F6;"></i>آموزش تصویری</h2>
+            <h2><i class="fas fa-book-gold"></i>راهنمای راه اندازی</h2>
             <div class="os-container">
-                <div class="os-box" id="android-slider" onclick="toggleBox(this)">
+                <div class="os-box" onclick="toggleBox(this)">
                     <div class="os-title">
-                        <div><i class="fab fa-android"></i><span>آموزش اندروید</span></div>
+                        <div><i class="fas fa-shield-halved"></i><span>آموزش اتصال سریع</span></div>
                         <i class="fas fa-chevron-down toggle-arrow"></i>
                     </div>
                     <div class="slider">
                         <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x450/3B82F6/FFFFFF?text=Android+Step+1" alt="Step 1">
-                            <img class="slider-image" src="https://placehold.co/800x450/60A5FA/FFFFFF?text=Android+Step+2" alt="Step 2">
-                            <img class="slider-image" src="https://placehold.co/800x450/1E3A8A/FFFFFF?text=Android+Step+3" alt="Step 3">
+                            <img class="slider-image" src="https://placehold.co/800x450/000000/d4af37?text=Gold+Step+1" alt="Step 1">
+                            <img class="slider-image" src="https://placehold.co/800x450/000000/f9e29d?text=Gold+Step+2" alt="Step 2">
                         </div>
-                        <div class="slider-nav">
-                            <button class="slider-btn prev" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-right"></i></button>
-                            <button class="slider-btn next" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-left"></i></button>
-                        </div>
-                        <div class="slider-dots"></div>
-                    </div>
-                </div>
-                <div class="os-box" id="iphone-slider" onclick="toggleBox(this)">
-                    <div class="os-title">
-                        <div><i class="fab fa-apple"></i><span>آموزش آیفون</span></div>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x450/3B82F6/FFFFFF?text=iPhone+Step+1" alt="Step 1">
-                            <img class="slider-image" src="https://placehold.co/800x450/60A5FA/FFFFFF?text=iPhone+Step+2" alt="Step 2">
-                        </div>
-                        <div class="slider-nav">
-                            <button class="slider-btn prev" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-right"></i></button>
-                            <button class="slider-btn next" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-left"></i></button>
-                        </div>
-                        <div class="slider-dots"></div>
-                    </div>
-                </div>
-                <div class="os-box" id="windows-slider" onclick="toggleBox(this)">
-                    <div class="os-title">
-                        <div><i class="fab fa-windows"></i><span>آموزش ویندوز</span></div>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x450/3B82F6/FFFFFF?text=Windows+Step+1" alt="Step 1">
-                            <img class="slider-image" src="https://placehold.co/800x450/60A5FA/FFFFFF?text=Windows+Step+2" alt="Step 2">
-                        </div>
-                        <div class="slider-nav">
-                            <button class="slider-btn prev" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-right"></i></button>
-                            <button class="slider-btn next" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-left"></i></button>
-                        </div>
-                        <div class="slider-dots"></div>
+                        <button class="slider-btn" style="right:10px" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="slider-btn" style="left:10px" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-left"></i></button>
                     </div>
                 </div>
             </div>
@@ -457,127 +288,65 @@
 
     <div class="dock-container">
         <ul class="dock-wrapper">
-            <li class="dock-item telegram">
-                <span class="dock-tooltip">کانال تلگرام</span>
-                <a href="https://t.me/FLOKI000" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <li class="dock-item" onclick="window.open('https://t.me/FLOKI000')">
+                <i class="fab fa-telegram-plane"></i>
             </li>
-            <li class="dock-item support">
-                <span class="dock-tooltip">پشتیبانی آنلاین</span>
-                <a href="https://t.me/FLOKI000" target="_blank"><i class="fas fa-headset"></i></a>
+            <li class="dock-item" onclick="window.open('https://t.me/FLOKI000')">
+                <i class="fas fa-headset"></i>
             </li>
-            <li class="dock-item share">
-                <span class="dock-tooltip">اشتراک‌گذاری</span>
-                <button onclick="openModal('shareModal')"><i class="fas fa-share-nodes"></i></button>
+            <li class="dock-item" onclick="openModal('shareModal')">
+                <i class="fas fa-share-nodes"></i>
             </li>
         </ul>
     </div>
 
-    <div class="modal-overlay" id="shareModal" onclick="closeModal(event, this)">
-        <div class="modal-box">
-            <div class="modal-header">اشتراک‌گذاری با دوستان</div>
-            <div class="share-body">
-                <div class="url-box">
-                    <button onclick="copyToClipboard()"><i class="fas fa-copy"></i></button>
-                    <input type="text" value="https://canfigvpn.github.io/web/" readonly id="shareLink">
+    <div class="modal-overlay" id="shareModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); z-index:2000; display:none; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-box" style="width:90%; max-width:400px; border-radius:25px; overflow:hidden;">
+            <div class="modal-header" style="padding:20px; text-align:center; font-weight:800;">اشتراک گذاری VIP</div>
+            <div style="padding:25px;">
+                <div class="url-box" style="display:flex; padding:10px; border-radius:12px;">
+                    <input type="text" value="https://canfigvpn.github.io/web/" readonly style="flex:1; background:none; border:none; outline:none; font-size:14px;">
+                    <button onclick="copyLink()" style="border:none; border-radius:8px; padding:5px 15px; cursor:pointer;">کپی</button>
                 </div>
-                <div class="social-grid">
-                    <a href="https://telegram.me/share/url?url=https://canfigvpn.github.io/web/" target="_blank" class="social-btn bg-tg"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://api.whatsapp.com/send?text=https://canfigvpn.github.io/web/" target="_blank" class="social-btn bg-wa"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-btn bg-ig"><i class="fab fa-instagram"></i></a>
-                    <div onclick="openQR()" class="social-btn bg-qr"><i class="fas fa-qrcode"></i></div>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:20px;">
+                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fab fa-telegram"></i></div>
+                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fab fa-whatsapp"></i></div>
+                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fab fa-instagram"></i></div>
+                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fas fa-qrcode"></i></div>
                 </div>
-                <button class="close-btn" onclick="document.getElementById('shareModal').classList.remove('active')">بستن</button>
+                <button onclick="document.getElementById('shareModal').style.display='none'" style="width:100%; margin-top:20px; padding:12px; border:none; border-radius:10px; background:#222; color:#888; cursor:pointer;">بستن</button>
             </div>
         </div>
-    </div>
-
-    <div class="modal-overlay" id="qrModal" onclick="closeModal(event, this)">
-        <div class="modal-box" style="text-align: center;">
-            <div class="modal-header">QR Code</div>
-            <div style="padding: 30px;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://canfigvpn.github.io/web/" alt="QR" style="width:100%; border-radius:12px; border:1px solid #eee;">
-            </div>
-            <button class="close-btn" style="margin: 0 20px 20px; width: auto;" onclick="document.getElementById('qrModal').classList.remove('active')">بستن</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay zoom-modal" id="zoomModal" onclick="closeModal(event, this)">
-        <button class="zoom-close" onclick="document.getElementById('zoomModal').classList.remove('active')"><i class="fas fa-times"></i></button>
-        <img src="" alt="Zoomed Image" id="zoomImg">
     </div>
 
     <script>
-        // --- Accordion Logic ---
-        function toggleBox(element) {
-            if (event.target.closest('a, button, .slider-nav')) return;
-            element.classList.toggle('active');
-            const slider = element.querySelector('.slider');
-            if(slider && element.classList.contains('active') && !slider.dataset.init) {
-                initSlider(slider);
-            }
+        function toggleBox(el) {
+            if (event.target.closest('a, button')) return;
+            el.classList.toggle('active');
         }
 
-        // --- Slider Logic ---
-        function initSlider(slider) {
-            slider.dataset.init = "true";
-            const images = slider.querySelectorAll('.slider-image');
-            const dotsContainer = slider.querySelector('.slider-dots');
-            
-            images.forEach((img, index) => {
-                const dot = document.createElement('div');
-                dot.className = `dot ${index === 0 ? 'active' : ''}`;
-                dot.onclick = (e) => { e.stopPropagation(); goToSlide(slider, index); };
-                dotsContainer.appendChild(dot);
-                
-                img.onclick = (e) => {
-                    e.stopPropagation();
-                    document.getElementById('zoomImg').src = img.src;
-                    document.getElementById('zoomModal').classList.add('active');
-                }
-            });
-            slider.dataset.index = "0";
-        }
-
-        function moveSlide(e, direction) {
+        function moveSlide(e, dir) {
             e.stopPropagation();
             const slider = e.target.closest('.slider');
-            const images = slider.querySelectorAll('.slider-image');
-            let idx = parseInt(slider.dataset.index || 0);
-            idx += direction;
-            if (idx >= images.length) idx = 0;
-            if (idx < 0) idx = images.length - 1;
-            goToSlide(slider, idx);
-        }
-
-        function goToSlide(slider, index) {
             const container = slider.querySelector('.slider-images');
-            const dots = slider.querySelectorAll('.dot');
-            container.style.transform = `translateX(${index * 100}%)`;
-            slider.dataset.index = index;
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            const imgs = container.querySelectorAll('img');
+            let idx = parseInt(slider.dataset.idx || 0);
+            
+            idx = (idx + dir + imgs.length) % imgs.length;
+            container.style.transform = `translateX(${idx * 100}%)`;
+            slider.dataset.idx = idx;
         }
 
-        // --- Modals ---
-        function openModal(id) { document.getElementById(id).classList.add('active'); }
-        function closeModal(e, element) { if(e.target === element) element.classList.remove('active'); }
-        function openQR() {
-            document.getElementById('shareModal').classList.remove('active');
-            setTimeout(() => document.getElementById('qrModal').classList.add('active'), 200);
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
         }
 
-        // --- Copy Link ---
-        function copyToClipboard() {
-            const copyText = document.getElementById("shareLink");
-            copyText.select(); copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
+        function copyLink() {
+            const input = document.querySelector('.url-box input');
+            navigator.clipboard.writeText(input.value);
             const btn = document.querySelector('.url-box button');
-            const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i>';
-            btn.style.background = '#10B981';
-            setTimeout(() => {
-                btn.innerHTML = originalIcon;
-                btn.style.background = '#3B82F6';
-            }, 2000);
+            btn.innerText = 'کپی شد!';
+            setTimeout(() => btn.innerText = 'کپی', 2000);
         }
     </script>
 </body>
