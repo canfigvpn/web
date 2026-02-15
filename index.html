@@ -1,263 +1,338 @@
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="وب‌سایت آموزشی برای اتصال به سرویس‌ها در سیستم‌عامل‌های مختلف">
-    <meta name="theme-color" content="#3B82F6">
-    <title>Web CanfigVpn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web CanfigVpn</title>
 
-```
 <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-    :root {
-        --primary: #3B82F6;
-        --primary-dark: #2563EB;
-        --bg: #f1f5f9;
-        --card: #ffffff;
-        --text: #0f172a;
-        --muted: #64748b;
-        --radius: 18px;
-        --shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
+:root{
+--primary:#3B82F6;
+--primary-dark:#2563EB;
+--bg:#f3f6fb;
+--card:#ffffff;
+--radius:18px;
+--shadow:0 10px 25px rgba(0,0,0,.08);
+}
 
-    * { box-sizing: border-box; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Vazirmatn,sans-serif;
+background:linear-gradient(135deg,#e0eaff,#f8fafc);
+min-height:100vh;
+color:#1e293b;
+}
 
-    body {
-        margin: 0;
-        font-family: 'Vazirmatn', sans-serif;
-        background: linear-gradient(135deg,#e0f2fe,#f8fafc);
-        color: var(--text);
-    }
+.content{
+width:100%;
+max-width:1400px;
+margin:auto;
+padding:20px;
+}
 
-    main {
-        max-width: 1200px;
-        margin: auto;
-        padding: 20px;
-    }
+h2{
+font-size:1.4rem;
+margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:10px;
+color:#1e293b;
+}
 
-    h2 {
-        margin: 40px 0 20px;
-        font-size: 1.6rem;
-        font-weight: 800;
-    }
+.section{
+background:var(--card);
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+padding:25px;
+margin-bottom:30px;
+}
 
-    .grid {
-        display: grid;
-        gap: 20px;
-    }
+/* GRID RESPONSIVE */
+.os-container{
+display:grid;
+gap:20px;
+grid-template-columns:1fr;
+}
 
-    .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 20px;
-        box-shadow: var(--shadow);
-        transition: 0.3s;
-    }
+/* tablet */
+@media(min-width:600px){
+.os-container{
+grid-template-columns:repeat(2,1fr);
+}
+}
 
-    .card:hover {
-        transform: translateY(-5px);
-    }
+/* laptop */
+@media(min-width:992px){
+.os-container{
+grid-template-columns:repeat(3,1fr);
+}
+}
 
-    .card-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-weight: 700;
-        font-size: 1.1rem;
-    }
+/* desktop wide */
+@media(min-width:1400px){
+.os-container{
+grid-template-columns:repeat(4,1fr);
+}
+}
 
-    .card-title i {
-        font-size: 1.6rem;
-        margin-left: 10px;
-    }
+.os-box{
+background:#f8fafc;
+border-radius:16px;
+overflow:hidden;
+transition:.3s;
+cursor:pointer;
+display:flex;
+flex-direction:column;
+min-height:70px;
+}
 
-    .btn {
-        display: block;
-        margin-top: 15px;
-        padding: 12px;
-        text-align: center;
-        background: var(--primary);
-        color: white;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: 0.3s;
-    }
+.os-box:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
 
-    .btn:hover { background: var(--primary-dark); }
+.os-title{
+height:70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 18px;
+font-weight:600;
+}
 
-    .slider {
-        position: relative;
-        overflow: hidden;
-        border-radius: 14px;
-        margin-top: 15px;
-    }
+.os-title div{
+display:flex;
+align-items:center;
+gap:10px;
+}
 
-    .slides {
-        display: flex;
-        transition: transform 0.4s ease;
-    }
+.os-title i.fab{
+font-size:1.6rem;
+color:var(--primary);
+}
 
-    .slides img {
-        width: 100%;
-        flex-shrink: 0;
-        border-radius: 14px;
-    }
+.os-content{
+max-height:0;
+overflow:hidden;
+transition:max-height .4s ease;
+padding:0 18px;
+}
 
-    .nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255,255,255,0.9);
-        border: none;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
+.os-box.active .os-content{
+max-height:800px;
+padding-bottom:20px;
+}
 
-    .prev { left: 10px; }
-    .next { right: 10px; }
+/* button */
+.app-button{
+display:block;
+margin:15px auto;
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+color:#fff;
+text-decoration:none;
+padding:12px;
+border-radius:12px;
+text-align:center;
+font-weight:600;
+transition:.3s;
+}
+.app-button:hover{transform:translateY(-2px)}
 
-    footer {
-        margin-top: 60px;
-        text-align: center;
-        color: var(--muted);
-        padding-bottom: 40px;
-    }
+/* slider */
+.slider{
+margin-top:15px;
+position:relative;
+overflow:hidden;
+border-radius:14px;
+}
 
-    /* ---------- Responsive Breakpoints ---------- */
+.slider-images{
+display:flex;
+transition:.4s ease;
+}
 
-    /* Mobile */
-    @media (max-width: 600px) {
-        .grid { grid-template-columns: 1fr; }
-        h2 { font-size: 1.4rem; }
-    }
+.slider-image{
+width:100%;
+flex-shrink:0;
+aspect-ratio:16/9;
+object-fit:cover;
+}
 
-    /* Tablet */
-    @media (min-width: 601px) and (max-width: 992px) {
-        .grid { grid-template-columns: repeat(2,1fr); }
-    }
+.slider-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:#ffffffdd;
+border:none;
+width:38px;
+height:38px;
+border-radius:50%;
+cursor:pointer;
+}
 
-    /* Laptop & Desktop */
-    @media (min-width: 993px) {
-        .grid { grid-template-columns: repeat(3,1fr); }
-    }
+.prev{left:10px}
+.next{right:10px}
 
+.slider-dots{
+display:flex;
+justify-content:center;
+gap:6px;
+padding:10px;
+}
+
+.slider-dot{
+width:8px;
+height:8px;
+background:#cbd5e1;
+border-radius:50%;
+cursor:pointer;
+}
+
+.slider-dot.active{
+background:var(--primary);
+width:20px;
+border-radius:10px;
+}
+
+/* floating social */
+.wrapper{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:15px;
+background:#ffffffee;
+padding:12px 20px;
+border-radius:50px;
+box-shadow:var(--shadow);
+z-index:1000;
+}
+
+.wrapper a{
+color:#334155;
+font-size:1.4rem;
+}
+
+/* mobile spacing fix */
+@media(max-width:480px){
+.content{padding:15px}
+.section{padding:18px}
+}
 </style>
-```
-
 </head>
 <body>
 
-<main>
+<main class="content">
 
-```
-<h2>نصب نرم‌افزار</h2>
-<div class="grid">
+<section class="section">
+<h2><i class="fas fa-download"></i>نصب نرم افزار</h2>
+<div class="os-container">
 
-    <div class="card">
-        <div class="card-title">
-            <span><i class="fab fa-android"></i>اندروید</span>
-        </div>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank">دانلود V2rayNG</a>
-    </div>
-
-    <div class="card">
-        <div class="card-title">
-            <span><i class="fab fa-apple"></i>آیفون</span>
-        </div>
-        <a class="btn" href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank">دانلود Streisand</a>
-    </div>
-
-    <div class="card">
-        <div class="card-title">
-            <span><i class="fab fa-windows"></i>ویندوز</span>
-        </div>
-        <a class="btn" href="https://github.com/2dust/v2rayN/releases" target="_blank">دانلود V2rayN</a>
-    </div>
-
+<div class="os-box">
+<div class="os-title">
+<div><i class="fab fa-android"></i>اندروید</div>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="os-content">
+<a href="#" class="app-button">دانلود V2rayNG</a>
+</div>
 </div>
 
-<h2>آموزش تصویری</h2>
-<div class="grid">
-
-    <div class="card">
-        <div class="card-title">
-            <span><i class="fab fa-android"></i>اندروید</span>
-        </div>
-        <div class="slider" data-slider>
-            <div class="slides">
-                <img src="https://placehold.co/800x450/3B82F6/FFFFFF?text=Android+1">
-                <img src="https://placehold.co/800x450/60A5FA/FFFFFF?text=Android+2">
-                <img src="https://placehold.co/800x450/1E3A8A/FFFFFF?text=Android+3">
-            </div>
-            <button class="nav-btn prev">‹</button>
-            <button class="nav-btn next">›</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-title">
-            <span><i class="fab fa-apple"></i>آیفون</span>
-        </div>
-        <div class="slider" data-slider>
-            <div class="slides">
-                <img src="https://placehold.co/800x450/3B82F6/FFFFFF?text=iPhone+1">
-                <img src="https://placehold.co/800x450/60A5FA/FFFFFF?text=iPhone+2">
-            </div>
-            <button class="nav-btn prev">‹</button>
-            <button class="nav-btn next">›</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-title">
-            <span><i class="fab fa-windows"></i>ویندوز</span>
-        </div>
-        <div class="slider" data-slider>
-            <div class="slides">
-                <img src="https://placehold.co/800x450/3B82F6/FFFFFF?text=Windows+1">
-                <img src="https://placehold.co/800x450/60A5FA/FFFFFF?text=Windows+2">
-            </div>
-            <button class="nav-btn prev">‹</button>
-            <button class="nav-btn next">›</button>
-        </div>
-    </div>
-
+<div class="os-box">
+<div class="os-title">
+<div><i class="fab fa-apple"></i>آیفون</div>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="os-content">
+<a href="#" class="app-button">دانلود Streisand</a>
+</div>
 </div>
 
-<footer>
-    © 2026 Web CanfigVpn
-</footer>
-```
+<div class="os-box">
+<div class="os-title">
+<div><i class="fab fa-windows"></i>ویندوز</div>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="os-content">
+<a href="#" class="app-button">دانلود V2rayN</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<h2><i class="fas fa-book-open"></i>آموزش تصویری</h2>
+<div class="os-container">
+
+<div class="os-box">
+<div class="os-title">
+<div><i class="fab fa-android"></i>اندروید</div>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="os-content">
+<div class="slider">
+<div class="slider-images">
+<img src="https://placehold.co/800x450/3B82F6/FFFFFF?text=1" class="slider-image">
+<img src="https://placehold.co/800x450/60A5FA/FFFFFF?text=2" class="slider-image">
+<img src="https://placehold.co/800x450/1E3A8A/FFFFFF?text=3" class="slider-image">
+</div>
+<button class="slider-btn prev">&#10095;</button>
+<button class="slider-btn next">&#10094;</button>
+<div class="slider-dots"></div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
 
 </main>
 
+<div class="wrapper">
+<a href="#"><i class="fab fa-telegram"></i></a>
+<a href="#"><i class="fas fa-headset"></i></a>
+<a href="#"><i class="fas fa-share-alt"></i></a>
+</div>
+
 <script>
-    document.querySelectorAll('[data-slider]').forEach(slider => {
-        const slides = slider.querySelector('.slides');
-        const images = slides.querySelectorAll('img');
-        let index = 0;
+// accordion
+document.querySelectorAll(".os-box").forEach(box=>{
+box.addEventListener("click",e=>{
+if(e.target.closest(".slider")) return;
+box.classList.toggle("active");
+});
+});
 
-        function update() {
-            slides.style.transform = `translateX(-${index * 100}%)`;
-        }
+// slider
+document.querySelectorAll(".slider").forEach(slider=>{
+const container=slider.querySelector(".slider-images");
+const slides=slider.querySelectorAll(".slider-image");
+const dotsWrap=slider.querySelector(".slider-dots");
+let index=0;
 
-        slider.querySelector('.next').onclick = () => {
-            index = (index + 1) % images.length;
-            update();
-        };
+slides.forEach((_,i)=>{
+let dot=document.createElement("div");
+dot.className="slider-dot"+(i==0?" active":"");
+dot.onclick=()=>go(i);
+dotsWrap.appendChild(dot);
+});
 
-        slider.querySelector('.prev').onclick = () => {
-            index = (index - 1 + images.length) % images.length;
-            update();
-        };
-    });
+function go(i){
+index=(i+slides.length)%slides.length;
+container.style.transform=`translateX(${index*-100}%)`;
+slider.querySelectorAll(".slider-dot").forEach((d,j)=>{
+d.classList.toggle("active",j==index);
+});
+}
+
+slider.querySelector(".prev").onclick=()=>go(index-1);
+slider.querySelector(".next").onclick=()=>go(index+1);
+});
 </script>
 
 </body>
