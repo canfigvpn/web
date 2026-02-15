@@ -1,339 +1,584 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web CanfigVpn</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="آموزش اتصال فلوکی برای تمامی سیستم‌عامل‌ها">
+    <meta name="theme-color" content="#3B82F6">
+    <title>Floki VPN Config</title>
+    <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- تنظیمات پایه و متغیرها --- */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.9);
+            --text-main: #1e293b;
+            --text-secondary: #475569;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
 
-<link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
 
-<style>
-:root{
---primary:#3B82F6;
---primary-dark:#2563EB;
---bg:#f3f6fb;
---card:#ffffff;
---radius:18px;
---shadow:0 10px 25px rgba(0,0,0,.08);
-}
+        body {
+            margin: 0;
+            font-family: 'Vazirmatn', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #eff6ff, #f3f4f6, #e0f2fe, #f0f9ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-bottom: 120px; /* فضای خالی برای داک شناور */
+        }
 
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-font-family:Vazirmatn,sans-serif;
-background:linear-gradient(135deg,#e0eaff,#f8fafc);
-min-height:100vh;
-color:#1e293b;
-}
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.content{
-width:100%;
-max-width:1400px;
-margin:auto;
-padding:20px;
-}
+        /* --- کانتینر اصلی --- */
+        .content {
+            padding: 20px;
+            width: 100%;
+            margin: 0 auto;
+            max-width: 1200px; 
+        }
 
-h2{
-font-size:1.4rem;
-margin-bottom:20px;
-display:flex;
-align-items:center;
-gap:10px;
-color:#1e293b;
-}
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            position: relative;
+            padding-right: 15px;
+        }
 
-.section{
-background:var(--card);
-border-radius:var(--radius);
-box-shadow:var(--shadow);
-padding:25px;
-margin-bottom:30px;
-}
+        h2::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 22px;
+            background: var(--primary-gradient);
+            border-radius: 10px;
+        }
 
-/* GRID RESPONSIVE */
-.os-container{
-display:grid;
-gap:20px;
-grid-template-columns:1fr;
-}
+        /* --- کارت‌های شیشه‌ای --- */
+        .glass-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+        }
 
-/* tablet */
-@media(min-width:600px){
-.os-container{
-grid-template-columns:repeat(2,1fr);
-}
-}
+        /* --- سیستم گرید ریسپانسیو --- */
+        .os-container {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: 1fr; 
+            align-items: start;
+        }
 
-/* laptop */
-@media(min-width:992px){
-.os-container{
-grid-template-columns:repeat(3,1fr);
-}
-}
+        @media (min-width: 600px) {
+            .os-container { grid-template-columns: repeat(2, 1fr); }
+        }
 
-/* desktop wide */
-@media(min-width:1400px){
-.os-container{
-grid-template-columns:repeat(4,1fr);
-}
-}
+        @media (min-width: 1024px) {
+            .os-container { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .content { padding: 40px; }
+        }
 
-.os-box{
-background:#f8fafc;
-border-radius:16px;
-overflow:hidden;
-transition:.3s;
-cursor:pointer;
-display:flex;
-flex-direction:column;
-min-height:70px;
-}
+        /* --- باکس‌های آکاردئونی --- */
+        .os-box {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 72px; 
+            cursor: pointer;
+            position: relative;
+        }
 
-.os-box:hover{
-transform:translateY(-4px);
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
+        .os-box:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
 
-.os-title{
-height:70px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 18px;
-font-weight:600;
-}
+        .os-box.active {
+            max-height: 1000px; /* ارتفاع بیشتر برای محتوای طولانی */
+            background: #ffffff;
+            box-shadow: var(--shadow-md);
+            border-color: #3B82F6;
+        }
 
-.os-title div{
-display:flex;
-align-items:center;
-gap:10px;
-}
+        .os-title {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            justify-content: space-between;
+            user-select: none;
+        }
 
-.os-title i.fab{
-font-size:1.6rem;
-color:var(--primary);
-}
+        .os-title div { display: flex; align-items: center; gap: 12px; }
+        .os-title i.fab { font-size: 1.6rem; width: 30px; text-align: center; transition: color 0.3s; }
+        .os-box.active .os-title i.fab { color: #3B82F6; }
 
-.os-content{
-max-height:0;
-overflow:hidden;
-transition:max-height .4s ease;
-padding:0 18px;
-}
+        .toggle-arrow { color: #94a3b8; transition: transform 0.4s ease; }
+        .os-box.active .toggle-arrow { transform: rotate(180deg); color: #3B82F6; }
 
-.os-box.active .os-content{
-max-height:800px;
-padding-bottom:20px;
-}
+        /* --- دکمه دانلود --- */
+        .app-button {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 10px auto 25px;
+            padding: 14px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+        }
 
-/* button */
-.app-button{
-display:block;
-margin:15px auto;
-background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-color:#fff;
-text-decoration:none;
-padding:12px;
-border-radius:12px;
-text-align:center;
-font-weight:600;
-transition:.3s;
-}
-.app-button:hover{transform:translateY(-2px)}
+        .os-box.active .app-button { opacity: 1; transform: translateY(0); }
+        .app-button:hover { box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
 
-/* slider */
-.slider{
-margin-top:15px;
-position:relative;
-overflow:hidden;
-border-radius:14px;
-}
+        /* --- اسلایدر --- */
+        .slider {
+            margin: 0 20px 20px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f1f5f9;
+            opacity: 0;
+            transition: opacity 0.4s 0.2s;
+        }
+        .os-box.active .slider { opacity: 1; }
 
-.slider-images{
-display:flex;
-transition:.4s ease;
-}
+        .slider-images { display: flex; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); aspect-ratio: 16/9; }
+        .slider-image { width: 100%; flex-shrink: 0; object-fit: cover; cursor: zoom-in; }
 
-.slider-image{
-width:100%;
-flex-shrink:0;
-aspect-ratio:16/9;
-object-fit:cover;
-}
+        .slider-nav {
+            position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none;
+        }
+        .slider-btn {
+            pointer-events: auto; width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #333; transition: all 0.2s;
+        }
+        .slider-btn:hover { background: white; transform: scale(1.1); }
+        
+        .slider-dots { display: flex; justify-content: center; gap: 6px; padding: 10px 0; }
+        .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; transition: all 0.3s; cursor: pointer; }
+        .dot.active { width: 16px; background: #3B82F6; border-radius: 4px; }
 
-.slider-btn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:#ffffffdd;
-border:none;
-width:38px;
-height:38px;
-border-radius:50%;
-cursor:pointer;
-}
+        /* --- داک شناور پیشرفته (New & Improved) --- */
+        .dock-container {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
 
-.prev{left:10px}
-.next{right:10px}
+        .dock-wrapper {
+            display: flex;
+            gap: 20px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
 
-.slider-dots{
-display:flex;
-justify-content:center;
-gap:6px;
-padding:10px;
-}
+        .dock-item {
+            position: relative;
+            width: 55px;
+            height: 55px;
+            border-radius: 18px; /* شکل مربعی با گوشه گرد */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
 
-.slider-dot{
-width:8px;
-height:8px;
-background:#cbd5e1;
-border-radius:50%;
-cursor:pointer;
-}
+        .dock-item a, .dock-item button {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            color: inherit; text-decoration: none; background: none; border: none; padding: 0;
+            border-radius: inherit;
+        }
 
-.slider-dot.active{
-background:var(--primary);
-width:20px;
-border-radius:10px;
-}
+        /* استایل خاص تلگرام */
+        .dock-item.telegram {
+            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+        }
+        .dock-item.telegram:hover {
+            box-shadow: 0 10px 25px rgba(34, 158, 217, 0.5);
+            transform: translateY(-8px);
+        }
+        .dock-item.telegram:hover i { animation: flyPlane 0.6s ease forwards; }
 
-/* floating social */
-.wrapper{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:15px;
-background:#ffffffee;
-padding:12px 20px;
-border-radius:50px;
-box-shadow:var(--shadow);
-z-index:1000;
-}
+        /* استایل خاص پشتیبانی */
+        .dock-item.support {
+            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+        }
+        .dock-item.support:hover {
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.5);
+            transform: translateY(-8px);
+        }
+        .dock-item.support:hover i { animation: pulseIcon 1s infinite; }
 
-.wrapper a{
-color:#334155;
-font-size:1.4rem;
-}
+        /* استایل خاص اشتراک‌گذاری */
+        .dock-item.share {
+            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+        }
+        .dock-item.share:hover {
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
+            transform: translateY(-8px);
+        }
+        .dock-item.share:hover i { transform: scale(1.2) rotate(15deg); transition: 0.3s; }
 
-/* mobile spacing fix */
-@media(max-width:480px){
-.content{padding:15px}
-.section{padding:18px}
-}
-</style>
+        /* تولتیپ (متن روی آیکون) */
+        .dock-tooltip {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .dock-tooltip::after {
+            content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+            border-width: 4px; border-style: solid; border-color: #1e293b transparent transparent transparent;
+        }
+        
+        .dock-item:hover .dock-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+            top: -55px;
+        }
+
+        /* انیمیشن‌های آیکون‌ها */
+        @keyframes flyPlane {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(3px, -3px); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes pulseIcon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- مودال‌ها (مشترک) --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px); z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: all 0.3s; padding: 20px;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-box {
+            background: white; width: 100%; max-width: 400px;
+            border-radius: 24px; overflow: hidden;
+            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+
+        .modal-header {
+            background: var(--primary-gradient); color: white; padding: 18px;
+            text-align: center; font-weight: 700; font-size: 1.1rem;
+        }
+
+        .share-body { padding: 25px; }
+
+        .url-box {
+            display: flex; background: #f8fafc; border-radius: 14px; padding: 8px; margin-bottom: 25px; border: 1px solid #e2e8f0;
+        }
+        .url-box input { flex: 1; border: none; background: transparent; padding: 8px; font-family: inherit; color: #64748b; font-size: 0.95rem; }
+        .url-box button { background: #3B82F6; color: white; border: none; width: 40px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .url-box button:hover { background: #2563EB; }
+
+        .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px; }
+        .social-btn {
+            aspect-ratio: 1; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; text-decoration: none;
+        }
+        .social-btn:hover { transform: scale(1.05); }
+        .bg-tg { background: #229ED9; }
+        .bg-wa { background: #25D366; }
+        .bg-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .bg-qr { background: #1e293b; }
+
+        .close-btn {
+            display: block; width: 100%; padding: 14px; margin-top: 10px; border: none; background: #f1f5f9; color: #64748b; border-radius: 12px; cursor: pointer; font-weight: 600; transition: background 0.2s;
+        }
+        .close-btn:hover { background: #e2e8f0; color: #333; }
+
+        /* Zoom Modal */
+        .zoom-modal img { max-width: 100%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 25px rgba(0,0,0,0.5); }
+        .zoom-close {
+            position: absolute; top: 20px; right: 20px; background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; font-size: 1.2rem;
+        }
+
+    </style>
 </head>
 <body>
 
-<main class="content">
+    <main class="content">
+        <section class="glass-section">
+            <h2><i class="fas fa-download" style="margin-left:8px; color:#3B82F6;"></i>دانلود نرم‌افزار</h2>
+            <div class="os-container">
+                <div class="os-box" onclick="toggleBox(this)">
+                    <div class="os-title">
+                        <div><i class="fab fa-android"></i><span>اندروید (V2rayNG)</span></div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="app-button">دانلود مستقیم از گوگل پلی</a>
+                </div>
+                <div class="os-box" onclick="toggleBox(this)">
+                    <div class="os-title">
+                        <div><i class="fab fa-apple"></i><span>آیفون (Streisand)</span></div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank" class="app-button">دانلود از اپ استور</a>
+                </div>
+                <div class="os-box" onclick="toggleBox(this)">
+                    <div class="os-title">
+                        <div><i class="fab fa-windows"></i><span>ویندوز (V2rayN)</span></div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank" class="app-button">دانلود از گیت‌هاب</a>
+                </div>
+            </div>
+        </section>
 
-<section class="section">
-<h2><i class="fas fa-download"></i>نصب نرم افزار</h2>
-<div class="os-container">
+        <section class="glass-section">
+            <h2><i class="fas fa-images" style="margin-left:8px; color:#3B82F6;"></i>آموزش تصویری</h2>
+            <div class="os-container">
+                <div class="os-box" id="android-slider" onclick="toggleBox(this)">
+                    <div class="os-title">
+                        <div><i class="fab fa-android"></i><span>آموزش اندروید</span></div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/800x450/3B82F6/FFFFFF?text=Android+Step+1" alt="Step 1">
+                            <img class="slider-image" src="https://placehold.co/800x450/60A5FA/FFFFFF?text=Android+Step+2" alt="Step 2">
+                            <img class="slider-image" src="https://placehold.co/800x450/1E3A8A/FFFFFF?text=Android+Step+3" alt="Step 3">
+                        </div>
+                        <div class="slider-nav">
+                            <button class="slider-btn prev" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-right"></i></button>
+                            <button class="slider-btn next" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-left"></i></button>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <div class="os-box" id="iphone-slider" onclick="toggleBox(this)">
+                    <div class="os-title">
+                        <div><i class="fab fa-apple"></i><span>آموزش آیفون</span></div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/800x450/3B82F6/FFFFFF?text=iPhone+Step+1" alt="Step 1">
+                            <img class="slider-image" src="https://placehold.co/800x450/60A5FA/FFFFFF?text=iPhone+Step+2" alt="Step 2">
+                        </div>
+                        <div class="slider-nav">
+                            <button class="slider-btn prev" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-right"></i></button>
+                            <button class="slider-btn next" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-left"></i></button>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+                <div class="os-box" id="windows-slider" onclick="toggleBox(this)">
+                    <div class="os-title">
+                        <div><i class="fab fa-windows"></i><span>آموزش ویندوز</span></div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/800x450/3B82F6/FFFFFF?text=Windows+Step+1" alt="Step 1">
+                            <img class="slider-image" src="https://placehold.co/800x450/60A5FA/FFFFFF?text=Windows+Step+2" alt="Step 2">
+                        </div>
+                        <div class="slider-nav">
+                            <button class="slider-btn prev" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-right"></i></button>
+                            <button class="slider-btn next" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-left"></i></button>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<div class="os-box">
-<div class="os-title">
-<div><i class="fab fa-android"></i>اندروید</div>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="os-content">
-<a href="#" class="app-button">دانلود V2rayNG</a>
-</div>
-</div>
+    <div class="dock-container">
+        <ul class="dock-wrapper">
+            <li class="dock-item telegram">
+                <span class="dock-tooltip">کانال تلگرام</span>
+                <a href="https://t.me/FLOKI000" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </li>
+            <li class="dock-item support">
+                <span class="dock-tooltip">پشتیبانی آنلاین</span>
+                <a href="https://t.me/FLOKI000" target="_blank"><i class="fas fa-headset"></i></a>
+            </li>
+            <li class="dock-item share">
+                <span class="dock-tooltip">اشتراک‌گذاری</span>
+                <button onclick="openModal('shareModal')"><i class="fas fa-share-nodes"></i></button>
+            </li>
+        </ul>
+    </div>
 
-<div class="os-box">
-<div class="os-title">
-<div><i class="fab fa-apple"></i>آیفون</div>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="os-content">
-<a href="#" class="app-button">دانلود Streisand</a>
-</div>
-</div>
+    <div class="modal-overlay" id="shareModal" onclick="closeModal(event, this)">
+        <div class="modal-box">
+            <div class="modal-header">اشتراک‌گذاری با دوستان</div>
+            <div class="share-body">
+                <div class="url-box">
+                    <button onclick="copyToClipboard()"><i class="fas fa-copy"></i></button>
+                    <input type="text" value="https://canfigvpn.github.io/web/" readonly id="shareLink">
+                </div>
+                <div class="social-grid">
+                    <a href="https://telegram.me/share/url?url=https://canfigvpn.github.io/web/" target="_blank" class="social-btn bg-tg"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://api.whatsapp.com/send?text=https://canfigvpn.github.io/web/" target="_blank" class="social-btn bg-wa"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-btn bg-ig"><i class="fab fa-instagram"></i></a>
+                    <div onclick="openQR()" class="social-btn bg-qr"><i class="fas fa-qrcode"></i></div>
+                </div>
+                <button class="close-btn" onclick="document.getElementById('shareModal').classList.remove('active')">بستن</button>
+            </div>
+        </div>
+    </div>
 
-<div class="os-box">
-<div class="os-title">
-<div><i class="fab fa-windows"></i>ویندوز</div>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="os-content">
-<a href="#" class="app-button">دانلود V2rayN</a>
-</div>
-</div>
+    <div class="modal-overlay" id="qrModal" onclick="closeModal(event, this)">
+        <div class="modal-box" style="text-align: center;">
+            <div class="modal-header">QR Code</div>
+            <div style="padding: 30px;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://canfigvpn.github.io/web/" alt="QR" style="width:100%; border-radius:12px; border:1px solid #eee;">
+            </div>
+            <button class="close-btn" style="margin: 0 20px 20px; width: auto;" onclick="document.getElementById('qrModal').classList.remove('active')">بستن</button>
+        </div>
+    </div>
 
-</div>
-</section>
+    <div class="modal-overlay zoom-modal" id="zoomModal" onclick="closeModal(event, this)">
+        <button class="zoom-close" onclick="document.getElementById('zoomModal').classList.remove('active')"><i class="fas fa-times"></i></button>
+        <img src="" alt="Zoomed Image" id="zoomImg">
+    </div>
 
-<section class="section">
-<h2><i class="fas fa-book-open"></i>آموزش تصویری</h2>
-<div class="os-container">
+    <script>
+        // --- Accordion Logic ---
+        function toggleBox(element) {
+            if (event.target.closest('a, button, .slider-nav')) return;
+            element.classList.toggle('active');
+            const slider = element.querySelector('.slider');
+            if(slider && element.classList.contains('active') && !slider.dataset.init) {
+                initSlider(slider);
+            }
+        }
 
-<div class="os-box">
-<div class="os-title">
-<div><i class="fab fa-android"></i>اندروید</div>
-<i class="fas fa-chevron-down"></i>
-</div>
-<div class="os-content">
-<div class="slider">
-<div class="slider-images">
-<img src="https://placehold.co/800x450/3B82F6/FFFFFF?text=1" class="slider-image">
-<img src="https://placehold.co/800x450/60A5FA/FFFFFF?text=2" class="slider-image">
-<img src="https://placehold.co/800x450/1E3A8A/FFFFFF?text=3" class="slider-image">
-</div>
-<button class="slider-btn prev">&#10095;</button>
-<button class="slider-btn next">&#10094;</button>
-<div class="slider-dots"></div>
-</div>
-</div>
-</div>
+        // --- Slider Logic ---
+        function initSlider(slider) {
+            slider.dataset.init = "true";
+            const images = slider.querySelectorAll('.slider-image');
+            const dotsContainer = slider.querySelector('.slider-dots');
+            
+            images.forEach((img, index) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.onclick = (e) => { e.stopPropagation(); goToSlide(slider, index); };
+                dotsContainer.appendChild(dot);
+                
+                img.onclick = (e) => {
+                    e.stopPropagation();
+                    document.getElementById('zoomImg').src = img.src;
+                    document.getElementById('zoomModal').classList.add('active');
+                }
+            });
+            slider.dataset.index = "0";
+        }
 
-</div>
-</section>
+        function moveSlide(e, direction) {
+            e.stopPropagation();
+            const slider = e.target.closest('.slider');
+            const images = slider.querySelectorAll('.slider-image');
+            let idx = parseInt(slider.dataset.index || 0);
+            idx += direction;
+            if (idx >= images.length) idx = 0;
+            if (idx < 0) idx = images.length - 1;
+            goToSlide(slider, idx);
+        }
 
-</main>
+        function goToSlide(slider, index) {
+            const container = slider.querySelector('.slider-images');
+            const dots = slider.querySelectorAll('.dot');
+            container.style.transform = `translateX(${index * 100}%)`;
+            slider.dataset.index = index;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        }
 
-<div class="wrapper">
-<a href="#"><i class="fab fa-telegram"></i></a>
-<a href="#"><i class="fas fa-headset"></i></a>
-<a href="#"><i class="fas fa-share-alt"></i></a>
-</div>
+        // --- Modals ---
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(e, element) { if(e.target === element) element.classList.remove('active'); }
+        function openQR() {
+            document.getElementById('shareModal').classList.remove('active');
+            setTimeout(() => document.getElementById('qrModal').classList.add('active'), 200);
+        }
 
-<script>
-// accordion
-document.querySelectorAll(".os-box").forEach(box=>{
-box.addEventListener("click",e=>{
-if(e.target.closest(".slider")) return;
-box.classList.toggle("active");
-});
-});
-
-// slider
-document.querySelectorAll(".slider").forEach(slider=>{
-const container=slider.querySelector(".slider-images");
-const slides=slider.querySelectorAll(".slider-image");
-const dotsWrap=slider.querySelector(".slider-dots");
-let index=0;
-
-slides.forEach((_,i)=>{
-let dot=document.createElement("div");
-dot.className="slider-dot"+(i==0?" active":"");
-dot.onclick=()=>go(i);
-dotsWrap.appendChild(dot);
-});
-
-function go(i){
-index=(i+slides.length)%slides.length;
-container.style.transform=`translateX(${index*-100}%)`;
-slider.querySelectorAll(".slider-dot").forEach((d,j)=>{
-d.classList.toggle("active",j==index);
-});
-}
-
-slider.querySelector(".prev").onclick=()=>go(index-1);
-slider.querySelector(".next").onclick=()=>go(index+1);
-});
-</script>
-
+        // --- Copy Link ---
+        function copyToClipboard() {
+            const copyText = document.getElementById("shareLink");
+            copyText.select(); copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            const btn = document.querySelector('.url-box button');
+            const originalIcon = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.style.background = '#10B981';
+            setTimeout(() => {
+                btn.innerHTML = originalIcon;
+                btn.style.background = '#3B82F6';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
