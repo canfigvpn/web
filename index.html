@@ -3,283 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Floki VPN - Gold Edition">
+    <meta name="description" content="Floki VPN - Luxury Gold Edition">
     <meta name="theme-color" content="#000000">
-    <title>Floki VPN | Gold Edition</title>
+    <title>Floki VPN | راهنمای طلایی</title>
     <link rel="stylesheet" href="https://vazirmatn.github.io/Vazirmatn/fonts/webfonts/Vazirmatn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* پلت رنگی طلایی و مشکی */
             --gold-primary: #d4af37;
             --gold-light: #f9e29d;
             --gold-dark: #aa841e;
             --gold-gradient: linear-gradient(135deg, #f9e29d 0%, #d4af37 45%, #aa841e 100%);
             --black-bg: #0a0a0a;
-            --black-surface: #1a1a1a;
-            --glass-black: rgba(26, 26, 26, 0.8);
+            --black-surface: #151515;
+            --glass-black: rgba(20, 20, 20, 0.9);
             --text-gold: #e5c100;
             --text-white: #ffffff;
-            --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
         }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
 
         body {
             margin: 0;
             font-family: 'Vazirmatn', sans-serif;
             min-height: 100vh;
             background-color: var(--black-bg);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 100%);
             color: var(--text-white);
             overflow-x: hidden;
             padding-bottom: 120px;
         }
 
-        /* --- کانتینر اصلی --- */
-        .content {
-            padding: 20px;
-            width: 100%;
-            margin: 0 auto;
-            max-width: 1200px; 
-        }
+        .content { padding: 20px; width: 100%; margin: 0 auto; max-width: 1100px; }
 
         h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--gold-primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            font-size: 1.4rem; font-weight: 800; margin-bottom: 25px; color: var(--gold-primary);
+            display: flex; align-items: center; gap: 12px;
         }
 
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to left, var(--gold-dark), transparent);
-        }
+        h2::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to left, var(--gold-dark), transparent); }
 
-        /* --- کارت‌های شیشه‌ای تیره --- */
         .glass-section {
-            background: var(--glass-black);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 28px;
-            padding: 25px;
-            margin-bottom: 35px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background: var(--glass-black); backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 30px;
+            padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* --- گرید ریسپانسیو --- */
-        .os-container {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: 1fr; 
-        }
+        /* --- سیستم گرید --- */
+        .os-container { display: grid; gap: 15px; grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .os-container { grid-template-columns: repeat(3, 1fr); } }
 
-        @media (min-width: 768px) {
-            .os-container { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 1024px) {
-            .os-container { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* --- باکس‌های آکاردئونی طلایی --- */
+        /* --- باکس‌های آکاردئونی --- */
         .os-box {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 75px; 
-            cursor: pointer;
-        }
-
-        .os-box:hover {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            background: #111; border: 1px solid #222; border-radius: 20px;
+            overflow: hidden; transition: all 0.4s ease; max-height: 75px; cursor: pointer;
         }
 
         .os-box.active {
-            max-height: 1000px;
-            background: #151515;
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+            max-height: 800px; background: #161616; border-color: var(--gold-primary);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
         }
 
         .os-title {
-            height: 75px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            justify-content: space-between;
+            height: 75px; display: flex; align-items: center; padding: 0 20px; justify-content: space-between;
         }
 
-        .os-title div { display: flex; align-items: center; gap: 15px; }
-        .os-title i.fab, .os-title i.fas { 
-            font-size: 1.8rem; 
-            color: var(--gold-primary);
-            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
-        }
+        .os-title div { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+        .os-title i { font-size: 1.6rem; color: var(--gold-primary); }
 
-        .toggle-arrow { color: #555; transition: 0.4s; }
+        .toggle-arrow { color: #444; transition: 0.4s; }
         .os-box.active .toggle-arrow { transform: rotate(180deg); color: var(--gold-primary); }
 
-        /* --- دکمه دانلود متالیک --- */
+        /* --- دکمه دانلود --- */
         .app-button {
-            display: block;
-            width: calc(100% - 40px);
-            margin: 15px auto 30px;
-            padding: 16px;
-            background: var(--gold-gradient);
-            color: #000;
-            border-radius: 15px;
-            font-weight: 800;
-            text-align: center;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            transition: 0.3s;
+            display: block; width: calc(100% - 40px); margin: 10px auto 25px;
+            padding: 14px; background: var(--gold-gradient); color: #000;
+            border-radius: 12px; font-weight: 800; text-align: center; text-decoration: none;
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
         }
-
-        .app-button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
-            filter: brightness(1.1);
-        }
+        .app-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
         /* --- اسلایدر طلایی --- */
-        .slider {
-            margin: 0 20px 20px;
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
-            border: 1px solid #222;
-        }
-
-        .slider-images { display: flex; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); aspect-ratio: 16/9; }
-        .slider-image { width: 100%; flex-shrink: 0; object-fit: cover; filter: grayscale(20%); }
+        .slider { margin: 0 15px 15px; position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #333; }
+        .slider-images { display: flex; transition: 0.5s ease; aspect-ratio: 16/9; }
+        .slider-image { width: 100%; flex-shrink: 0; object-fit: cover; }
 
         .slider-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(0,0,0,0.7); border: 1px solid var(--gold-primary);
-            color: var(--gold-primary); cursor: pointer; z-index: 10;
+            width: 35px; height: 35px; border-radius: 50%; background: rgba(0,0,0,0.8);
+            border: 1px solid var(--gold-primary); color: var(--gold-primary); cursor: pointer;
         }
-        .slider-btn:hover { background: var(--gold-primary); color: #000; }
         
-        .dot { width: 8px; height: 8px; background: #333; border-radius: 50%; transition: 0.3s; }
-        .dot.active { width: 20px; background: var(--gold-primary); border-radius: 10px; }
+        .dots { display: flex; justify-content: center; gap: 5px; padding: 10px; }
+        .dot { width: 6px; height: 6px; background: #333; border-radius: 50%; transition: 0.3s; }
+        .dot.active { width: 15px; background: var(--gold-primary); border-radius: 10px; }
 
-        /* --- داک لاکچری پایین --- */
-        .dock-container {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1000;
-        }
-
+        /* --- داک لاکچری --- */
+        .dock-container { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 1000; }
         .dock-wrapper {
-            display: flex; gap: 25px; padding: 15px 30px;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--gold-primary);
-            border-radius: 30px;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+            display: flex; gap: 20px; padding: 12px 25px; background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(15px); border: 1px solid var(--gold-primary); border-radius: 25px;
         }
-
         .dock-item {
-            width: 55px; height: 55px; border-radius: 15px;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 1.6rem; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: #1a1a1a; color: var(--gold-primary);
-            border: 1px solid #333;
+            width: 50px; height: 50px; border-radius: 15px; display: flex; justify-content: center; align-items: center;
+            font-size: 1.4rem; color: var(--gold-primary); background: #222; border: 1px solid #333; transition: 0.3s;
         }
+        .dock-item:hover { transform: translateY(-10px); background: var(--gold-gradient); color: #000; }
 
-        .dock-item:hover {
-            transform: translateY(-12px);
-            background: var(--gold-gradient);
-            color: #000;
-            border-color: transparent;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        /* --- مودال‌ها --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
         }
-
-        /* --- مودال طلایی --- */
         .modal-box {
-            background: #111; color: white; border: 1px solid var(--gold-primary);
-            box-shadow: 0 0 50px rgba(0,0,0,1);
+            background: #111; width: 100%; max-width: 400px; border-radius: 25px;
+            border: 1px solid var(--gold-primary); overflow: hidden; animation: modalPop 0.3s ease;
         }
-        .modal-header { background: var(--gold-gradient); color: #000; }
+        @keyframes modalPop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        .modal-header { background: var(--gold-gradient); color: #000; padding: 15px; text-align: center; font-weight: 800; }
+        .url-box { display: flex; background: #000; padding: 10px; border-radius: 12px; border: 1px solid #333; margin-bottom: 20px; }
+        .url-box input { flex: 1; background: none; border: none; color: var(--gold-light); font-size: 13px; }
+        .url-box button { background: var(--gold-primary); border: none; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; }
 
-        .url-box { background: #000; border: 1px solid #333; }
-        .url-box input { color: var(--gold-light); }
-        .url-box button { background: var(--gold-primary); color: #000; }
-
-        .social-btn { border: 1px solid rgba(212, 175, 55, 0.3); background: #1a1a1a; color: var(--gold-primary); }
+        .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .social-btn {
+            aspect-ratio: 1; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; background: #1a1a1a; color: var(--gold-primary); border: 1px solid #333; cursor: pointer;
+        }
         .social-btn:hover { background: var(--gold-primary); color: #000; }
 
-        /* --- انیمیشن ذرات طلا در پس‌زمینه (اختیاری) --- */
-        @keyframes shine {
-            from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(360deg); }
-        }
     </style>
 </head>
 <body>
 
     <main class="content">
         <section class="glass-section">
-            <h2><i class="fas fa-crown"></i>دانلود نسخه ویژه Floki</h2>
+            <h2><i class="fas fa-download"></i>دریافت نرم‌افزار</h2>
             <div class="os-container">
                 <div class="os-box" onclick="toggleBox(this)">
-                    <div class="os-title">
-                        <div><i class="fab fa-android"></i><span>اندروید VIP</span></div>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="#" class="app-button">دریافت V2rayNG GOLD</a>
+                    <div class="os-title"><div><i class="fab fa-android"></i>اندروید</div><i class="fas fa-chevron-down toggle-arrow"></i></div>
+                    <a href="#" class="app-button">دانلود V2rayNG</a>
                 </div>
                 <div class="os-box" onclick="toggleBox(this)">
-                    <div class="os-title">
-                        <div><i class="fab fa-apple"></i><span>آیفون VIP</span></div>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="#" class="app-button">دریافت Streisand</a>
+                    <div class="os-title"><div><i class="fab fa-apple"></i>آیفون</div><i class="fas fa-chevron-down toggle-arrow"></i></div>
+                    <a href="#" class="app-button">دانلود Streisand</a>
                 </div>
                 <div class="os-box" onclick="toggleBox(this)">
-                    <div class="os-title">
-                        <div><i class="fab fa-windows"></i><span>ویندوز VIP</span></div>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <a href="#" class="app-button">دریافت V2rayN</a>
+                    <div class="os-title"><div><i class="fab fa-windows"></i>ویندوز</div><i class="fas fa-chevron-down toggle-arrow"></i></div>
+                    <a href="#" class="app-button">دانلود V2rayN</a>
                 </div>
             </div>
         </section>
 
         <section class="glass-section">
-            <h2><i class="fas fa-book-gold"></i>راهنمای راه اندازی</h2>
+            <h2><i class="fas fa-graduation-cap"></i>راهنمای نصب و اتصال</h2>
             <div class="os-container">
                 <div class="os-box" onclick="toggleBox(this)">
-                    <div class="os-title">
-                        <div><i class="fas fa-shield-halved"></i><span>آموزش اتصال سریع</span></div>
-                        <i class="fas fa-chevron-down toggle-arrow"></i>
-                    </div>
-                    <div class="slider">
+                    <div class="os-title"><div><i class="fab fa-android"></i>آموزش اندروید</div><i class="fas fa-chevron-down toggle-arrow"></i></div>
+                    <div class="slider" data-idx="0">
                         <div class="slider-images">
-                            <img class="slider-image" src="https://placehold.co/800x450/000000/d4af37?text=Gold+Step+1" alt="Step 1">
-                            <img class="slider-image" src="https://placehold.co/800x450/000000/f9e29d?text=Gold+Step+2" alt="Step 2">
+                            <img class="slider-image" src="https://placehold.co/600x400/111/d4af37?text=Android+Step+1">
+                            <img class="slider-image" src="https://placehold.co/600x400/111/d4af37?text=Android+Step+2">
                         </div>
-                        <button class="slider-btn" style="right:10px" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-right"></i></button>
-                        <button class="slider-btn" style="left:10px" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" style="right:5px" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="slider-btn" style="left:5px" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+                    </div>
+                </div>
+
+                <div class="os-box" onclick="toggleBox(this)">
+                    <div class="os-title"><div><i class="fab fa-apple"></i>آموزش آیفون</div><i class="fas fa-chevron-down toggle-arrow"></i></div>
+                    <div class="slider" data-idx="0">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/600x400/111/d4af37?text=iOS+Step+1">
+                            <img class="slider-image" src="https://placehold.co/600x400/111/d4af37?text=iOS+Step+2">
+                        </div>
+                        <button class="slider-btn" style="right:5px" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="slider-btn" style="left:5px" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+                    </div>
+                </div>
+
+                <div class="os-box" onclick="toggleBox(this)">
+                    <div class="os-title"><div><i class="fab fa-windows"></i>آموزش ویندوز</div><i class="fas fa-chevron-down toggle-arrow"></i></div>
+                    <div class="slider" data-idx="0">
+                        <div class="slider-images">
+                            <img class="slider-image" src="https://placehold.co/600x400/111/d4af37?text=PC+Step+1">
+                            <img class="slider-image" src="https://placehold.co/600x400/111/d4af37?text=PC+Step+2">
+                        </div>
+                        <button class="slider-btn" style="right:5px" onclick="moveSlide(event, 1)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="slider-btn" style="left:5px" onclick="moveSlide(event, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
                     </div>
                 </div>
             </div>
@@ -287,41 +203,45 @@
     </main>
 
     <div class="dock-container">
-        <ul class="dock-wrapper">
-            <li class="dock-item" onclick="window.open('https://t.me/FLOKI000')">
-                <i class="fab fa-telegram-plane"></i>
-            </li>
-            <li class="dock-item" onclick="window.open('https://t.me/FLOKI000')">
-                <i class="fas fa-headset"></i>
-            </li>
-            <li class="dock-item" onclick="openModal('shareModal')">
-                <i class="fas fa-share-nodes"></i>
-            </li>
-        </ul>
+        <div class="dock-wrapper">
+            <div class="dock-item" onclick="window.open('https://t.me/FLOKI000')"><i class="fab fa-telegram-plane"></i></div>
+            <div class="dock-item" onclick="window.open('https://t.me/FLOKI000')"><i class="fas fa-headset"></i></div>
+            <div class="dock-item" onclick="openModal('shareModal')"><i class="fas fa-share-nodes"></i></div>
+        </div>
     </div>
 
-    <div class="modal-overlay" id="shareModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); z-index:2000; display:none; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
-        <div class="modal-box" style="width:90%; max-width:400px; border-radius:25px; overflow:hidden;">
-            <div class="modal-header" style="padding:20px; text-align:center; font-weight:800;">اشتراک گذاری VIP</div>
-            <div style="padding:25px;">
-                <div class="url-box" style="display:flex; padding:10px; border-radius:12px;">
-                    <input type="text" value="https://canfigvpn.github.io/web/" readonly style="flex:1; background:none; border:none; outline:none; font-size:14px;">
-                    <button onclick="copyLink()" style="border:none; border-radius:8px; padding:5px 15px; cursor:pointer;">کپی</button>
+    <div class="modal-overlay" id="shareModal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-box">
+            <div class="modal-header">اشتراک‌گذاری</div>
+            <div style="padding: 20px;">
+                <div class="url-box">
+                    <input type="text" value="https://canfigvpn.github.io/web/" id="linkVal" readonly>
+                    <button onclick="copyLink()">کپی</button>
                 </div>
-                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:20px;">
-                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fab fa-telegram"></i></div>
-                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fab fa-whatsapp"></i></div>
-                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fab fa-instagram"></i></div>
-                    <div class="social-btn" style="aspect-ratio:1; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer;"><i class="fas fa-qrcode"></i></div>
+                <div class="social-grid">
+                    <div class="social-btn" onclick="window.open('https://t.me/share/url?url='+document.getElementById('linkVal').value)"><i class="fab fa-telegram"></i></div>
+                    <div class="social-btn" onclick="window.open('whatsapp://send?text='+document.getElementById('linkVal').value)"><i class="fab fa-whatsapp"></i></div>
+                    <div class="social-btn"><i class="fab fa-instagram"></i></div>
+                    <div class="social-btn" onclick="openQR()"><i class="fas fa-qrcode"></i></div>
                 </div>
-                <button onclick="document.getElementById('shareModal').style.display='none'" style="width:100%; margin-top:20px; padding:12px; border:none; border-radius:10px; background:#222; color:#888; cursor:pointer;">بستن</button>
+                <button onclick="this.closest('.modal-overlay').style.display='none'" style="width:100%; margin-top:15px; background:none; border:none; color:#666; cursor:pointer;">انصراف</button>
             </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="qrModal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-box">
+            <div class="modal-header">اسکن کد QR</div>
+            <div style="padding: 30px; text-align: center; background: #fff;">
+                <img id="qrImg" src="" alt="QR Code" style="width: 100%; max-width: 200px;">
+            </div>
+            <button onclick="this.closest('.modal-overlay').style.display='none'" style="width:100%; padding:15px; border:none; background:#111; color:var(--gold-primary); cursor:pointer;">بستن</button>
         </div>
     </div>
 
     <script>
         function toggleBox(el) {
-            if (event.target.closest('a, button')) return;
+            if (event.target.closest('a, button, .slider')) return;
             el.classList.toggle('active');
         }
 
@@ -329,24 +249,36 @@
             e.stopPropagation();
             const slider = e.target.closest('.slider');
             const container = slider.querySelector('.slider-images');
+            const dots = slider.querySelectorAll('.dot');
             const imgs = container.querySelectorAll('img');
             let idx = parseInt(slider.dataset.idx || 0);
             
             idx = (idx + dir + imgs.length) % imgs.length;
             container.style.transform = `translateX(${idx * 100}%)`;
             slider.dataset.idx = idx;
+            
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
         }
 
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
 
         function copyLink() {
-            const input = document.querySelector('.url-box input');
+            const input = document.getElementById('linkVal');
+            input.select();
             navigator.clipboard.writeText(input.value);
-            const btn = document.querySelector('.url-box button');
-            btn.innerText = 'کپی شد!';
-            setTimeout(() => btn.innerText = 'کپی', 2000);
+            event.target.innerText = 'کپی شد!';
+            setTimeout(() => event.target.innerText = 'کپی', 2000);
+        }
+
+        // فعال‌سازی کد QR
+        function openQR() {
+            const link = document.getElementById('linkVal').value;
+            const qrImg = document.getElementById('qrImg');
+            // استفاده از API رایگان برای تولید QR
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(link)}`;
+            
+            document.getElementById('shareModal').style.display = 'none';
+            document.getElementById('qrModal').style.display = 'flex';
         }
     </script>
 </body>
