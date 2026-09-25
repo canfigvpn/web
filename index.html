@@ -384,19 +384,19 @@ async function openAccount(index, encodedPath){
 
   try{
     const fileText = await fetchText(file.url);
-    const urls = extractSubscriptionUrls(fileText);
 
-    // اگر خود فایل فقط یک لینک/لینک‌های اشتراک داشته باشد، همان‌ها استفاده می‌شوند.
-    // اگر لینک پیدا نشود، لینک پیش‌فرض فقط به‌عنوان fallback استفاده می‌شود.
-    const subscriptions = urls.length ? urls : [CONFIG.defaultSubscription];
+    // لینک اصلی فقط برای دریافت اطلاعات اشتراک و دریافت کانفیگ‌هاست.
+    // خود لینک اصلی هرگز به‌عنوان کانفیگ نمایش داده نمی‌شود.
+    const subscriptions = extractSubscriptionUrls(fileText);
+    const subscriptionUrl = subscriptions[0] || CONFIG.defaultSubscription;
 
-    let configs = parseConfigs(fileText);
-    const name = file.name;
+    let configs = [];
 
-    // اگر فایل .sub فقط لینک اشتراک دارد، محتوای subscription را هم می‌خوانیم.
-    if(!configs.length && subscriptions.length){
+    // اولویت با محتوای واقعی لینک اشتراک است؛ بنابراین URL اصلی
+    // و خطوط کمکی فایل .sub وارد لیست کانفیگ‌ها نمی‌شوند.
+    if(subscriptionUrl){
       try{
-        const subResponse = await fetch(subscriptions[0], {cache:'no-store'});
+        const subResponse = await fetch(subscriptionUrl, {cache:'no-store'});
         if(subResponse.ok){
           const subText = await subResponse.text();
           configs = parseConfigs(decodeSubscriptionBody(subText));
@@ -405,6 +405,13 @@ async function openAccount(index, encodedPath){
         console.warn('Subscription config fetch failed:', error);
       }
     }
+
+    // اگر لینک اشتراک قابل دریافت نبود، فقط کانفیگ‌های واقعی داخل فایل را بخوان.
+    if(!configs.length){
+      configs = parseConfigs(fileText);
+    }
+
+    const name = file.name;
 
     $('accountContent').innerHTML = `
       <div class="account-head">
@@ -423,11 +430,15 @@ async function openAccount(index, encodedPath){
 
       <div class="panel">
         <div class="info-row">
-          <span>لینک اشتراک</span>
-          <span class="ltr">${escapeHtml(subscriptions[0])}</span>
+          <span>منبع اشتراک</span>
+          <span class="ltr">${escapeHtml(subscriptionUrl)}</span>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          لینک اصلی فقط برای خواندن حجم، مصرف و تاریخ انقضا استفاده می‌شود؛
+          در لیست سرورها نمایش داده نمی‌شود.
         </div>
         <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn" onclick="copyText(${JSON.stringify(subscriptions[0])})">
+          <button class="btn" onclick="copyText(${JSON.stringify(subscriptionUrl)})">
             <i class="fa-regular fa-copy"></i> کپی لینک اشتراک
           </button>
           <button class="btn secondary" onclick="downloadGeneratedFile()">
@@ -439,10 +450,10 @@ async function openAccount(index, encodedPath){
       <div class="panel">
         <div style="font-weight:800;margin-bottom:15px">
           <i class="fa-solid fa-server" style="color:var(--gold)"></i>
-          کانفیگ‌ها (${configs.length})
+          سرورها (${configs.length})
         </div>
-        <div id="configs">${configs.length ? configs.map((c,i)=>configHtml(c,i)).join('') :
-          '<div class="notice warn">کانفیگ قابل تشخیصی داخل فایل پیدا نشد.</div>'}</div>
+        <div id="configs">${configs.length ? configs.map((item,i)=>configHtml(item,i)).join('') :
+          '<div class="notice warn">سرور قابل تشخیصی از لینک اشتراک پیدا نشد.</div>'}</div>
       </div>
 
       <div class="panel">
@@ -454,7 +465,7 @@ async function openAccount(index, encodedPath){
     `;
 
     new QRCode($('mainQr'),{
-      text:subscriptions[0],
+      text:subscriptionUrl,
       width:210,
       height:210,
       colorDark:'#111111',
@@ -463,11 +474,11 @@ async function openAccount(index, encodedPath){
     });
 
     state.current.fileText = fileText;
-    state.current.subscriptionUrl = subscriptions[0];
+    state.current.subscriptionUrl = subscriptionUrl;
     state.current.configs = configs;
     state.current.usage = null;
 
-    await loadUsage(subscriptions[0]);
+    await loadUsage(subscriptionUrl);
   }catch(error){
     console.error(error);
     $('accountContent').innerHTML =
@@ -513,8 +524,13 @@ function parseConfigs(text){
   const lines = decodedText.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
   const result=[];
 
+  const seen = new Set();
+
   for(const line of lines){
     if(/^(vless|vmess|trojan|ss|ssr|hysteria2?|tuic):\/\//i.test(line)){
+      if(seen.has(line)) continue;
+      seen.add(line);
+
       result.push({
         protocol:(line.match(/^([a-z0-9]+):\/\//i)||['','config'])[1].toUpperCase(),
         value:line,
@@ -535,21 +551,68 @@ function decodeConfigName(url){
   }
 }
 
+function getConfigServer(value){
+  try{
+    const u = new URL(value);
+    return u.hostname || 'سرور';
+  }catch{
+    return 'سرور';
+  }
+}
+
+function getConfigTransport(value){
+  try{
+    const u = new URL(value);
+    const type = (u.searchParams.get('type') || u.searchParams.get('network') || '').toLowerCase();
+    const security = (u.searchParams.get('security') || '').toLowerCase();
+
+    const transportMap = {
+      ws:'WebSocket',
+      grpc:'gRPC',
+      http:'HTTP',
+      h2:'HTTP/2',
+      xhttp:'XHTTP',
+      tcp:'TCP'
+    };
+
+    const transport = transportMap[type] || (type ? type.toUpperCase() : '');
+    const sec = security === 'tls' ? 'TLS' : security === 'reality' ? 'Reality' : security ? security.toUpperCase() : '';
+
+    return [transport,sec].filter(Boolean).join(' + ');
+  }catch{
+    return '';
+  }
+}
+
+function getConfigLabel(c){
+  const server = getConfigServer(c.value);
+  const transport = getConfigTransport(c.value);
+  return [server, transport].filter(Boolean).join(' • ');
+}
+
 function configHtml(c,i){
   const safe = JSON.stringify(c.value);
+  const server = getConfigServer(c.value);
+  const label = getConfigLabel(c);
+
   return `
     <article class="config">
       <div class="config-head">
         <div class="config-name">
           <span class="badge">${escapeHtml(c.protocol)}</span>
-          &nbsp; ${escapeHtml(c.name)}
+          &nbsp; ${escapeHtml(label)}
         </div>
         <div class="config-actions">
           <button class="small-btn" onclick="copyText(${safe})"><i class="fa-regular fa-copy"></i> کپی</button>
           <button class="small-btn" onclick="showQr(${i})"><i class="fa-solid fa-qrcode"></i> QR</button>
         </div>
       </div>
-      <div class="config-body">${escapeHtml(c.value)}</div>
+      <div class="config-body">
+        <div style="color:var(--gold2);margin-bottom:7px;font-family:Vazirmatn,Arial,sans-serif">
+          ${escapeHtml(server)} — ${escapeHtml(c.protocol)}${getConfigTransport(c.value) ? ' • '+escapeHtml(getConfigTransport(c.value)) : ''}
+        </div>
+        ${escapeHtml(c.value)}
+      </div>
       <div id="qr-${i}" style="display:none;text-align:center;padding:15px;background:#fff"></div>
     </article>
   `;
@@ -774,19 +837,21 @@ function downloadGeneratedFile(){
   if(!state.current) return;
 
   const u = state.current.usage;
+  const configs = Array.isArray(state.current.configs) ? state.current.configs : [];
+  const configText = configs.map(c => c.value).join('\n');
+
   const info =
-    'FLOKI VPN - SUBSCRIPTION INFO\n' +
-    '================================\n' +
-    'Name: ' + state.current.name + '\n' +
-    'Subscription: ' + state.current.subscriptionUrl + '\n' +
-    'Generated: ' + new Date().toISOString() + '\n' +
-    '--------------------------------\n' +
-    'Used: ' + (u ? formatBytes(u.used) : 'Unknown') + '\n' +
-    'Remaining: ' + (u && u.remaining !== null ? formatBytes(u.remaining) : 'Unlimited/Unknown') + '\n' +
-    'Time remaining: ' + (u ? u.remainingText : 'Unknown') + '\n' +
-    'Expire: ' + (u && u.expire ? formatDate(u.expire) : 'Unlimited/Unknown') + '\n' +
-    '================================\n\n' +
-    state.current.fileText;
+    'FLOKI VPN - SUBSCRIPTION INFO\\n' +
+    '================================\\n' +
+    'Name: ' + state.current.name + '\\n' +
+    'Generated: ' + new Date().toISOString() + '\\n' +
+    '--------------------------------\\n' +
+    'Used: ' + (u ? formatBytes(u.used) : 'Unknown') + '\\n' +
+    'Remaining: ' + (u && u.remaining !== null ? formatBytes(u.remaining) : 'Unlimited/Unknown') + '\\n' +
+    'Time remaining: ' + (u ? u.remainingText : 'Unknown') + '\\n' +
+    'Expire: ' + (u && u.expire ? formatDate(u.expire) : 'Unlimited/Unknown') + '\\n' +
+    '================================\\n\\n' +
+    configText;
 
   const blob=new Blob([info],{type:'text/plain;charset=utf-8'});
   const a=document.createElement('a');
