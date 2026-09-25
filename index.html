@@ -390,8 +390,21 @@ async function openAccount(index, encodedPath){
     // اگر لینک پیدا نشود، لینک پیش‌فرض فقط به‌عنوان fallback استفاده می‌شود.
     const subscriptions = urls.length ? urls : [CONFIG.defaultSubscription];
 
-    const configs = parseConfigs(fileText);
+    let configs = parseConfigs(fileText);
     const name = file.name;
+
+    // اگر فایل .sub فقط لینک اشتراک دارد، محتوای subscription را هم می‌خوانیم.
+    if(!configs.length && subscriptions.length){
+      try{
+        const subResponse = await fetch(subscriptions[0], {cache:'no-store'});
+        if(subResponse.ok){
+          const subText = await subResponse.text();
+          configs = parseConfigs(decodeSubscriptionBody(subText));
+        }
+      }catch(error){
+        console.warn('Subscription config fetch failed:', error);
+      }
+    }
 
     $('accountContent').innerHTML = `
       <div class="account-head">
@@ -452,6 +465,7 @@ async function openAccount(index, encodedPath){
     state.current.fileText = fileText;
     state.current.subscriptionUrl = subscriptions[0];
     state.current.configs = configs;
+    state.current.usage = null;
 
     await loadUsage(subscriptions[0]);
   }catch(error){
@@ -475,8 +489,28 @@ function extractSubscriptionUrls(text){
     .filter(x=>/\/sub(?:\?|\/|$)/i.test(x) || /subscription|subscribe/i.test(x));
 }
 
+function decodeSubscriptionBody(text){
+  const clean = String(text || '').trim();
+
+  try{
+    const normalized = clean.replace(/\s+/g,'');
+    if(normalized.length > 20 && /^[A-Za-z0-9+/=_-]+$/.test(normalized)){
+      const padded = normalized.replace(/-/g,'+').replace(/_/g,'/');
+      const binary = atob(padded + '='.repeat((4 - padded.length % 4) % 4));
+      const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+      const decoded = new TextDecoder('utf-8').decode(bytes);
+      if(/(?:vless|vmess|trojan|ss|ssr|hysteria|tuic):\/\//i.test(decoded)){
+        return decoded;
+      }
+    }
+  }catch{}
+
+  return clean;
+}
+
 function parseConfigs(text){
-  const lines = text.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  const decodedText = decodeSubscriptionBody(text);
+  const lines = decodedText.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
   const result=[];
 
   for(const line of lines){
@@ -579,6 +613,12 @@ async function loadUsage(subscriptionUrl){
     const total = Number(info.total||0);
     const used = upload + download;
     const expire = Number(info.expire||0);
+
+    state.current.usage = {
+      upload, download, total, used, expire,
+      remaining: total ? Math.max(0,total-used) : null,
+      remainingText: formatRemaining(expire)
+    };
     const percent = total > 0 ? Math.min(100,(used/total)*100) : 0;
 
     panel.innerHTML = `
@@ -733,12 +773,18 @@ function toast(text){
 function downloadGeneratedFile(){
   if(!state.current) return;
 
+  const u = state.current.usage;
   const info =
     'FLOKI VPN - SUBSCRIPTION INFO\n' +
     '================================\n' +
     'Name: ' + state.current.name + '\n' +
     'Subscription: ' + state.current.subscriptionUrl + '\n' +
     'Generated: ' + new Date().toISOString() + '\n' +
+    '--------------------------------\n' +
+    'Used: ' + (u ? formatBytes(u.used) : 'Unknown') + '\n' +
+    'Remaining: ' + (u && u.remaining !== null ? formatBytes(u.remaining) : 'Unlimited/Unknown') + '\n' +
+    'Time remaining: ' + (u ? u.remainingText : 'Unknown') + '\n' +
+    'Expire: ' + (u && u.expire ? formatDate(u.expire) : 'Unlimited/Unknown') + '\n' +
     '================================\n\n' +
     state.current.fileText;
 
@@ -758,10 +804,13 @@ function goHome(){
 }
 
 async function route(){
-  const match=location.hash.match(/^#sub=(.+)$/);
-  if(!match){goHome();return}
+  const hashMatch=location.hash.match(/^#sub=(.+)$/);
+  const queryPath=new URLSearchParams(location.search).get('sub');
+  const encodedPath=hashMatch ? hashMatch[1] : queryPath;
 
-  const path=decodeURIComponent(match[1]);
+  if(!encodedPath){goHome();return}
+
+  const path=decodeURIComponent(encodedPath);
   const file=state.files.find(x=>x.path===path);
 
   if(file){
